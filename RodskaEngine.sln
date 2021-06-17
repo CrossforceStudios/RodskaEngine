@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31402.337
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "TestingSandbox", "TestingSandbox\TestingSandbox.vcxproj", "{B9309564-9AD8-4473-83F2-1A497308B17B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RodskaEngine", "RodskaEngine\RodskaEngine.vcxproj", "{9C3E6229-6523-4E8C-8ED1-BA34C3ED8211}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		All Configurations|x64 = All Configurations|x64
+		Debug|x64 = Debug|x64
+		Release|x64 = Release|x64
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9C3E6229-6523-4E8C-8ED1-BA34C3ED8211}.All Configurations|x64.ActiveCfg = All Configurations|x64
+		{9C3E6229-6523-4E8C-8ED1-BA34C3ED8211}.All Configurations|x64.Build.0 = All Configurations|x64
+		{9C3E6229-6523-4E8C-8ED1-BA34C3ED8211}.Debug|x64.ActiveCfg = Debug|x64
+		{9C3E6229-6523-4E8C-8ED1-BA34C3ED8211}.Debug|x64.Build.0 = Debug|x64
+		{9C3E6229-6523-4E8C-8ED1-BA34C3ED8211}.Release|x64.ActiveCfg = Release|x64
+		{9C3E6229-6523-4E8C-8ED1-BA34C3ED8211}.Release|x64.Build.0 = Release|x64
+		{B9309564-9AD8-4473-83F2-1A497308B17B}.All Configurations|x64.ActiveCfg = Debug|x64
+		{B9309564-9AD8-4473-83F2-1A497308B17B}.All Configurations|x64.Build.0 = Debug|x64
+		{B9309564-9AD8-4473-83F2-1A497308B17B}.Debug|x64.ActiveCfg = Debug|x64
+		{B9309564-9AD8-4473-83F2-1A497308B17B}.Debug|x64.Build.0 = Debug|x64
+		{B9309564-9AD8-4473-83F2-1A497308B17B}.Release|x64.ActiveCfg = Release|x64
+		{B9309564-9AD8-4473-83F2-1A497308B17B}.Release|x64.Build.0 = Release|x64
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {589ECED7-44B2-4EA9-9D7D-56AEEFF38826}
+	EndGlobalSection
+EndGlobal
