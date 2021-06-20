@@ -3,7 +3,10 @@
 #include "RodskaEngine/LayerStack.h"
 #include "EngineCore.h"
 #include "EventSystem/RodskaAppEvent.h"
+#include "RodskaEngine/Graphics/Shader.h"
 #include <RodskaEngine/UI/Debug/UIDebugLayer.h>
+#include <RodskaEngine/Graphics/Buffer.h>
+#include <RodskaEngine/Graphics/VertexArray.h>
 
 namespace RodskaEngine {
 	class RODSKA_EAPI RodskaApp
@@ -24,6 +27,9 @@ namespace RodskaEngine {
 		bool OnWindowClose(WindowClosedEvent& e);
 		LayerStack m_LayerStack;
 		static RodskaApp* CurrentApp;
+		std::shared_ptr<Shader> m_Shader;
+		std::shared_ptr<VertexArray> m_VertexArray;
+
 	};
 
 #define RDSK_BIND_EVENT_CB(a,f) std::bind(&a::f, this, std::placeholders::_1)

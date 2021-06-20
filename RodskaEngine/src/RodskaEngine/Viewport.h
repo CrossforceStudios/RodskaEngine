@@ -16,7 +16,7 @@ namespace RodskaEngine {
 
 	};
 
-	class RODSKA_EAPI Viewport 
+	class Viewport 
 	{
 	public:
 		using EventCallbackFn = std::function<void(RodskaEvent&)>;

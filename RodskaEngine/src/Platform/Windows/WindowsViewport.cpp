@@ -3,6 +3,7 @@
 #include <RodskaEngine/EventSystem/RodskaAppEvent.h>
 #include <RodskaEngine/EventSystem/KeyInputEvent.h>
 #include <RodskaEngine/EventSystem/MouseInputEvent.h>
+#include "Platform/OpenGL/OpenGLContext.h"
 #include <glad/glad.h>
 namespace RodskaEngine {
 	static bool s_GLFWInitialized = false;
@@ -42,9 +43,11 @@ namespace RodskaEngine {
 
 		}
 		m_Window = glfwCreateWindow((int)props.Width, (int)props.Height, m_Data.Title.c_str(), nullptr, nullptr);
-		glfwMakeContextCurrent(m_Window);
-		int status = gladLoadGLLoader((GLADloadproc)glfwGetProcAddress);
-		RDSK_CORE_ASSERT(status, "Failed to initialize GLAD!");
+		
+		m_Context = new OpenGLContext(m_Window);
+		m_Context->Init();
+		m_Context->GetVersioning();
+		
 		glfwSetWindowUserPointer(m_Window, &m_Data);
 		SetVSync(true);
 
@@ -142,7 +145,7 @@ namespace RodskaEngine {
 
 	void WindowsViewport::OnUpdate() {
 		glfwPollEvents();
-		glfwSwapBuffers(m_Window);
+		m_Context->SwapBuffers();
 	}
 
 	void WindowsViewport::SetVSync(bool enabled) {

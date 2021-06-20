@@ -22,8 +22,10 @@ include "RodskaEngine/vendor/imgui"
 
 project "RodskaEngine"
 	location "RodskaEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
+	staticruntime "on"
+	cppdialect "C++17"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
@@ -51,6 +53,11 @@ project "RodskaEngine"
 		"%{IncludeDir.glm}"
 	}
 
+	defines 
+	{
+		"_CRT_SECURE_NO_WARNINGS"
+	}
+
 	links 
 	{
 		"GLFW",
@@ -60,33 +67,29 @@ project "RodskaEngine"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
 		{
 			"RDSK_PLATFORM_WINDOWS",
 			"RDSK_BUILD_DLL",
-			"GLFW_INCLUDE_NONE"
-		}
-
-		postbuildcommands 
-		{
-			("{COPY} %{cfg.buildtarget.relpath} ../bin/" .. outputdir .. "/TestingSandbox")
+			"GLFW_INCLUDE_NONE",
 		}
 
 	filter "configurations:Debug"
 		defines "RDSK_DEBUG"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 	
 	filter "configurations:Release"
 		defines "RDSK_RELEASE"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "RDSK_DIST"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 project "TestingSandbox"
 	location "TestingSandbox"
@@ -94,6 +97,8 @@ project "TestingSandbox"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	staticruntime "on"
+	cppdialect "C++17"
 
 	files 
 	{
@@ -106,6 +111,8 @@ project "TestingSandbox"
 		"RodskaEngine/vendor/spdlog/include",
 		"RodskaEngine/src",
 		"%{IncludeDir.glm}",
+		"%{IncludeDir.GLAD}",
+
 		"%{IncludeDir.imgui}",
 
 	}
@@ -116,8 +123,6 @@ project "TestingSandbox"
 	}
 
 	filter "system:windows"
-		cppdialect "C++17"
-		staticruntime "On"
 		systemversion "latest"
 
 		defines
@@ -127,15 +132,15 @@ project "TestingSandbox"
 
 	filter "configurations:Debug"
 		defines "RDSK_DEBUG"
-		buildoptions "/MDd"
-		symbols "On"
+		runtime "Debug"
+		symbols "on"
 	
 	filter "configurations:Release"
 		defines "RDSK_RELEASE"
-		buildoptions "/MDd"
-		optimize "On"
+		runtime "Release"
+		optimize "on"
 
 	filter "configurations:Dist"
 		defines "RDSK_DIST"
-		buildoptions "/MDd"
-		optimize "On"
+		runtime "Release"
+		optimize "on"

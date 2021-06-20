@@ -54,7 +54,7 @@ namespace RodskaEngine {
 		MouseButtonEvent(int button)
 			: m_Button(button) {}
 
-		inline float GetButton() const { return m_Button; }
+		inline int GetButton() const { return m_Button; }
 
 		std::string ToString() const override
 		{

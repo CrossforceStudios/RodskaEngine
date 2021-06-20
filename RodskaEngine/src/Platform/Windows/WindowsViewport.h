@@ -2,6 +2,8 @@
 #include "RodskaEngine/EngineCore.h"
 #include "RodskaEngine/Viewport.h"
 #include <GLFW/glfw3.h>
+#include "RodskaEngine/Graphics/RodskaGraphicsContext.h"
+
 namespace RodskaEngine {
 	class RODSKA_EAPI WindowsViewport : public Viewport
 	{
@@ -25,6 +27,7 @@ namespace RodskaEngine {
 		virtual void Shutdown();
 	private:
 		GLFWwindow* m_Window;
+		RodskaGraphicsContext* m_Context;
 		struct ViewportData {
 			std::string Title;
 			unsigned int Width, Height;

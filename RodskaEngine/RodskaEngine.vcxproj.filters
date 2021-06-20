@@ -7,6 +7,9 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\OpenGL">
+      <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\Windows">
       <UniqueIdentifier>{5B054582-4794-CE4B-F0B2-E246DC20DFF1}</UniqueIdentifier>
     </Filter>
@@ -15,6 +18,9 @@
     </Filter>
     <Filter Include="src\RodskaEngine\EventSystem">
       <UniqueIdentifier>{8CD82023-7893-10CF-214B-89190DE55A5F}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RodskaEngine\Graphics">
+      <UniqueIdentifier>{D65A19B3-421D-4D3D-8BCD-DBC9F7CE251B}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\RodskaEngine\UI">
       <UniqueIdentifier>{43ADE9D4-AF0E-C7E2-387C-0D95A4DCFDA1}</UniqueIdentifier>
@@ -45,6 +51,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInputComponent.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -74,6 +83,12 @@
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\EventSystem\RodskaEvent.h">
       <Filter>src\RodskaEngine\EventSystem</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\RodskaGraphicsContext.h">
+      <Filter>src\RodskaEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Shader.h">
+      <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\InputCodes.h">
       <Filter>src\RodskaEngine</Filter>
@@ -1347,8 +1362,21 @@
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp">
       <Filter>vendor\glm\glm</Filter>
     </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Buffer.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\Texture.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\GraphicsCore.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\RodskaRenderer.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\VertexArray.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\RHIAPI.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\RHICommand.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRHIAPI.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInputComponent.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1357,6 +1385,12 @@
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\AppLog.cpp">
       <Filter>src\RodskaEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\RodskaGraphicsContext.cpp">
+      <Filter>src\RodskaEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\Shader.cpp">
+      <Filter>src\RodskaEngine\Graphics</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Layer.cpp">
       <Filter>src\RodskaEngine</Filter>
@@ -1379,5 +1413,13 @@
     <ClCompile Include="src\rdskpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\Buffer.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp" />
+    <ClCompile Include="src\RodskaEngine\Graphics\RodskaRenderer.cpp" />
+    <ClCompile Include="src\RodskaEngine\Graphics\VertexArray.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\RodskaEngine\Graphics\RHIAPI.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRHIAPI.cpp" />
+    <ClCompile Include="src\RodskaEngine\Graphics\RHICommand.cpp" />
   </ItemGroup>
 </Project>
