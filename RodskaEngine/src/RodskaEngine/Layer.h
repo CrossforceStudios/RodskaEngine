@@ -1,6 +1,6 @@
 #pragma once
 #include "RodskaEngine/EventSystem/RodskaEvent.h"
-
+#include "RodskaEngine/Core/TimeStep.h"
 namespace RodskaEngine {
 	class RODSKA_EAPI Layer
 	{
@@ -10,7 +10,7 @@ namespace RodskaEngine {
 
 		virtual void OnAttach() {}
 		virtual void OnDetach() {}
-		virtual void OnUpdate() {}
+		virtual void OnUpdate(TimeStep ts) {}
 		virtual void OnEvent(RodskaEvent& e) {}
 		virtual void OnGUIRender() {}
 

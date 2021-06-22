@@ -6,8 +6,10 @@
 #include <utility>
 #include <algorithm>
 #include <functional>
+#include <fstream>
 
 #include <vector>
+#include <array>
 #include <map>
 #include <set>
 #include <sstream>

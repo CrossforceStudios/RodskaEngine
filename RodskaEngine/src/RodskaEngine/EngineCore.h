@@ -1,5 +1,7 @@
 #pragma once
 
+#include <memory>
+
 #ifdef RDSK_DYNAMIC_LINK 
 #ifdef  RDSK_PLATFORM_WINDOWS
 	#ifdef RDSK_BUILD_DLL
@@ -23,3 +25,12 @@
 
 
 #define RDSK_BIT(x) (1 << x)
+#define RDSK_BIND_EVENT_CB(a,f) std::bind(&a::f, this, std::placeholders::_1)
+
+namespace RodskaEngine {
+	template<typename T>
+	using Scope = std::unique_ptr<T>;
+
+	template<typename T>
+	using Ref = std::shared_ptr<T>;
+}

@@ -15,10 +15,15 @@ IncludeDir["GLFW"] = "RodskaEngine/vendor/GLFW/include"
 IncludeDir["GLAD"] = "RodskaEngine/vendor/GLAD/include"
 IncludeDir["imgui"] = "RodskaEngine/vendor/imgui"
 IncludeDir["glm"] = "RodskaEngine/vendor/glm"
+IncludeDir["stb_image"] = "RodskaEngine/vendor/stb_image"
 
-include "RodskaEngine/vendor/GLFW"
-include "RodskaEngine/vendor/GLAD"
-include "RodskaEngine/vendor/imgui"
+group "Dependencies"
+	include "RodskaEngine/vendor/GLFW"
+	include "RodskaEngine/vendor/GLAD"
+	include "RodskaEngine/vendor/imgui"
+
+
+group ""
 
 project "RodskaEngine"
 	location "RodskaEngine"
@@ -38,6 +43,8 @@ project "RodskaEngine"
 	{
 		"%{prj.name}/src/**.h",
 		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/vendor/stb_image/**.h",
+		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
 
@@ -50,7 +57,9 @@ project "RodskaEngine"
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}"
+		"%{IncludeDir.glm}",
+		"%{IncludeDir.stb_image}"
+
 	}
 
 	defines 
@@ -112,7 +121,6 @@ project "TestingSandbox"
 		"RodskaEngine/src",
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLAD}",
-
 		"%{IncludeDir.imgui}",
 
 	}

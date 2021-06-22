@@ -3,8 +3,8 @@
 #include "RodskaEngine/Graphics/Buffer.h"
 #include <memory>
 namespace RodskaEngine {
-	typedef std::shared_ptr<VertexBuffer> VertexBufferPtr;
-	typedef std::shared_ptr<IndexBuffer> IndexBufferPtr;
+	typedef Ref<VertexBuffer> VertexBufferPtr;
+	typedef Ref<IndexBuffer> IndexBufferPtr;
 	typedef std::vector<VertexBufferPtr> VertexBufferVector;
 	typedef std::vector<IndexBufferPtr> IndexBufferVector;
 
@@ -24,5 +24,5 @@ namespace RodskaEngine {
 
 		static VertexArray* Create();
 	};
-	typedef std::shared_ptr<VertexArray> VertexArrayPtr;
+	typedef Ref<VertexArray> VertexArrayPtr;
 };

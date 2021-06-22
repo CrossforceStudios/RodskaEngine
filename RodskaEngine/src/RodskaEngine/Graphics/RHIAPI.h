@@ -17,7 +17,8 @@ namespace RodskaEngine {
 	public:
 		virtual void Clear(const glm::vec4& color) = 0;
 		virtual void DrawIndexed(const VertexArrayPtr& vertexArrayPtr) = 0;
-		inline RHI GetRHI() { return s_RHI; }
+		inline static  RHI GetRHI() { return s_RHI; }
+		virtual void Init() = 0;
 	private:
 		static RHI s_RHI;
 	};

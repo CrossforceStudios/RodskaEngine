@@ -8,6 +8,6 @@ namespace RodskaEngine {
 		OpenGLRHIAPI();
 		virtual void Clear(const glm::vec4& color) override;
 		virtual void DrawIndexed(const VertexArrayPtr& vertexArray) override;
-
+		virtual void Init() override;
 	};
 }

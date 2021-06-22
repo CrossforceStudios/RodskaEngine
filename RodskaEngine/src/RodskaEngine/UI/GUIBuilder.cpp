@@ -22,9 +22,16 @@ namespace RodskaEngine {
 		ImGui::SliderFloat(label.c_str(), &flOut, min, max);
 	}
 
-	void GUIBuilder::Create(const std::string& title) {
-		ImGui::Begin(title.c_str());
+	void GUIBuilder::Create(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) {
+		ImGui::Begin(title.c_str(), openPtr, flags);
 		OnCreate();
 		ImGui::End();
 	}
+
+	void GUIBuilder::RenderColorEdit4(const std::string& label, float* color) {
+		ImGui::ColorEdit4(label.c_str(), color);
+	}
+
+
+	
 }

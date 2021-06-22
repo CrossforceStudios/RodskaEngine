@@ -6,6 +6,10 @@ namespace RodskaEngine {
 	class RHICommand {
 	
 	public:
+		inline static void Init() {
+			s_RHIAPI->Init();
+		}
+
 		inline static void DrawIndexed(const VertexArrayPtr& vertexArray) {
 			s_RHIAPI->DrawIndexed(vertexArray);
 		}
