@@ -15,6 +15,16 @@ namespace RodskaEngine {
 
 	}
 
+	void PropertyRegistry::AddSerializationFunction(ObjectSerializeFunc func)
+	{
+		m_SerializeFuncs.push_back(func);
+	}
+
+	void PropertyRegistry::AddDeserializationFunction(ObjectDeserializeFunc func)
+	{
+		m_DeserializeFuncs.push_back(func);
+	}
+
 	void PropertyRegistry::RenderPropertyFunctions(RodskaObject object, bool displayTag)
 	{
 		if (displayTag) {
@@ -76,6 +86,35 @@ namespace RodskaEngine {
 				else if (title == "Tag") {
 					ImGui::Separator();
 				}
+			}
+		}
+	}
+	RodskaObject& PropertyRegistry::DeserializeComponents(Ref<Scene>& scene, YAML::detail::iterator_value data)
+	{
+		if (!data["RDSK_COMP_Tag"])
+			return scene->CreateObject("Untitled");
+
+		std::string name = data["RDSK_COMP_Tag"]["Tag"].as<std::string>();
+
+		RDSK_CORE_TRACE("Found object with name as '{0}'.", name);
+		RodskaObject& object = scene->CreateObject(name);
+		for (int i = 0; i < m_DeserializeFuncs.size(); ++i) {
+				if (m_Props.at(i) != "Tag")
+					m_DeserializeFuncs.at(i)(object, scene, data);
+		}
+		return object;
+	}
+	void PropertyRegistry::SerializeComponents(YAML::Emitter& out, RodskaObject object)
+	{
+
+		for (int i = 0; i < m_SerializeFuncs.size(); ++i) {
+			if (m_CompCheck[i](object) || m_Props.at(i) == "Tag") {
+				auto name = m_Props.at(i);
+				std::string name_full = "RDSK_COMP_" + name;
+				out << YAML::Key << name_full;
+				out << YAML::BeginMap;
+				m_SerializeFuncs.at(i)(out, object);
+				out << YAML::EndMap;
 			}
 		}
 	}

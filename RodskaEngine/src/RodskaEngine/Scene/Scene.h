@@ -37,7 +37,7 @@ namespace RodskaEngine {
 		Subsystem* GetSubsystem(const std::string& name) {
 			return m_Subsystems.at(name);
 		}
-
+		void SetupCamera(Ref<RodskaEngine::Camera> camera);
 		template<typename T>
 		bool HasComponent(RodskaObject* object) {
 			return m_Registry.any_of<T>(object->GetId());
@@ -55,6 +55,7 @@ namespace RodskaEngine {
 		unsigned int m_VWidth;
 		unsigned int m_VHeight;
 		friend class SceneAdapter;
+		friend class SceneSerializer;
 		ShaderMap m_GlobalShaderMap;
 
 	};

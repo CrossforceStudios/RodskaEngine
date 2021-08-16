@@ -1,0 +1,46 @@
+Scene: Untitled
+Objects:
+  - ObjectID: 121401510109112
+    RDSK_COMP_Tag:
+      Tag: G3A3
+    RDSK_COMP_Transform:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [0.100000001, 0.100000001, 0.100000001]
+    RDSK_COMP_Mesh:
+      Color: [0, 1, 0, 1]
+      MeshFile: assets/models/backpack/backpack.obj
+      Shader: FlatColor
+  - ObjectID: 121401510109112
+    RDSK_COMP_Tag:
+      Tag: Dynamite
+    RDSK_COMP_Transform:
+      Translation: [-0.5, 0, 0]
+      Rotation: [0, 0, -0.460766912]
+      Scale: [0.100000001, 0.100000001, 0.100000001]
+    RDSK_COMP_Mesh:
+      Color: [1, 0.0549019612, 0.686274529, 1]
+      MeshFile: assets/models/Dynamite.obj
+      Shader: FlatColor
+  - ObjectID: 121401510109112
+    RDSK_COMP_Tag:
+      Tag: Cube
+    RDSK_COMP_Transform:
+      Translation: [0.5, 0, 0]
+      Rotation: [0, -0.337197602, 1.06395268]
+      Scale: [0.100000001, 0.100000001, 0.100000001]
+    RDSK_COMP_Mesh:
+      Color: [0, 0, 1, 1]
+      MeshFile: assets/models/cube.obj
+      Shader: FlatColor
+  - ObjectID: 121401510109112
+    RDSK_COMP_Tag:
+      Tag: Camera
+    RDSK_COMP_Transform:
+      Translation: [0, 0, 0]
+      Rotation: [0, 0, 0]
+      Scale: [0.100000001, 0.100000001, 0.100000001]
+    RDSK_COMP_Camera:
+      Primary: true
+      FixedAspectRatio: false
+  

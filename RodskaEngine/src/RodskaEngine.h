@@ -42,6 +42,6 @@
 #include "RodskaEngine/Scene/RodskaObject.h"
 #include "RodskaEngine/Scene/Subsystems/MeshSystem.h"
 #include "RodskaEngine/Scene/ScriptableRodskaObject.h"
-
+#include "RodskaEngine/Scene/SceneSerializer.h"
 // ----------------------------------------------
 

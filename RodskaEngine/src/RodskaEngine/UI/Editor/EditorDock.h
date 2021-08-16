@@ -2,6 +2,7 @@
 
 #include "DockBuilder.h"
 #include "RodskaEngine/Core/RodskaApp.h"
+#include "RodskaEngine/Utils/PlatformUtils.h"
 #include "imgui.h"
 
 namespace RodskaEngine {
@@ -15,15 +16,25 @@ namespace RodskaEngine {
 		virtual void OnCreateMenu() override {
 			if(ImGui::BeginMainMenuBar()) 
 			{
-				if(ImGui::BeginMenu("File"))
+				if (ImGui::BeginMenu("File"))
 				{
-					if (ImGui::MenuItem("New"))
+					if (ImGui::MenuItem("New", "Ctrl+N"))
 						OnNewScene();
-					if (ImGui::MenuItem("Open..."))
-						OnOpenScene("");
+					ImGui::Separator();
+					if (ImGui::MenuItem("Open...", "Ctrl+O")) {
+						std::string file = FileDialogs::Open("Rodska Scene(*.rodska)\0 * .rodska\0");
+						if (!file.empty()) {
+							OnOpenScene(file);
+						}
+					}
+					if (ImGui::MenuItem("Save As...", "Ctrl+Shift+S")) {
+						std::string file = FileDialogs::Save("Rodska Scene(*.rodska)\0 * .rodska\0");
+						if (!file.empty()) {
+							OnSaveScene(file);
+						}
+					}
+					ImGui::Separator();
 
-					if (ImGui::MenuItem("Save"))
-						OnSaveScene("");
 					if (ImGui::MenuItem("Exit"))
 						RodskaApp::Get().Close();
 					ImGui::EndMenu();

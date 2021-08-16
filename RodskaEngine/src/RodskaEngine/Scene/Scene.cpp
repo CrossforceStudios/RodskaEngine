@@ -36,6 +36,22 @@ namespace RodskaEngine {
 		return ViewProjectionMatrix;
 	}
 
+	void Scene::SetupCamera(Ref<RodskaEngine::Camera> camera) {
+		auto group = m_Registry.view<RDSK_COMP(Transform), RDSK_COMP(Camera)>();
+		for (auto entity : group) {
+			auto& [transform, cameraObj] = group.get<RDSK_COMP(Transform), RDSK_COMP(Camera)>(entity);
+
+			if (cameraObj.Primary) {
+				cameraObj.Camera = camera;
+				Transform = transform.GetTransform();
+				break;
+			}
+
+		}
+
+
+	}
+
 	void Scene::OnUpdate(TimeStep ts)
 	{
 		auto group = m_Registry.view<RDSK_COMP(Transform), RDSK_COMP(Camera)>();

@@ -3,7 +3,7 @@
 #include "RodskaEngine/UI/Editor/PropertyRegistry.h"
 #include "RodskaEngine/UI/UICore/ImGuiExtras.h"
 #include <glm/gtc/type_ptr.hpp>
-
+#include "RodskaEngine/Utils/Operators.h"
 
 namespace RodskaEngine {
 	static std::string newTag;
@@ -38,9 +38,21 @@ namespace RodskaEngine {
 			return false;
 		};
 
+		RodskaEngine::ObjectSerializeFunc tagSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+			if (object.HasComponent<RDSK_COMP(Tag)>()) {
+				auto tag = object.GetComponent<RDSK_COMP(Tag)>();
+				emit << YAML::Key << "Tag" << YAML::Value << tag.Tag;
+			}
+		};
+
+		RodskaEngine::ObjectDeserializeFunc tagDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+			
+		};
 
 
 		RDSK_REGISTER_COMP("Tag", "Tag", tagFunc, tagAddFunc, tagCheckFunc);
+		RDSK_RC_SERIALIZER(tagSerFunc);
+		RDSK_RC_DESERIALIZER(tagDSFunc);
 
 		RodskaEngine::ObjectDisplayFunc transformFunc = [](RodskaEngine::RodskaObject object) {
 			if (object.HasComponent<RDSK_COMP(Transform)>()) {
@@ -57,7 +69,32 @@ namespace RodskaEngine {
 			return true;
 		};
 
+		RodskaEngine::ObjectDeserializeFunc transformDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+			if (data["RDSK_COMP_Transform"]) {
+				glm::vec3 translation = data["RDSK_COMP_Transform"]["Translation"].as<glm::vec3>();
+				glm::vec3 rotation = data["RDSK_COMP_Transform"]["Rotation"].as<glm::vec3>();
+				glm::vec3 scale = data["RDSK_COMP_Transform"]["Scale"].as<glm::vec3>();
+
+				auto& transform = object.GetComponent<RDSK_COMP(Transform)>();
+				transform.Translation = translation;
+				transform.Rotation = rotation;
+				transform.Scale = scale;
+			}
+		};
+
+		RodskaEngine::ObjectSerializeFunc transformSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+			if (object.HasComponent<RDSK_COMP(Transform)>()) {
+				auto transform = object.GetComponent<RDSK_COMP(Transform)>();
+				emit << YAML::Key << "Translation" << YAML::Value << transform.Translation;
+				emit << YAML::Key << "Rotation" << YAML::Value << transform.Rotation;
+				emit << YAML::Key << "Scale" << YAML::Value << transform.Scale;
+
+			}
+		};
+
 		RDSK_REGISTER_COMP("Transform", "Transform", transformFunc, transformAddFunc, transformCheckFunc);
+		RDSK_RC_SERIALIZER(transformSerFunc);
+		RDSK_RC_DESERIALIZER(transformDSFunc);
 
 
 		RodskaEngine::ObjectDisplayFunc meshFunc = [](RodskaEngine::RodskaObject object) {
@@ -79,7 +116,35 @@ namespace RodskaEngine {
 			return object.HasComponent<RDSK_COMP(Mesh)>();
 		};
 
+		RodskaEngine::ObjectSerializeFunc meshSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+			if (object.HasComponent<RDSK_COMP(Mesh)>()) {
+				auto mesh = object.GetComponent<RDSK_COMP(Mesh)>();
+				emit << YAML::Key << "Color" << YAML::Value << mesh.Color;
+				emit << YAML::Key << "MeshFile" << YAML::Value << mesh.MeshFile;
+				emit << YAML::Key << "Shader" << YAML::Value << mesh.Shader;
+
+			}
+		};
+
+
+		RodskaEngine::ObjectDeserializeFunc meshDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+			if (data["RDSK_COMP_Mesh"]) {
+				RDSK_CORE_TRACE("Mesh found.");
+				glm::vec4 color = data["RDSK_COMP_Mesh"]["Color"].as<glm::vec4>();
+				std::string shader = data["RDSK_COMP_Mesh"]["Shader"].as<std::string>();
+				std::string file = data["RDSK_COMP_Mesh"]["MeshFile"].as<std::string>();
+
+				auto& mesh = object.AddComponent<RDSK_COMP(Mesh)>();
+				mesh.Color = color;
+				mesh.Shader = shader;
+				mesh.MeshFile = file;
+				scene->AddObjectToSubsystem("Mesh", object);
+			}
+		};
+
 		RDSK_REGISTER_COMP("Mesh", "Mesh", meshFunc, meshAddFunc, meshCheckFunc);
+		RDSK_RC_SERIALIZER(meshSerFunc);
+		RDSK_RC_DESERIALIZER(meshDSFunc);
 
 		RodskaEngine::ObjectDisplayFunc lightFunc = [](RodskaEngine::RodskaObject& object) {
 			if (object.HasComponent<RDSK_COMP(Light)>()) {
@@ -100,6 +165,71 @@ namespace RodskaEngine {
 			return object.HasComponent<RDSK_COMP(Light)>();
 		};
 
+		RodskaEngine::ObjectSerializeFunc lightSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+			if (object.HasComponent<RDSK_COMP(Light)>()) {
+				auto light = object.GetComponent<RDSK_COMP(Light)>();
+				emit << YAML::Key << "LightColor" << YAML::Value << light.LightColor;
+
+			}
+		};
+
+		RodskaEngine::ObjectDeserializeFunc lightDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+			auto comp = data["RDSK_COMP_Light"];
+			if (comp.IsDefined()) {
+				glm::vec4 color = data["RDSK_COMP_Light"]["LightColor"].as<glm::vec4>();
+
+				auto& light = object.AddComponent<RDSK_COMP(Light)>();
+				light.LightColor = color;
+			}
+		};
+
 		RDSK_REGISTER_COMP("Light", "Light", lightFunc, lightAddFunc, lightCheckFunc);
+		RDSK_RC_SERIALIZER(lightSerFunc);
+		RDSK_RC_DESERIALIZER(lightDSFunc);
+
+		{
+			RodskaEngine::ObjectDisplayFunc cameraFunc = [](RodskaEngine::RodskaObject& object) {
+				if (object.HasComponent<RDSK_COMP(Camera)>()) {
+					auto& cam = object.GetComponent<RDSK_COMP(Camera)>();
+					{
+						ImGui::Checkbox("Primary Camera?", &cam.Primary);
+					}
+				}
+
+			};
+
+			RodskaEngine::ObjectCompAddFunc cameraAddFunc = [](RodskaEngine::RodskaObject& object) {
+				if (!object.HasComponent<RDSK_COMP(Camera)>())
+					object.AddComponent<RDSK_COMP(Camera)>();
+			};
+
+			RodskaEngine::ObjectDisplayCondFunc cameraCheckFunc = [](RodskaEngine::RodskaObject& object) {
+				return object.HasComponent<RDSK_COMP(Camera)>();
+			};
+
+			RodskaEngine::ObjectSerializeFunc cameraSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+				if (object.HasComponent<RDSK_COMP(Camera)>()) {
+					auto cam = object.GetComponent<RDSK_COMP(Camera)>();
+					emit << YAML::Key << "Primary" << YAML::Value << cam.Primary;
+					emit << YAML::Key << "FixedAspectRatio" << YAML::Value << cam.FixedAspectRatio;
+				}
+			};
+
+			RodskaEngine::ObjectDeserializeFunc cameraDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+				auto comp = data["RDSK_COMP_Camera"];
+				if (comp.IsDefined()) {
+					bool isPrimary = data["RDSK_COMP_Camera"]["Primary"].as<bool>();
+					bool fixedAspect = data["RDSK_COMP_Camera"]["FixedAspectRatio"].as<bool>();
+
+					auto& cam = object.AddComponent<RDSK_COMP(Camera)>();
+					cam.Primary = isPrimary;
+					cam.FixedAspectRatio = fixedAspect;
+				}
+			};
+
+			RDSK_REGISTER_COMP("Camera", "Camera", cameraFunc, cameraAddFunc, cameraCheckFunc);
+			RDSK_RC_SERIALIZER(cameraSerFunc);
+			RDSK_RC_DESERIALIZER(cameraDSFunc);
+		}
 	}
 }

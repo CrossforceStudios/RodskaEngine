@@ -51,6 +51,7 @@ namespace RodskaEngine {
 	}
 
 	OpenGLVertexArray::~OpenGLVertexArray() {
+		Unbind();
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 

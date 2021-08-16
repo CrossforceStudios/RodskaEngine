@@ -17,7 +17,7 @@ namespace RodskaEngine {
 			}
 			uint32_t GetWidth() { return  (uint32_t)m_ViewportSize.x; }
 			uint32_t GetHeight() { return  (uint32_t)m_ViewportSize.y; }
-
+			void SetScene(const Ref<Scene> scene) { m_ActiveScene = scene; };
 			virtual void OnCreate() override;
 	private:
 		Ref<Framebuffer> m_FramebufferScene;

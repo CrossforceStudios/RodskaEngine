@@ -96,7 +96,7 @@ namespace RodskaEngine {
 	}
 
 	Mesh::~Mesh() {
-
+		
 	}
 
 	

@@ -9,6 +9,7 @@ namespace RodskaEngine {
 	
 	void SceneHierarchyPanel::SetContext(const Ref<Scene>& scene) {
 		m_Context = scene;
+		m_SelectedContext = {};
 	}
 
 	void SceneHierarchyPanel::DrawComponents()

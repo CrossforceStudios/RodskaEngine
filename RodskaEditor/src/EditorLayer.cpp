@@ -2,6 +2,7 @@
 #include <RodskaEngine/Graphics/Camera/SceneCamera.h>
 
 
+
 RodskaEngine::RodskaObject dynamite;
 RodskaEngine::RodskaObject backpack;
 RodskaEngine::RodskaObject cube;
@@ -126,6 +127,22 @@ void EditorLayer::OnAttach()  {
 	fbSpec.Width = 1280;
 	fbSpec.Height = 720;
 	m_Framebuffer = RodskaEngine::Framebuffer::Create(fbSpec);
+	m_EditorUI->OnSaveScene = [this](std::string file) {
+		RodskaEngine::SceneSerializer serializer(m_ActiveScene);
+		serializer.SerializeEditor(file);
+	};
+	m_EditorUI->OnOpenScene = [this](std::string file) {
+		m_ActiveScene = RodskaEngine::CreateRef<RodskaEngine::Scene>();
+		m_ActiveScene->AddSubsystem("Mesh", new RodskaEngine::MeshSystem(m_Library, {
+			{ RodskaEngine::ShaderDataType::Float3, "a_Position"},
+		}));
+		m_SceneViewport->SetScene(m_ActiveScene);
+		m_SHP->SetContext(m_ActiveScene);
+		RodskaEngine::SceneSerializer serializer(m_ActiveScene);
+		serializer.DeserializeEditor(file);
+		m_ActiveScene->SetupCamera(m_Camera.GetCamera());
+
+	};
 	m_SceneViewport.reset(new RodskaEngine::SceneViewport(m_Framebuffer, m_Camera, m_ActiveScene));
 	 {
 		

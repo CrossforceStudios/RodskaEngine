@@ -187,7 +187,9 @@
     <ClInclude Include="src\RodskaEngine\Scene\BuiltinComponents.h" />
     <ClInclude Include="src\RodskaEngine\Scene\RodskaObject.h" />
     <ClInclude Include="src\RodskaEngine\Scene\Scene.h" />
+    <ClInclude Include="src\RodskaEngine\Scene\SceneAdapter.hpp" />
     <ClInclude Include="src\RodskaEngine\Scene\ScriptableRodskaObject.h" />
+    <ClInclude Include="src\RodskaEngine\Scene\SceneSerializer.h" />
     <ClInclude Include="src\RodskaEngine\Scene\Subsystem.h" />
     <ClInclude Include="src\RodskaEngine\Scene\Subsystems\MeshSystem.h" />
     <ClInclude Include="src\RodskaEngine\Scene\Subsystems\SceneHierarchySystem.h" />
@@ -204,6 +206,8 @@
     <ClInclude Include="src\RodskaEngine\UI\UICore\Theme.h" />
     <ClInclude Include="src\RodskaEngine\UI\UILayer.h" />
     <ClInclude Include="src\rdskpch.h" />
+    <ClInclude Include="src\RodskaEngine\Utils\Operators.h" />
+    <ClInclude Include="src\RodskaEngine\Utils\PlatformUtils.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -631,6 +635,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
+    <ClCompile Include="src\Platform\Windows\Win32PlatformUtils.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInputComponent.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsViewport.cpp" />
     <ClCompile Include="src\RodskaEngine\Core\AppLog.cpp" />
@@ -655,6 +660,7 @@
     <ClCompile Include="src\RodskaEngine\Scene\BuiltinComponents.cpp" />
     <ClCompile Include="src\RodskaEngine\Scene\RodskaObject.cpp" />
     <ClCompile Include="src\RodskaEngine\Scene\Scene.cpp" />
+    <ClCompile Include="src\RodskaEngine\Scene\SceneSerializer.cpp" />
     <ClCompile Include="src\RodskaEngine\Scene\ScriptableRodskaObject.cpp" />
     <ClCompile Include="src\RodskaEngine\Scene\Subsystem.cpp" />
     <ClCompile Include="src\RodskaEngine\Scene\Subsystems\MeshSystem.cpp" />
