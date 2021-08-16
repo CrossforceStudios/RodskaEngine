@@ -135,7 +135,7 @@ void EditorLayer::OnAttach()  {
 		glm::vec3 pos2 = glm::vec3{ 0.5f, 0.0f, 0.0f };
 		transformComponent1.Translation = pos2;
 
-		meshComponent1.MeshFile = "E:/RodskaEngine/RodskaEditor/assets/models/cube.obj";
+		meshComponent1.MeshFile = "assets/models/cube.obj";
 		meshComponent1.Shader = "FlatColor";
 		meshComponent1.Color = { 0.0f, 0.0f, 1.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", cube);
@@ -146,7 +146,7 @@ void EditorLayer::OnAttach()  {
 		glm::vec3 pos1 = glm::vec3{ -0.5f, 0.0f, 0.0f };
 		transformComponent2.Translation = pos1;
 
-		meshComponent2.MeshFile = "E:/RodskaEngine/RodskaEditor/assets/models/Dynamite.obj";
+		meshComponent2.MeshFile = "assets/models/Dynamite.obj";
 		meshComponent2.Shader = "FlatColor";
 		meshComponent2.Color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", dynamite);
@@ -157,7 +157,7 @@ void EditorLayer::OnAttach()  {
 		glm::vec3 pos3 = glm::vec3{ 0.0f, 0.0f, 0.0f };
 		transformComponent3.Translation = pos3;
 
-		meshComponent3.MeshFile = "E:/RodskaEngine/RodskaEditor/assets/models/backpack/backpack.obj";
+		meshComponent3.MeshFile = "assets/models/backpack/backpack.obj";
 		meshComponent3.Shader = "FlatColor";
 		meshComponent3.Color = { 0.0f, 1.0f, 0.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", backpack);
