@@ -7,6 +7,9 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\ImGui">
+      <UniqueIdentifier>{0B94BCF1-F777-7D47-60D8-779A4CDB67C9}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\OpenGL">
       <UniqueIdentifier>{35A49437-A105-7245-2A73-B8F796D3A804}</UniqueIdentifier>
     </Filter>
@@ -25,17 +28,35 @@
     <Filter Include="src\RodskaEngine\Graphics">
       <UniqueIdentifier>{D65A19B3-421D-4D3D-8BCD-DBC9F7CE251B}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\RodskaEngine\Graphics\Camera">
+      <UniqueIdentifier>{8EA22B86-7AF3-16C8-A357-058A8F07AA31}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RodskaEngine\Graphics\Objects">
+      <UniqueIdentifier>{8F6F79E9-FBDD-CE68-44C7-8968B074C404}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\RodskaEngine\Graphics\UserData">
       <UniqueIdentifier>{DE8A00B4-CAC6-031E-33D9-1B151F34AC38}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RodskaEngine\Input">
+      <UniqueIdentifier>{555A8876-4154-B1C8-2AC1-47D9165A1735}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RodskaEngine\Scene">
+      <UniqueIdentifier>{73173777-5F11-60C9-487E-F6D93417C635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RodskaEngine\Scene\Subsystems">
+      <UniqueIdentifier>{A4FA1E32-1069-74B1-5952-2FB1C5FF694D}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\RodskaEngine\UI">
       <UniqueIdentifier>{43ADE9D4-AF0E-C7E2-387C-0D95A4DCFDA1}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RodskaEngine\UI\Debug">
-      <UniqueIdentifier>{F95DDFD2-6520-135D-AED0-A1E91AD2EB3A}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\RodskaEngine\UI\Editor">
       <UniqueIdentifier>{19011231-0511-BE01-6ECA-22205AF9AC9A}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RodskaEngine\UI\Editor\Panels">
+      <UniqueIdentifier>{4BDBBB40-B749-11C0-0033-CCBF6CE0065C}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="src\RodskaEngine\UI\UICore">
+      <UniqueIdentifier>{390A6754-251A-1325-8ED3-77437A0202BE}</UniqueIdentifier>
     </Filter>
     <Filter Include="vendor">
       <UniqueIdentifier>{B3738122-9F15-ACF8-88D0-BF4C74113349}</UniqueIdentifier>
@@ -63,10 +84,19 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\ImGui\ImGuiFontLibrary.h">
+      <Filter>src\Platform\ImGui</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLImGuiBackend.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRHIAPI.h">
@@ -81,6 +111,9 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\Windows\WindowsECore.h">
+      <Filter>src\Platform\Windows</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\Windows\WindowsInputComponent.h">
       <Filter>src\Platform\Windows</Filter>
     </ClInclude>
@@ -90,17 +123,29 @@
     <ClInclude Include="src\RodskaEngine.h">
       <Filter>src</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\AppLog.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\Core\AppLog.h">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Core\EngineCore.h">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Core\Entry.h">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Core\Layer.h">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Core\LayerStack.h">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Core\RodskaApp.h">
+      <Filter>src\RodskaEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Core\TimeStep.h">
       <Filter>src\RodskaEngine\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\EngineCore.h">
-      <Filter>src\RodskaEngine</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Entry.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\Core\Viewport.h">
+      <Filter>src\RodskaEngine\Core</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\EventSystem\KeyInputEvent.h">
       <Filter>src\RodskaEngine\EventSystem</Filter>
@@ -117,11 +162,29 @@
     <ClInclude Include="src\RodskaEngine\Graphics\Buffer.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Camera\Camera.h">
+      <Filter>src\RodskaEngine\Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Camera\CameraController.h">
+      <Filter>src\RodskaEngine\Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Camera\OrthographicCamera.h">
+      <Filter>src\RodskaEngine\Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Camera\SceneCamera.h">
+      <Filter>src\RodskaEngine\Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Framebuffer.h">
+      <Filter>src\RodskaEngine\Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\GraphicsCore.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Graphics\OrthographicCamera.h">
-      <Filter>src\RodskaEngine\Graphics</Filter>
+    <ClInclude Include="src\RodskaEngine\Graphics\Objects\Mesh.h">
+      <Filter>src\RodskaEngine\Graphics\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\Objects\Object3D.h">
+      <Filter>src\RodskaEngine\Graphics\Objects</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\RHIAPI.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
@@ -133,9 +196,6 @@
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\RodskaRenderer.h">
-      <Filter>src\RodskaEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Graphics\RodskaScene.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\Shader.h">
@@ -150,32 +210,68 @@
     <ClInclude Include="src\RodskaEngine\Graphics\VertexArray.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\InputCodes.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\Input\InputCodes.h">
+      <Filter>src\RodskaEngine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\InputComponent.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\Input\InputComponent.h">
+      <Filter>src\RodskaEngine\Input</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Layer.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\Scene\BuiltinComponents.h">
+      <Filter>src\RodskaEngine\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\LayerStack.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\Scene\RodskaObject.h">
+      <Filter>src\RodskaEngine\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\RodskaApp.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\Scene\Scene.h">
+      <Filter>src\RodskaEngine\Scene</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\UI\Debug\UIDebugLayer.h">
-      <Filter>src\RodskaEngine\UI\Debug</Filter>
+    <ClInclude Include="src\RodskaEngine\Scene\ScriptableRodskaObject.h">
+      <Filter>src\RodskaEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Scene\Subsystem.h">
+      <Filter>src\RodskaEngine\Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Scene\Subsystems\MeshSystem.h">
+      <Filter>src\RodskaEngine\Scene\Subsystems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Scene\Subsystems\SceneHierarchySystem.h">
+      <Filter>src\RodskaEngine\Scene\Subsystems</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\Editor\DockBuilder.h">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\Editor\EditorDock.h">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\UI\Editor\MaterialEditor.h">
       <Filter>src\RodskaEngine\UI\Editor</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\UI\GUIBuilder.h">
-      <Filter>src\RodskaEngine\UI</Filter>
+    <ClInclude Include="src\RodskaEngine\UI\Editor\Panels\SceneHierarchyPanel.h">
+      <Filter>src\RodskaEngine\UI\Editor\Panels</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Viewport.h">
-      <Filter>src\RodskaEngine</Filter>
+    <ClInclude Include="src\RodskaEngine\UI\Editor\PropertyRegistry.h">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\Editor\SceneViewport.h">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\UICore\FontLibrary.h">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\UICore\GUIBuilder.h">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\UICore\ImGuiBackend.h">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\UICore\ImGuiExtras.h">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\UICore\Theme.h">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\UI\UILayer.h">
+      <Filter>src\RodskaEngine\UI</Filter>
     </ClInclude>
     <ClInclude Include="src\rdskpch.h">
       <Filter>src</Filter>
@@ -1430,10 +1526,19 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\ImGui\ImGuiFontLibrary.cpp">
+      <Filter>src\Platform\ImGui</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLImGuiBackend.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRHIAPI.cpp">
@@ -1454,14 +1559,38 @@
     <ClCompile Include="src\Platform\Windows\WindowsViewport.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\AppLog.cpp">
-      <Filter>src\RodskaEngine</Filter>
+    <ClCompile Include="src\RodskaEngine\Core\AppLog.cpp">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Core\Layer.cpp">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Core\LayerStack.cpp">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Core\RodskaApp.cpp">
+      <Filter>src\RodskaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Graphics\Buffer.cpp">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\Graphics\OrthographicCamera.cpp">
+    <ClCompile Include="src\RodskaEngine\Graphics\Camera\CameraController.cpp">
+      <Filter>src\RodskaEngine\Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\Camera\OrthographicCamera.cpp">
+      <Filter>src\RodskaEngine\Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\Camera\SceneCamera.cpp">
+      <Filter>src\RodskaEngine\Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\Framebuffer.cpp">
       <Filter>src\RodskaEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\Objects\Mesh.cpp">
+      <Filter>src\RodskaEngine\Graphics\Objects</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\Objects\Object3D.cpp">
+      <Filter>src\RodskaEngine\Graphics\Objects</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Graphics\RHIAPI.cpp">
       <Filter>src\RodskaEngine\Graphics</Filter>
@@ -1487,25 +1616,61 @@
     <ClCompile Include="src\RodskaEngine\Graphics\VertexArray.cpp">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\Layer.cpp">
-      <Filter>src\RodskaEngine</Filter>
+    <ClCompile Include="src\RodskaEngine\Scene\BuiltinComponents.cpp">
+      <Filter>src\RodskaEngine\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\LayerStack.cpp">
-      <Filter>src\RodskaEngine</Filter>
+    <ClCompile Include="src\RodskaEngine\Scene\RodskaObject.cpp">
+      <Filter>src\RodskaEngine\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\RodskaApp.cpp">
-      <Filter>src\RodskaEngine</Filter>
+    <ClCompile Include="src\RodskaEngine\Scene\Scene.cpp">
+      <Filter>src\RodskaEngine\Scene</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\UI\Debug\UIDebugLayer.cpp">
-      <Filter>src\RodskaEngine\UI\Debug</Filter>
+    <ClCompile Include="src\RodskaEngine\Scene\ScriptableRodskaObject.cpp">
+      <Filter>src\RodskaEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Scene\Subsystem.cpp">
+      <Filter>src\RodskaEngine\Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Scene\Subsystems\MeshSystem.cpp">
+      <Filter>src\RodskaEngine\Scene\Subsystems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Scene\Subsystems\SceneHierarchySystem.cpp">
+      <Filter>src\RodskaEngine\Scene\Subsystems</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\Editor\DockBuilder.cpp">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\Editor\EditorDock.cpp">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\UI\Editor\MaterialEditor.cpp">
       <Filter>src\RodskaEngine\UI\Editor</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\UI\GUIBuilder.cpp">
-      <Filter>src\RodskaEngine\UI</Filter>
+    <ClCompile Include="src\RodskaEngine\UI\Editor\Panels\SceneHierarchyPanel.cpp">
+      <Filter>src\RodskaEngine\UI\Editor\Panels</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\UI\imGuiBuild.cpp">
+    <ClCompile Include="src\RodskaEngine\UI\Editor\PropertyRegistry.cpp">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\Editor\SceneViewport.cpp">
+      <Filter>src\RodskaEngine\UI\Editor</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\UICore\FontLibrary.cpp">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\UICore\GUIBuilder.cpp">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\UICore\ImGuiBackend.cpp">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\UICore\ImGuiExtras.cpp">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\UICore\Theme.cpp">
+      <Filter>src\RodskaEngine\UI\UICore</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\UI\UILayer.cpp">
       <Filter>src\RodskaEngine\UI</Filter>
     </ClCompile>
     <ClCompile Include="src\rdskpch.cpp">

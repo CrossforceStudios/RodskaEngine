@@ -24,7 +24,7 @@ namespace RodskaEngine {
 	private:
 		bool CompileFromSource(const std::unordered_map<GLenum, std::string>& shaderSources);
 
-		std::string ReadFile(const std::string& path);
+		std::string readFile(const std::string& path);
 		std::unordered_map<GLenum, std::string> PreProcess(const std::string& source);
 	private:
 		RendererID m_RendererId;

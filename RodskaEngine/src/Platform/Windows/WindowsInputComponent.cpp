@@ -1,9 +1,9 @@
 #include "rdskpch.h"
-#include"RodskaEngine/InputComponent.h"
+#include "RodskaEngine/Input/InputComponent.h"
 #include "WindowsInputComponent.h"
 
 #include <GLFW/glfw3.h>
-#include <RodskaEngine/RodskaApp.h>
+#include <RodskaEngine/Core/RodskaApp.h>
 
 namespace RodskaEngine {
 	InputComponent* InputComponent::s_Instance = new WindowsInputComponent();

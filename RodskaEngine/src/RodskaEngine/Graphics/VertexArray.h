@@ -2,11 +2,11 @@
 
 #include "RodskaEngine/Graphics/Buffer.h"
 #include <memory>
+#include <glm/ext/matrix_transform.hpp>
+
 namespace RodskaEngine {
-	typedef Ref<VertexBuffer> VertexBufferPtr;
-	typedef Ref<IndexBuffer> IndexBufferPtr;
-	typedef std::vector<VertexBufferPtr> VertexBufferVector;
-	typedef std::vector<IndexBufferPtr> IndexBufferVector;
+	typedef std::vector<Ref<VertexBuffer>> VertexBufferVector;
+	typedef std::vector<Ref<IndexBuffer>> IndexBufferVector;
 
 	class VertexArray {
 	public:
@@ -15,14 +15,13 @@ namespace RodskaEngine {
 		virtual void Bind() const = 0;
 		virtual void Unbind() const = 0;
 
-		virtual void AddVertexBuffer(const VertexBufferPtr& vBuffer) = 0;
-		virtual void  SetIndexBuffer(const IndexBufferPtr& indexBuffer) = 0;
+		virtual void AddVertexBuffer(const Ref<VertexBuffer>& vBuffer) = 0;
+		virtual void  SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) = 0;
 
 		virtual const VertexBufferVector& GetVertexBuffers() const = 0;
-		virtual const IndexBufferPtr& GetIndexBuffer() const = 0;
+		virtual const Ref<IndexBuffer>& GetIndexBuffer() const = 0;
 
 
-		static VertexArray* Create();
+		static Ref<VertexArray> Create();
 	};
-	typedef Ref<VertexArray> VertexArrayPtr;
 };

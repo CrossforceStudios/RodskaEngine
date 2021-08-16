@@ -58,6 +58,7 @@ namespace RodskaEngine {
 			data.Width = width;
 			data.Height = height;
 			WindowResizeEvent ev(width, height);
+			RDSK_CORE_WARN("{0}, {1}", width, height);
 			data.EventCallback(ev);
 			
 		});

@@ -1,5 +1,5 @@
 #pragma once
-#include "RodskaEngine/InputComponent.h"
+#include "RodskaEngine/Input/InputComponent.h"
 
 namespace RodskaEngine {
 	class RODSKA_EAPI WindowsInputComponent :  public InputComponent {

@@ -14,9 +14,9 @@ namespace RodskaEngine {
 
 	struct MaterialProperty {
 		std::string Title;
-		MaterialPropertyType Type;
+		MaterialPropertyType Type = MaterialPropertyType::Color;
 		std::string Name;
-		MaterialProperty(){}
+		MaterialProperty() = default;
 		MaterialProperty(const std::string& title, MaterialPropertyType type, const std::string& name)
 		: Title(title), Type(type), Name(name) {
 
@@ -44,7 +44,10 @@ namespace RodskaEngine {
 
 		inline static AcceptedMaterialProperties GetProperties() {
 			return {
-				{"Diffuse Color", MaterialPropertyType::Color, "u_Color"}
+				{"Diffuse Color", MaterialPropertyType::Color, "material.diffuse"},
+				{"Specular Color", MaterialPropertyType::Color, "material.specular"},
+				{"Ambient Color", MaterialPropertyType::Color, "material.ambient"},
+				{"Metallic Value", MaterialPropertyType::Float, "material.metallic"}
 			};
 		}
 

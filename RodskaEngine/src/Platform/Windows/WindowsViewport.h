@@ -1,6 +1,6 @@
 #pragma once
-#include "RodskaEngine/EngineCore.h"
-#include "RodskaEngine/Viewport.h"
+#include "RodskaEngine/Core/EngineCore.h"
+#include "RodskaEngine/Core/Viewport.h"
 #include <GLFW/glfw3.h>
 #include "RodskaEngine/Graphics/RodskaGraphicsContext.h"
 

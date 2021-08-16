@@ -8,16 +8,17 @@
 namespace RodskaEngine {
 	
 
-	VertexArray* VertexArray::Create() {
+	Ref<VertexArray> VertexArray::Create() {
 		switch (RodskaRenderer::GetRHI()) {
 		case RHIAPI::RHI::None:
 			RDSK_CORE_ASSERT(false, "RHI::None is unsupported.");
 			return nullptr;
 		case RHIAPI::RHI::OpenGL:
-			return new OpenGLVertexArray();
+			return std::make_shared<OpenGLVertexArray>();
 
 		}
 		RDSK_CORE_ASSERT(false, "Unknown RHI!");
 		return nullptr;
 	}
+
 };

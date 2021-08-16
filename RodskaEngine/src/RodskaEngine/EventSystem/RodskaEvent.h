@@ -1,6 +1,6 @@
 #pragma once
 #include "rdskpch.h"
-#include "RodskaEngine/EngineCore.h"
+#include "RodskaEngine/Core/EngineCore.h"
 
 namespace RodskaEngine {
 

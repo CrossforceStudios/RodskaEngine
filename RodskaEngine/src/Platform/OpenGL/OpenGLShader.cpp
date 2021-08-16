@@ -22,7 +22,7 @@ namespace RodskaEngine {
 	}
 
 	OpenGLShader::OpenGLShader(const std::string& path) {
-		std::string shaderSrc = ReadFile(path);
+		std::string shaderSrc = readFile(path);
 		auto shaderSources = PreProcess(shaderSrc);
 		CompileFromSource(shaderSources);
 
@@ -37,20 +37,20 @@ namespace RodskaEngine {
 
 	}
 
-	std::string OpenGLShader::ReadFile(const std::string& path){
-		std::string result;
-		std::ifstream shaderStream(path, std::ios::in | std::ios::binary);
-		if (shaderStream) {
-			shaderStream.seekg(0, std::ios::end);
-			result.resize(shaderStream.tellg());
-			shaderStream.seekg(0, std::ios::beg);
-			shaderStream.read(&result[0], result.size());
-			shaderStream.close();
+	std::string OpenGLShader::readFile(const std::string& path) {
+		std::string text;
+		std::ifstream textStream(path, std::ios::in | std::ios::binary);
+		if (textStream) {
+			textStream.seekg(0, std::ios::end);
+			text.resize(textStream.tellg());
+			textStream.seekg(0, std::ios::beg);
+			textStream.read(&text[0], text.size());
+			textStream.close();
 		}
 		else {
 			RDSK_CORE_ERROR("Could not open file: {0}", path);
 		}
-		return result;
+		return text;
 	}
 
 	std::unordered_map<GLenum, std::string>  OpenGLShader::PreProcess(const std::string& source)

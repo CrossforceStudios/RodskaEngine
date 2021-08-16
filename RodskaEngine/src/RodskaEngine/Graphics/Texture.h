@@ -2,7 +2,7 @@
 
 #include <string>
 
-#include <RodskaEngine/EngineCore.h>
+#include <RodskaEngine/Core/EngineCore.h>
 
 namespace RodskaEngine {
 	class Texture {

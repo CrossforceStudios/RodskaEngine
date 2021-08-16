@@ -40,6 +40,10 @@ namespace RodskaEngine {
 
 	void OpenGLVertexArray::Bind() const {
 		glBindVertexArray(m_RendererID);
+		for (auto& vBuffer : m_VertexBuffers) {
+			vBuffer->Bind();
+		}
+		m_IndexBuffer->Bind();
 	}
 
 	void OpenGLVertexArray::Unbind() const {
@@ -50,11 +54,11 @@ namespace RodskaEngine {
 		glDeleteVertexArrays(1, &m_RendererID);
 	}
 
-	void OpenGLVertexArray::AddVertexBuffer(const VertexBufferPtr& vBuffer) {
+	void OpenGLVertexArray::AddVertexBuffer(const Ref<VertexBuffer>& vBuffer) {
 		glBindVertexArray(m_RendererID);
 
 
-		vBuffer->Bind();
+		
 		uint32_t index = 0;
 		const auto& layout = vBuffer->GetLayout();
 		RDSK_CORE_ASSERT(layout.GetElements().size(), "BufferLayout must not be empty.");
@@ -67,9 +71,8 @@ namespace RodskaEngine {
 		m_VertexBuffers.push_back(vBuffer);
 	}
 
-	void OpenGLVertexArray::SetIndexBuffer(const IndexBufferPtr& indexBuffer) {
+	void OpenGLVertexArray::SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) {
 		glBindVertexArray(m_RendererID);
-		indexBuffer->Bind();
 		m_IndexBuffer = indexBuffer;
 	}
 
@@ -77,7 +80,7 @@ namespace RodskaEngine {
 		return m_VertexBuffers;
 	}
 
-	const IndexBufferPtr& OpenGLVertexArray::GetIndexBuffer() const {
+	const Ref<IndexBuffer>& OpenGLVertexArray::GetIndexBuffer() const {
 		return m_IndexBuffer;
 	}
 };

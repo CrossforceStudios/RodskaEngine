@@ -16,12 +16,16 @@ IncludeDir["GLAD"] = "RodskaEngine/vendor/GLAD/include"
 IncludeDir["imgui"] = "RodskaEngine/vendor/imgui"
 IncludeDir["glm"] = "RodskaEngine/vendor/glm"
 IncludeDir["stb_image"] = "RodskaEngine/vendor/stb_image"
+IncludeDir["tinyobjloader"] = "RodskaEngine/vendor/tinyobjloader"
+IncludeDir["entt"] = "RodskaEngine/vendor/entt/include"
+IncludeDir["yamlcpp"] = "RodskaEngine/vendor/yaml-cpp/include"
 
 group "Dependencies"
 	include "RodskaEngine/vendor/GLFW"
 	include "RodskaEngine/vendor/GLAD"
 	include "RodskaEngine/vendor/imgui"
-
+	include "RodskaEngine/vendor/tinyobjloader"
+	include "RodskaEngine/vendor/yaml-cpp"
 
 group ""
 
@@ -47,7 +51,7 @@ project "RodskaEngine"
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl"
-
+		
 	}
 
 	includedirs
@@ -58,8 +62,10 @@ project "RodskaEngine"
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}"
-
+		"%{IncludeDir.stb_image}",
+		"%{IncludeDir.tinyobjloader}",
+		"%{IncludeDir.entt}",
+		"%{IncludeDir.yamlcpp}"
 	}
 
 	defines 
@@ -72,6 +78,8 @@ project "RodskaEngine"
 		"GLFW",
 		"GLAD",
 		"imgui",
+		"tinyobjloader",
+		"yaml-cpp",
 		"opengl32.lib"
 	}
 
@@ -100,8 +108,8 @@ project "RodskaEngine"
 		runtime "Release"
 		optimize "on"
 
-project "TestingSandbox"
-	location "TestingSandbox"
+project "RodskaEditor"
+	location "RodskaEditor"
 	kind "ConsoleApp"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -122,7 +130,7 @@ project "TestingSandbox"
 		"%{IncludeDir.glm}",
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.imgui}",
-
+		"%{IncludeDir.entt}"
 	}
 
 	links 
