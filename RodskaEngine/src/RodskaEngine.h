@@ -25,8 +25,9 @@
 #include "RodskaEngine/Graphics/Texture.h"
 #include "RodskaEngine/Graphics/Framebuffer.h"
 #include "RodskaEngine/Graphics/VertexArray.h"
+#include "RodskaEngine/Graphics/Camera/CameraCore.h"
 #include "RodskaEngine/Graphics/Camera/OrthographicCamera.h"
-#include "RodskaEngine/Graphics/Camera/CameraController.h"
+#include "RodskaEngine/Graphics/Camera/SceneCamera.h"
 
 #include "RodskaEngine/Graphics/UserData/Material.h"
 

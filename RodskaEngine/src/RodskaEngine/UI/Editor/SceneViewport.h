@@ -11,7 +11,7 @@ namespace RodskaEngine {
 	class SceneViewport : public GUIBuilder {
 		public:
 
-			SceneViewport(Ref<Framebuffer> framebuffer, CameraController camera, Ref<Scene> scene) : m_FramebufferScene(framebuffer), m_Camera(camera), m_ActiveScene(m_ActiveScene) {
+			SceneViewport(Ref<Framebuffer> framebuffer, Ref<Scene> scene) : m_FramebufferScene(framebuffer), m_ActiveScene(m_ActiveScene) {
 				m_Spec = m_FramebufferScene->GetSpecification();
 				m_ViewportSize = { (float)m_Spec.Width, (float)m_Spec.Height };
 			}
@@ -22,7 +22,6 @@ namespace RodskaEngine {
 	private:
 		Ref<Framebuffer> m_FramebufferScene;
 		FramebufferSpecification m_Spec;
-		CameraController m_Camera;
 		Ref<Scene> m_ActiveScene;
 		glm::vec2 m_ViewportSize;
 		bool m_FirstRun = true;

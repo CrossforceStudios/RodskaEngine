@@ -4,13 +4,10 @@
 
 #include "RodskaEngine/EventSystem/RodskaAppEvent.h"
 #include "RodskaEngine/EventSystem/MouseInputEvent.h"
+#include <RodskaEngine/Graphics/Camera/CameraCore.h>
 
 namespace RodskaEngine {
-	enum class CameraType {
-		None = 0,
-		Orthographic,
-		Perspective
-	};
+	
 
 	class CameraController {
 	public:
@@ -29,7 +26,7 @@ namespace RodskaEngine {
 		float m_AspectRatio;
 		float m_ZoomLevel = 1.0f;
 		float m_CameraTranslationSpeed = 1.0f;
-		CameraType m_CameraType = CameraType::None;
+		CameraType m_CameraType = CameraType::Orthographic;
 		Ref<Camera> m_Camera;
 
 	};

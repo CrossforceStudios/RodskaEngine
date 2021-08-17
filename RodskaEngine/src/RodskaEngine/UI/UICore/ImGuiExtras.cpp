@@ -14,6 +14,27 @@ namespace RodskaEngine {
 
 	}
 
+	void ImGuiExtras::CameraTypeUI(const std::string& label, RDSK_COMP(Camera)& camera)
+	{
+		const char* projectionTypeStrings[] = { "Orthographic", "Perspective"};
+		const char* projectionTypeString = projectionTypeStrings[(int)camera.Camera->GetCameraType()];
+		if (ImGui::BeginCombo(label.c_str(), projectionTypeString)) {
+			for (int i = 0; i < 2; ++i) {
+				bool isSelected = projectionTypeString == projectionTypeStrings[i];
+				if (ImGui::Selectable(projectionTypeStrings[i], isSelected)) {
+					projectionTypeString = projectionTypeStrings[i];
+					camera.Camera->SetCameraType((CameraType)i);
+				}
+				if (isSelected)
+					ImGui::SetItemDefaultFocus();
+			}
+			ImGui::EndCombo();
+		}
+		
+		
+
+	}
+
 	void ImGuiExtras::Vec3(const std::string& label, glm::vec3& values, float resetValue, float columnWidth)
 	{
 

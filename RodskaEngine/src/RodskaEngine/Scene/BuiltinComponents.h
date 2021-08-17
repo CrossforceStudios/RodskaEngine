@@ -61,12 +61,12 @@ namespace RodskaEngine {
 	};
 
 	RDSK_DEFCOMP(Camera)
-		Ref<RodskaEngine::Camera> Camera;
+		RodskaEngine::SceneCamera* Camera;
 		bool FixedAspectRatio = false;
 		bool Primary = false;
 		RDSKComponent_Camera() = default;
 		RDSKComponent_Camera(const RDSK_COMP(Camera)& other) = default;
-		RDSKComponent_Camera(const Ref<RodskaEngine::Camera>& camera) : Camera(camera) {}
+		RDSKComponent_Camera(RodskaEngine::SceneCamera* camera) : Camera(camera) {}
 	};
 
 	RDSK_DEFCOMP(Light)

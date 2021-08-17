@@ -1,5 +1,4 @@
 #include "EditorLayer.h"
-#include <RodskaEngine/Graphics/Camera/SceneCamera.h>
 
 
 
@@ -7,7 +6,7 @@ RodskaEngine::RodskaObject dynamite;
 RodskaEngine::RodskaObject backpack;
 RodskaEngine::RodskaObject cube;
 
-EditorLayer::EditorLayer() : Layer("Rodska Editor Layer"), m_Camera(RodskaEngine::CameraType::Orthographic, 1280.0f / 720.0f)
+EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 {
 	m_ActiveScene.reset(new RodskaEngine::Scene());
 	m_Library.Load("FlatColor", ("E:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/FlatColor.glsl"));
@@ -16,8 +15,9 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer"), m_Camera(RodskaEngine
 	m_SHP.reset(new RodskaEngine::SceneHierarchyPanel(m_ActiveScene));
 
 	m_CamEntity = m_ActiveScene->CreateObject("Camera");
-	auto& cc = m_CamEntity.AddComponent<RDSK_BCOMP(Camera)>(m_Camera.GetCamera());
+	auto& cc = m_CamEntity.AddComponent<RDSK_BCOMP(Camera)>();
 	cc.Primary = true;
+	cc.Camera = new RodskaEngine::SceneCamera();
 
 	m_ActiveScene->AddSubsystem("Mesh", new RodskaEngine::MeshSystem(m_Library, {
 		{ RodskaEngine::ShaderDataType::Float3, "a_Position"},
@@ -34,14 +34,6 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer"), m_Camera(RodskaEngine
 	//m_VertexArray = RodskaEngine::VertexArray::Create();
 	//m_Texture.reset(RodskaEngine::Texture2D::Create("assets/textures/checkerboard.png"));
 	//m_RodskaEngineLogo.reset(RodskaEngine::Texture2D::Create("assets/textures/RodskaEngineLogo.png"));
-	/**float vertices[5 * 4] = {
-		-0.5f, -0.5f, 0.0f, 0.0f, 0.0f,
-		0.5f, -0.5f, 0.0f, 1.0f, 0.0f,
-		0.5f,  0.5f, 0.0f, 1.0f, 1.0f,
-		-0.5f,  0.5f, 0.0f, 0.0f, 1.0f
-
-	};
-	*/
 
 
 	//RodskaEngine::Ref<RodskaEngine::VertexBuffer> m_VertexBuffer = RodskaEngine::VertexBuffer::Create(vertices, sizeof(vertices));
@@ -63,54 +55,26 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer"), m_Camera(RodskaEngine
 }
 
 void EditorLayer::OnEvent(RodskaEngine::RodskaEvent& e) {
-	m_Camera.OnEvent(e);
+
+
 }
 
 void EditorLayer::OnUpdate(RodskaEngine::TimeStep ts)
 {
 	m_Framebuffer->Bind();
 	RodskaEngine::RHICommand::Clear({ 0.1f, 0.1f, 0.1f, 1 });
-	m_Camera.OnUpdate(ts);
 	m_Time += (float)ts;
 
-	RodskaEngine::RodskaRenderer::BeginScene(std::dynamic_pointer_cast<RodskaEngine::OrthographicCamera>(m_Camera.GetCamera()).get());
 	uint32_t width = m_SceneViewport->GetWidth();
 	uint32_t height = m_SceneViewport->GetHeight();
 	std::vector<RDSK_BCOMP(Camera)> sceneCameras = m_ActiveScene->GetComponentsOfType<RDSK_BCOMP(Camera)>();
 	for (auto& camera : sceneCameras) {
-		auto& sceneCamera = std::dynamic_pointer_cast<RodskaEngine::SceneCamera>(camera.Camera);
+		auto& sceneCamera = camera.Camera;
 		if (!camera.FixedAspectRatio && sceneCamera) {
 			sceneCamera->SetViewportSize(width, height);
 		}
 	}
-	/**for (int x = 0; x < 10; x++)
-	{
-		for (int y = 0; y < 10; y++)
-		{
-			glm::vec3 pos1(x * 0.11f, y * 0.11f, 0.0f);
-			glm::mat4 transform = glm::translate(glm::mat4(1.0f), pos1) * scale;
-			std::dynamic_pointer_cast<RodskaEngine::OpenGLShader>(fcShader)->UploadUniformFloat("u_Color", m_Material->GetColor("u_Color"));
-			RodskaEngine::RodskaRenderer::SubmitMesh(m_VertexArray, fcShader, transform);
-		}
-	}
-	*/
-
-	//auto textureShader = m_Library.Get("Texture");
-
-	//std::dynamic_pointer_cast<RodskaEngine::OpenGLShader>(textureShader)->Bind();
-	//std::dynamic_pointer_cast<RodskaEngine::OpenGLShader>(textureShader)->UploadUniformInt("u_Texture", 0);
-
-
-	//m_Texture->Bind();
-	//RodskaEngine::RodskaRenderer::SubmitMesh(m_VertexArray, textureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.25f)));
-	//m_RodskaEngineLogo->Bind();
-	//RodskaEngine::RodskaRenderer::SubmitMesh(m_VertexArray, textureShader, glm::scale(glm::mat4(1.0f), glm::vec3(1.25f)));
-	// std::dynamic_pointer_cast<RodskaEngine::OpenGLShader>(fcShader)->UploadUniformFloat("u_Color", m_Material->GetColor("u_Color"));
-	
 	m_ActiveScene->OnUpdate(ts);
-
-	RodskaEngine::RodskaRenderer::EndScene();
-
 	m_Framebuffer->Unbind();
 }
 
@@ -140,10 +104,8 @@ void EditorLayer::OnAttach()  {
 		m_SHP->SetContext(m_ActiveScene);
 		RodskaEngine::SceneSerializer serializer(m_ActiveScene);
 		serializer.DeserializeEditor(file);
-		m_ActiveScene->SetupCamera(m_Camera.GetCamera());
-
 	};
-	m_SceneViewport.reset(new RodskaEngine::SceneViewport(m_Framebuffer, m_Camera, m_ActiveScene));
+	m_SceneViewport.reset(new RodskaEngine::SceneViewport(m_Framebuffer, m_ActiveScene));
 	 {
 		
 		cube = m_ActiveScene->CreateObject("Cube");

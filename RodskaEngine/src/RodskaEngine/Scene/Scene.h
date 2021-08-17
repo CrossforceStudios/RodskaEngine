@@ -1,7 +1,7 @@
 #pragma once
 #include <glm/glm.hpp>
 #include <RodskaEngine/Core/EngineCore.h>
-#include "RodskaEngine/Graphics/Camera/Camera.h"
+#include "RodskaEngine/Graphics/Camera/SceneCamera.h"
 #include <entt.hpp>
 #include <string>
 #include <map>
@@ -24,7 +24,7 @@ namespace RodskaEngine {
 		void AddSubsystem(std::string name, Subsystem* system) {
 			m_Subsystems.insert(std::pair<std::string,RodskaEngine::Subsystem*>(name, system));
 		}
-
+		void OnViewportResize(uint32_t width, uint32_t height);
 		template<typename T>
 		std::vector<T> GetComponentsOfType() {
 			return SceneRegistry->GetComponentsOfType<T>(this);
@@ -37,7 +37,7 @@ namespace RodskaEngine {
 		Subsystem* GetSubsystem(const std::string& name) {
 			return m_Subsystems.at(name);
 		}
-		void SetupCamera(Ref<RodskaEngine::Camera> camera);
+		void SetupCamera(SceneCamera* camera);
 		template<typename T>
 		bool HasComponent(RodskaObject* object) {
 			return m_Registry.any_of<T>(object->GetId());
@@ -46,11 +46,11 @@ namespace RodskaEngine {
 	    
 		
 	public:
-		Ref<RodskaEngine::Camera> mainCamera;
+		SceneCamera* mainCamera;
 	private:
 		entt::registry m_Registry;
 		glm::mat4 ViewProjectionMatrix;
-		glm::mat4 Transform;
+		glm::mat4 m_Transform;
 		std::map<std::string, RodskaEngine::Subsystem*> m_Subsystems;
 		unsigned int m_VWidth;
 		unsigned int m_VHeight;

@@ -193,6 +193,36 @@ namespace RodskaEngine {
 					auto& cam = object.GetComponent<RDSK_COMP(Camera)>();
 					{
 						ImGui::Checkbox("Primary Camera?", &cam.Primary);
+						ImGuiExtras::CameraTypeUI("Camera Type", cam);
+						float size ;
+						float nearClip;
+						float farClip;
+						switch (cam.Camera->GetCameraType()) {
+						case CameraType::Orthographic:
+							 size = cam.Camera->GetOrthoSize();
+							 nearClip = cam.Camera->GetOrthoNear();
+							 farClip = cam.Camera->GetOrthoFar();
+
+							if (ImGui::DragFloat("Ortho Size", &size, 0.1f, -20.0f, 20.0f, "%.1f")) {
+								cam.Camera->SetOrthographic(size, nearClip, farClip);
+							}
+
+							if (ImGui::DragFloat("Ortho Near", &nearClip, 0.1f, -20.0f, -0.1f, "%.1f")) {
+								cam.Camera->SetOrthographic(size, nearClip, farClip);
+							}
+
+							if (ImGui::DragFloat("Ortho Far", &farClip, 0.1f, 0.1f, 20.0f, "%.1f")) {
+								cam.Camera->SetOrthographic(size, nearClip, farClip);
+							}
+							break;
+						case CameraType::Perspective:
+							float fFOV = cam.Camera->GetFOV();
+							if (ImGui::DragFloat("FOV", &fFOV, 0.1f, -20.0f, 20.0f, "%.1f")) {
+								cam.Camera->SetFOV(fFOV);
+							}
+							break;
+						}
+						
 					}
 				}
 

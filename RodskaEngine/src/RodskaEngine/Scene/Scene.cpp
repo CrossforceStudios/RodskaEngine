@@ -36,20 +36,26 @@ namespace RodskaEngine {
 		return ViewProjectionMatrix;
 	}
 
-	void Scene::SetupCamera(Ref<RodskaEngine::Camera> camera) {
+	void Scene::SetupCamera(SceneCamera* camera) {
 		auto group = m_Registry.view<RDSK_COMP(Transform), RDSK_COMP(Camera)>();
 		for (auto entity : group) {
 			auto& [transform, cameraObj] = group.get<RDSK_COMP(Transform), RDSK_COMP(Camera)>(entity);
 
 			if (cameraObj.Primary) {
 				cameraObj.Camera = camera;
-				Transform = transform.GetTransform();
+				mainCamera = camera;
 				break;
 			}
 
 		}
 
 
+	}
+
+	void Scene::OnViewportResize(uint32_t width, uint32_t height) {
+		if (mainCamera) {
+			mainCamera->SetViewportSize(width, height);
+		}
 	}
 
 	void Scene::OnUpdate(TimeStep ts)
@@ -60,16 +66,21 @@ namespace RodskaEngine {
 
 			if (camera.Primary) {
 				mainCamera = camera.Camera;
-				Transform = transform.GetTransform();
+				m_Transform = transform.GetTransform();
 				break;
 			}
 
 		}
 
 		if (mainCamera) {
+			mainCamera->SetTransform(m_Transform);
+			RodskaEngine::RodskaRenderer::BeginScene(mainCamera);
+
 			for (auto subsystem : m_Subsystems) {
 				subsystem.second->OnUpdate(ts);
 			}
+
+			RodskaEngine::RodskaRenderer::EndScene();
 		}
 	}
 

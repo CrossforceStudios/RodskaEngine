@@ -16,15 +16,11 @@ public:
 private:
 	RodskaEngine::ShaderLibrary m_Library;
 	RodskaEngine::Ref<RodskaEngine::VertexArray> m_VertexArray;
-	RodskaEngine::CameraController m_Camera;
-	float m_SquareMoveSpeed = 1.0f;
 	RodskaEngine::Ref<RodskaEngine::Material> m_Material;
 	static inline bool showEditor = false;
 	RodskaEngine::Ref<RodskaEngine::MaterialEditor> m_MatEditor;
-	RodskaEngine::Ref<RodskaEngine::Texture2D> m_Texture, m_RodskaEngineLogo;
 	RodskaEngine::Ref<RodskaEngine::EditorDock> m_EditorUI;
 	RodskaEngine::Ref<RodskaEngine::SceneHierarchyPanel> m_SHP;
-
 	RodskaEngine::Ref<RodskaEngine::Framebuffer> m_Framebuffer;
 	RodskaEngine::Ref<RodskaEngine::SceneViewport> m_SceneViewport;
 	RodskaEngine::Ref<RodskaEngine::Scene> m_ActiveScene;

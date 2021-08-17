@@ -15,7 +15,6 @@ namespace RodskaEngine {
 				m_FramebufferScene->Resize((uint32_t)viewportPanelSize.x, (uint32_t)viewportPanelSize.y);
 				m_ViewportSize = { viewportPanelSize.x, viewportPanelSize.y };
 				m_Spec = m_FramebufferScene->GetSpecification();
-				m_Camera.ResizeBounds(m_ViewportSize.x, m_ViewportSize.y);
 				uint32_t width = (uint32_t)m_ViewportSize.x;
 				uint32_t height = (uint32_t)m_ViewportSize.y;
 				
