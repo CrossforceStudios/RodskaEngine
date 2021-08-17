@@ -168,7 +168,7 @@ void EditorLayer::OnAttach()  {
 		meshComponent2.Color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", dynamite);
 
-		backpack = m_ActiveScene->CreateObject("G3A3");
+		backpack = m_ActiveScene->CreateObject("Backpack");
 		auto& meshComponent3 = backpack.AddComponent<RDSK_BCOMP(Mesh)>();
 		auto& transformComponent3 = backpack.GetComponent<RDSK_BCOMP(Transform)>();
 		glm::vec3 pos3 = glm::vec3{ 0.0f, 0.0f, 0.0f };
