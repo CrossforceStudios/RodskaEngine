@@ -3,7 +3,6 @@
 #include "RodskaEngine/UI/UICore/GUIBuilder.h"
 #include "RodskaEngine/Graphics/Framebuffer.h"
 #include <glm/ext/vector_float2.hpp>
-#include <RodskaEngine/Graphics/Camera/CameraController.h>
 #include <RodskaEngine/Scene/Scene.h>
 
 

@@ -76,24 +76,18 @@ namespace RodskaEngine {
 		RDSKComponent_Light(const RDSK_COMP(Light) & other) = default;
 	};
 
-
 	RDSK_DEFCOMP(NativeScript)
 		ScriptableRodskaObject* Object = nullptr;
 
-		std::function<void()> InstantiateFunction;
-		std::function<void()> DestroyInstanceFunction;
-		std::function<void(ScriptableRodskaObject*)> OnCreateFunction;
+		ScriptableRodskaObject*(*OnInstantiate)() ;
+		void (*OnDestroy)(RDSK_COMP(NativeScript)*);
 
-		std::function<void(ScriptableRodskaObject*,TimeStep)> OnUpdateFunction;
-		std::function<void(ScriptableRodskaObject*)> OnDestroyFunction;
+
 
 		template<typename T>
 		void Bind() {
-			InstantiateFunction = [&Object]() { Object = new T() };
-			DestroyInstanceFunction = [&Object]() { delete (*T)Instance; Instance = nullptr; };
-			OnCreateFunction = [](ScriptableRodskaObject* instance) { ((T*)instance)->OnCreate(); }
-			OnUpdateFunction = [](ScriptableRodskaObject* instance, TimeStep ts) { ((T*)instance)->OnUpdate(ts); }
-			OnDestroyFunction = [](ScriptableRodskaObject* instance) { ((T*)instance)->OnDestroy(); }
+			OnInstantiate = []() { return static_cast<ScriptableRodskaObject*>(new T()); };
+			OnDestroy = [](RDSK_COMP(NativeScript)*  nsc) { delete nsc->Object; nsc->Object = nullptr; };
 
 		}
 	};

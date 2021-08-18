@@ -39,7 +39,7 @@ namespace RodskaEngine {
 	void Scene::SetupCamera(SceneCamera* camera) {
 		auto group = m_Registry.view<RDSK_COMP(Transform), RDSK_COMP(Camera)>();
 		for (auto entity : group) {
-			auto& [transform, cameraObj] = group.get<RDSK_COMP(Transform), RDSK_COMP(Camera)>(entity);
+			auto [transform, cameraObj] = group.get<RDSK_COMP(Transform), RDSK_COMP(Camera)>(entity);
 
 			if (cameraObj.Primary) {
 				cameraObj.Camera = camera;
@@ -60,9 +60,22 @@ namespace RodskaEngine {
 
 	void Scene::OnUpdate(TimeStep ts)
 	{
+		{
+			m_Registry.view<RDSK_COMP(NativeScript)>().each([ts,this](auto entity, auto& nsc) {
+				if (!nsc.Object) {
+					nsc.Object = nsc.OnInstantiate();
+					nsc.Object->m_Object = new RodskaObject( entity, this );
+					nsc.Object->OnCreate();
+				}
+				nsc.Object->OnUpdate(ts);
+			});
+
+			
+		}
+
 		auto group = m_Registry.view<RDSK_COMP(Transform), RDSK_COMP(Camera)>();
 		for (auto entity : group) {
-			auto& [transform, camera] = group.get<RDSK_COMP(Transform), RDSK_COMP(Camera)>(entity);
+			auto [transform, camera] = group.get<RDSK_COMP(Transform), RDSK_COMP(Camera)>(entity);
 
 			if (camera.Primary) {
 				mainCamera = camera.Camera;

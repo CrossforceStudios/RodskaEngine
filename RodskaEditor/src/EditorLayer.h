@@ -3,7 +3,7 @@
 #include <utility>
 #include <glm/gtc/matrix_transform.hpp>
 #include <RodskaEngine.h>
-
+#include "CameraController.h"
 #include <Platform/OpenGL/OpenGLShader.h>
 #include <RodskaEngine/UI/Editor/MaterialEditor.h>
 class EditorLayer : public RodskaEngine::Layer {

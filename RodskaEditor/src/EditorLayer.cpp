@@ -31,26 +31,7 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 	m_MatEditor.reset(new RodskaEngine::MaterialEditor(m_Material));
 	m_EditorUI.reset(new RodskaEngine::EditorDock(RodskaEngine::DockConfig("RodskaEditor", ImGuiDockNodeFlags_None, true, false, 0)));
 
-	//m_VertexArray = RodskaEngine::VertexArray::Create();
-	//m_Texture.reset(RodskaEngine::Texture2D::Create("assets/textures/checkerboard.png"));
-	//m_RodskaEngineLogo.reset(RodskaEngine::Texture2D::Create("assets/textures/RodskaEngineLogo.png"));
 
-
-	//RodskaEngine::Ref<RodskaEngine::VertexBuffer> m_VertexBuffer = RodskaEngine::VertexBuffer::Create(vertices, sizeof(vertices));
-	/**RodskaEngine::BufferLayout layout = {
-			{ RodskaEngine::ShaderDataType::Float3, "a_Position"},
-			{ RodskaEngine::ShaderDataType::Float2, "a_TexCoord"},
-	};
-	*/
-
-	//m_VertexBuffer->SetLayout(layout);
-	//m_VertexArray->AddVertexBuffer(m_VertexBuffer);
-
-	/**unsigned int indices[6] = {0, 1, 2, 2, 3, 0};
-	RodskaEngine::Ref<RodskaEngine::IndexBuffer> m_IndexBuffer = RodskaEngine::IndexBuffer::Create(indices, sizeof(indices) / sizeof(uint32_t));
-	m_VertexArray->SetIndexBuffer(m_IndexBuffer);
-	*/
-	//m_Library.Load("Texture", ("assets/shaders/OpenGL/Texture.glsl"));
 
 }
 
@@ -142,4 +123,5 @@ void EditorLayer::OnAttach()  {
 		m_ActiveScene->AddObjectToSubsystem("Mesh", backpack);
 	}
 	 m_SHP->SetContext(m_ActiveScene);
+	 m_CamEntity.AddComponent<RDSK_BCOMP(NativeScript)>().Bind<CameraController>();
 }
