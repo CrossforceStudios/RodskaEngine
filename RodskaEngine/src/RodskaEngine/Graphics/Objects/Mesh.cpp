@@ -20,6 +20,13 @@ namespace RodskaEngine {
 		m_VertexType = VertexType::PosAndTexCoord;
 	}
 
+	Mesh::Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices, std::vector<glm::vec3> normals) {
+		m_Vertices = vertices;
+		m_Indices = indices;
+		m_Normals = normals;
+		m_VertexType = VertexType::PosAndNormal;
+	}
+
 	void Mesh::AddVertex(const glm::vec3& vertex)
 	{
 		m_Vertices.push_back(vertex);
@@ -52,8 +59,18 @@ namespace RodskaEngine {
 					vertices.push_back(m_Vertices.at(i)[j]);
 				}
 			}
-			float* vertData = vertices.data();
-			m_VertexBuffer = VertexBuffer::Create(vertData, sizeof(vertData));
+			m_VertexBuffer = VertexBuffer::Create(vertices.data(), sizeof(vertices.data()));
+			break;
+		case VertexType::PosAndNormal:
+			for (size_t i = 0; i < m_Vertices.size(); ++i) {
+				vertices.push_back(m_Vertices.at(i)[0]);
+				vertices.push_back(m_Vertices.at(i)[1]);
+				vertices.push_back(m_Vertices.at(i)[2]);
+				vertices.push_back(m_Normals.at(i)[0]);
+				vertices.push_back(m_Normals.at(i)[1]);
+				vertices.push_back(m_Normals.at(i)[2]);
+			}
+			m_VertexBuffer = VertexBuffer::Create(vertices.data(), vertices.size());
 			break;
 		}
 		m_VertexBuffer->SetLayout(vertexBufferLayout);
@@ -122,21 +139,36 @@ namespace RodskaEngine {
 		std::vector<glm::vec3> vertices;
 		std::vector<uint32_t> indices;
 		std::unordered_map<glm::vec3, uint32_t> uniqueVertices;
+		std::vector<glm::vec3> normals;
+
+		bool invalid_normal_index = false;
 
 		for (const auto& shape : shapes)
 		{
 			for (const auto& index : shape.mesh.indices)
 			{
+
 				glm::vec3 position{
 					attrib.vertices[3 * index.vertex_index + 0],
 					attrib.vertices[3 * index.vertex_index + 1],
 					attrib.vertices[3 * index.vertex_index + 2] };
+				if (index.normal_index < 0) {
+					// normal index is missing from this face.
+					invalid_normal_index = true;
+				}
 				
+
 				if (uniqueVertices.count(position) == 0)
 				{
 					uniqueVertices[position] = static_cast<uint32_t>(vertices.size());
 					vertices.push_back( position );
-
+				}
+				if (!invalid_normal_index) {
+					glm::vec3 normal{
+					attrib.normals[3 * index.normal_index + 0],
+					attrib.normals[3 * index.normal_index + 1],
+					attrib.normals[3 * index.normal_index + 2] };
+					normals.push_back(normal);
 				}
 
 				indices.push_back(uniqueVertices[position]);
@@ -147,8 +179,10 @@ namespace RodskaEngine {
 
 
 		RDSK_CORE_INFO("Mesh Makeup: {0} Vertices, {1} Indices.", vertices.size(), indices.size());
-
-		return CreateRef<Mesh>(vertices, indices);
+		RDSK_CORE_INFO("Mesh Normals: {0}.", normals.size());
+		if (normals.size() <= 0)
+			return CreateRef<Mesh>(vertices, indices);
+		return CreateRef<Mesh>(vertices, indices, normals);
 	}
 
 	std::string Mesh::readFile(const std::string& path) {

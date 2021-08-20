@@ -9,18 +9,18 @@ namespace RodskaEngine {
 	class MeshSystem : public Subsystem {
 	public:
 		MeshSystem() = default;
-		MeshSystem(const ShaderLibrary& library, const BufferLayout& layout) : m_CurrentLayout(layout), m_Library(library) {
+		MeshSystem(const ShaderLibrary& library) : m_Library(library) {
 			m_VertexArray = VertexArray::Create();
 		}
 		virtual void OnUpdate(TimeStep ts) override;
 
 		virtual void AddObject(RodskaObject& object) override;
-		void SetCurrentLayout(const BufferLayout& layout);
+	public:
+		int GetMeshCount() { return m_Meshes.size(); }
 	private:
-		void ProcessShader(const std::string& shaderName, Ref<Mesh> mesh, const glm::vec4& color);
+		void ProcessShader(const std::string& shaderName, Ref<Mesh> mesh, const glm::vec4& color, const glm::mat4& transform);
 	private:
 		std::vector<Ref<Mesh>> m_Meshes;
-		BufferLayout m_CurrentLayout;
 		ShaderLibrary m_Library;
 		std::vector<Ref<Shader>> m_Shaders;
 		std::vector<RodskaObject> m_Objects;

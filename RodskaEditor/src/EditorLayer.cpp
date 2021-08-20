@@ -10,7 +10,7 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 {
 	m_ActiveScene.reset(new RodskaEngine::Scene());
 	m_Library.Load("FlatColor", ("E:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/FlatColor.glsl"));
-	// m_Library.Load("Material", ("E:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Material.glsl"));
+	m_Library.Load("Material", ("E:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Material.glsl"));
 
 	m_SHP.reset(new RodskaEngine::SceneHierarchyPanel(m_ActiveScene));
 
@@ -19,9 +19,7 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 	cc.Primary = true;
 	cc.Camera = new RodskaEngine::SceneCamera();
 
-	m_ActiveScene->AddSubsystem("Mesh", new RodskaEngine::MeshSystem(m_Library, {
-		{ RodskaEngine::ShaderDataType::Float3, "a_Position"},
-	}));
+	m_ActiveScene->AddSubsystem("Mesh", new RodskaEngine::MeshSystem(m_Library));
 	m_Material.reset(new RodskaEngine::Material());
 	m_Material->Set("material.diffuse", { 0.2f, 0.3f, 0.8f, 1.0f });
 	m_Material->Set("material.specular", { 0.2f, 0.3f, 0.8f, 1.0f });
@@ -78,9 +76,7 @@ void EditorLayer::OnAttach()  {
 	};
 	m_EditorUI->OnOpenScene = [this](std::string file) {
 		m_ActiveScene = RodskaEngine::CreateRef<RodskaEngine::Scene>();
-		m_ActiveScene->AddSubsystem("Mesh", new RodskaEngine::MeshSystem(m_Library, {
-			{ RodskaEngine::ShaderDataType::Float3, "a_Position"},
-		}));
+		m_ActiveScene->AddSubsystem("Mesh", new RodskaEngine::MeshSystem(m_Library));
 		m_SceneViewport->SetScene(m_ActiveScene);
 		m_SHP->SetContext(m_ActiveScene);
 		RodskaEngine::SceneSerializer serializer(m_ActiveScene);
@@ -96,7 +92,7 @@ void EditorLayer::OnAttach()  {
 		transformComponent1.Translation = pos2;
 
 		meshComponent1.MeshFile = "assets/models/cube.obj";
-		meshComponent1.Shader = "FlatColor";
+		meshComponent1.Shader = "Material";
 		meshComponent1.Color = { 0.0f, 0.0f, 1.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", cube);
 
@@ -107,7 +103,7 @@ void EditorLayer::OnAttach()  {
 		transformComponent2.Translation = pos1;
 
 		meshComponent2.MeshFile = "assets/models/Dynamite.obj";
-		meshComponent2.Shader = "FlatColor";
+		meshComponent2.Shader = "Material";
 		meshComponent2.Color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", dynamite);
 
@@ -118,8 +114,9 @@ void EditorLayer::OnAttach()  {
 		transformComponent3.Translation = pos3;
 
 		meshComponent3.MeshFile = "assets/models/backpack/backpack.obj";
-		meshComponent3.Shader = "FlatColor";
+		meshComponent3.Shader = "Material";
 		meshComponent3.Color = { 0.0f, 1.0f, 0.0f, 1.0f };
+
 		m_ActiveScene->AddObjectToSubsystem("Mesh", backpack);
 	}
 	 m_SHP->SetContext(m_ActiveScene);
