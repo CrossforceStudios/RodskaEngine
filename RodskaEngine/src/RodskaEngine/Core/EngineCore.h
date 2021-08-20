@@ -13,7 +13,7 @@
 	#error RodskaEngine currently supports only Windows.
 #endif //  RDSK_PLATFORM_WINDOWS
 #else
-	#define RODSKA_EAPI
+	#define RODSKA_EAPI 
 #endif
 #ifdef  RDSK_ENABLE_ASSERTS
 	#define RDSK_ASSERT(x, ...) { if(!(x)) { RDSK_ERROR("Assertion Failed: {0}", __VA_ARGS__); __debugbreak(); }}

@@ -14,7 +14,7 @@ namespace RodskaEngine {
 		out << YAML::BeginMap;
 		out << YAML::Key << "ObjectID";
 		out << YAML::Value << "121401510109112";
-		PropertyRegistry::PropRegister.SerializeComponents(out, object);
+		PropRegister.SerializeComponents(out, object);
 		out << YAML::EndMap;
 	}
 
@@ -58,7 +58,7 @@ namespace RodskaEngine {
 		auto objects = data["Objects"];
 		if (objects) {
 			for (auto object : objects) {
-				RodskaObject deserializedObject = PropertyRegistry::PropRegister.DeserializeComponents(m_SceneContext,object);
+				RodskaObject deserializedObject = PropRegister.DeserializeComponents(m_SceneContext,object);
 			}
 		}
 		return true;

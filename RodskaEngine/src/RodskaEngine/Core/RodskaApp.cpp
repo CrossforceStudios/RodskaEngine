@@ -3,10 +3,13 @@
 #include <glad/glad.h>
 #include "RodskaEngine/Graphics/RodskaRenderer.h"
 #include "RodskaEngine/Graphics/Camera/OrthographicCamera.h"
+#include "ModuleHandler.h"
 #include <GLFW/glfw3.h>
+
 namespace RodskaEngine {
 
 	RodskaApp* RodskaApp::CurrentApp = nullptr;
+	std::string get_stem(const std::filesystem::path& p) { return (p.stem().string()); }
 
 
 
@@ -48,6 +51,20 @@ namespace RodskaEngine {
 			if (e.Handled)
 				break;
 		}
+	}
+
+	std::vector<ModuleHandler> RodskaApp::LoadModules(std::string plugPath) {
+		std::vector<ModuleHandler> modules;
+
+		const std::filesystem::path pluginPath = std::filesystem::path(plugPath);
+		for (auto const& p : std::filesystem::directory_iterator(pluginPath)){
+			auto path = p.path();
+			if (path.extension().string() == ".dll") {
+				RDSK_CORE_INFO("Module Found: {0}", path.string());
+				modules.push_back(ModuleHandler(plugPath + get_stem(path)));
+			}
+		}
+		return modules;
 	}
 
 

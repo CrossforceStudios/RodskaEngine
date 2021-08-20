@@ -3,13 +3,15 @@
 #include "RodskaObject.h"
 #include "Subsystem.h"
 #include "Subsystems/SceneHierarchySystem.h"
+#include "Subsystems/ScriptSubsystem.h"
 
 namespace RodskaEngine {
 
 	Scene::Scene() : m_VWidth(1280), m_VHeight(720)  {
 		ViewProjectionMatrix = glm::mat4();
-		entt::entity entity = m_Registry.create();
 		AddSubsystem("SceneHierarchy", new SceneHierarchySystem());
+		AddSubsystem("Script", new ScriptSubsystem(this));
+
 	}
 
 	Scene::~Scene() {
@@ -60,19 +62,6 @@ namespace RodskaEngine {
 
 	void Scene::OnUpdate(TimeStep ts)
 	{
-		{
-			m_Registry.view<RDSK_COMP(NativeScript)>().each([ts,this](auto entity, auto& nsc) {
-				if (!nsc.Object) {
-					nsc.Object = nsc.OnInstantiate();
-					nsc.Object->m_Object = new RodskaObject( entity, this );
-					nsc.Object->OnCreate();
-				}
-				nsc.Object->OnUpdate(ts);
-			});
-
-			
-		}
-
 		auto group = m_Registry.view<RDSK_COMP(Transform), RDSK_COMP(Camera)>();
 		for (auto entity : group) {
 			auto [transform, camera] = group.get<RDSK_COMP(Transform), RDSK_COMP(Camera)>(entity);

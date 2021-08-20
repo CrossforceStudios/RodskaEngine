@@ -1,9 +1,12 @@
 #pragma once
 
 #include <RodskaEngine/Scene/RodskaObject.h>
+#include <RodskaEngine/Scene/Scene.h>
 
 namespace RodskaEngine {
 	class RodskaObject;
+	class Scene;
+
 	class ScriptableRodskaObject {
 	public:
 		RodskaObject* GetObject();
@@ -33,10 +36,11 @@ namespace RodskaEngine {
 		}
 	public:
 		virtual void OnCreate(){}
-		virtual void OnUpdate(TimeStep ts) {}
+		virtual void OnUpdate(Scene* scene, TimeStep ts) {}
 		virtual void OnDestroy(){}
 	private:
 		RodskaObject* m_Object;
 		friend class Scene;
+		friend class ScriptSubsystem;
 	};
 };

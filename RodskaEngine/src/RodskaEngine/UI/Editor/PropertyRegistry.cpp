@@ -3,7 +3,7 @@
 #include <imgui_internal.h>
 
 namespace RodskaEngine {
-	RodskaEngine::PropertyRegistry PropertyRegistry::PropRegister = RodskaEngine::PropertyRegistry();
+	RodskaEngine::PropertyRegistry PropRegister = RodskaEngine::PropertyRegistry();
 	void PropertyRegistry::AddPropertyFunction(const std::string& name, const std::string& title, ObjectDisplayFunc func, ObjectCompAddFunc addFunc, ObjectDisplayCondFunc check)
 	{
 		m_Props.push_back(name);
@@ -25,7 +25,13 @@ namespace RodskaEngine {
 		m_DeserializeFuncs.push_back(func);
 	}
 
-	void PropertyRegistry::RenderPropertyFunctions(RodskaObject object, bool displayTag)
+	void PropertyRegistry::AddScriptAddFunction(std::string title, ObjectScriptAddFunc func)
+	{
+		m_ScriptTitles.push_back(title);
+		m_Scripts.push_back(func);
+	}
+
+	void PropertyRegistry::RenderPropertyFunctions(RodskaObject object, Ref<Scene> scene, bool displayTag)
 	{
 		if (displayTag) {
 			for (int i = 0; i < m_PropFuncs.size(); ++i) {
@@ -48,6 +54,19 @@ namespace RodskaEngine {
 					if ((name != "Tag") && ImGui::MenuItem(m_Titles[i].c_str())) {
 						func2(object);
 					}
+				}
+				if (ImGui::BeginMenu("Script")) {
+					for (size_t i = 0; i < m_Scripts.size(); ++i) {
+						std::string title = m_ScriptTitles[i];
+						if (ImGui::MenuItem(title.c_str())) {
+							if (!object.HasComponent<RDSK_COMP(NativeScript)>()) {
+								object.AddComponent<RDSK_COMP(NativeScript)>();
+							}
+							m_Scripts[i](object);
+							scene->AddObjectToSubsystem("Script", object);
+						}
+					}
+					ImGui::EndMenu();
 				}
 				ImGui::EndPopup();
 			}

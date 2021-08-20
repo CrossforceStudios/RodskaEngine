@@ -14,8 +14,8 @@ namespace RodskaEngine {
 
 	void SceneHierarchyPanel::DrawComponents()
 	{
-		PropertyRegistry::PropRegister.RenderPropertyFunctions(m_SelectedContext, true);
-		PropertyRegistry::PropRegister.RenderPropertyFunctions(m_SelectedContext);
+		PropRegister.RenderPropertyFunctions(m_SelectedContext, m_Context, true);
+		PropRegister.RenderPropertyFunctions(m_SelectedContext, m_Context);
 	}
 
 	void SceneHierarchyPanel::Create(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) {

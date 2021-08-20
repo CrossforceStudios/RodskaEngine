@@ -39,7 +39,13 @@ namespace RodskaEngine {
 						RodskaApp::Get().Close();
 					ImGui::EndMenu();
 				}
-				
+				if (ImGui::BeginMenu("Tools"))
+				{
+					if (ImGui::MenuItem("Plugins")) {
+
+					}
+					
+				}
 				ImGui::EndMainMenuBar();
 			}
 			

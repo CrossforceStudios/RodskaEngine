@@ -13,7 +13,7 @@ namespace RodskaEngine {
 		RodskaObject(entt::entity id, Scene* scene);
 		RodskaObject(const RodskaObject& object) = default;
 		~RodskaObject();
-
+		entt::entity GetId() const { return m_ID; }
 		template<typename T>
 		bool HasComponent() {
 			return RodskaEngine::SceneRegistry->HasComponent<T>(m_Scene, m_ID);

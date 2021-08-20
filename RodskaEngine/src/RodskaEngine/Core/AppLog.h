@@ -7,16 +7,16 @@
 
 namespace RodskaEngine{
    
-    
+    extern std::shared_ptr<spdlog::logger> s_CoreLog;
+    extern std::shared_ptr<spdlog::logger> s_ClientLog;
     class RODSKA_EAPI AppLog {
     public:
         static void InitLogs();
         inline static std::shared_ptr<spdlog::logger> GetCoreLogger() { return s_CoreLog; }
         inline static std::shared_ptr<spdlog::logger> GetClientLogger() { return s_ClientLog; }
-    private:
-        static std::shared_ptr<spdlog::logger> s_CoreLog;
-        static std::shared_ptr<spdlog::logger> s_ClientLog;
+        
     };
+     
 }
 #define RDSK_CORE_TRACE(...) ::RodskaEngine::AppLog::GetCoreLogger()->trace(__VA_ARGS__)
 #define RDSK_CORE_WARN(...) ::RodskaEngine::AppLog::GetCoreLogger()->warn(__VA_ARGS__)

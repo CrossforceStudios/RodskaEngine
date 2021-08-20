@@ -5,7 +5,7 @@
 #include "RodskaEngine/EventSystem/RodskaAppEvent.h"
 #include "RodskaEngine/Core/TimeStep.h"
 #include <RodskaEngine/UI/UILayer.h>
-
+#include "ModuleHandler.h"
 namespace RodskaEngine {
 	class RODSKA_EAPI RodskaApp
 	{
@@ -17,6 +17,7 @@ namespace RodskaEngine {
 		void PushOverlay(Layer* overlay);
 		void PushLayer(Layer* layer);
 		void Close();
+		std::vector<ModuleHandler> LoadModules(std::string plugPath);
 		inline static RodskaApp& Get() { return *CurrentApp; }
 		inline Viewport& GetViewport() { return *m_Viewport; }
 	private:
