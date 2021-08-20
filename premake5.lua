@@ -27,6 +27,7 @@ group "Dependencies"
 	include "RodskaEngine/vendor/tinyobjloader"
 	include "RodskaEngine/vendor/yaml-cpp"
 
+
 group ""
 
 project "RodskaEngine"
@@ -164,3 +165,62 @@ project "RodskaEditor"
 		defines "RDSK_DIST"
 		runtime "Release"
 		optimize "on"
+
+group "Modules"
+	project "ScriptCore"
+		location "ScriptCore"
+		kind "SharedLib"
+		language "C++"
+		staticruntime "off"
+		cppdialect "C++17"
+	
+		targetdir ("RodskaEditor/plugins")
+		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+	
+		files 
+		{
+			"%{prj.name}/src/**.h",
+			"%{prj.name}/src/**.cpp",
+			"%{prj.name}/src/**.hpp"
+		}
+	
+		includedirs
+		{
+			"RodskaEngine/src",
+			"RodskaEngine/vendor/spdlog/include",
+			"%{IncludeDir.glm}",
+			"%{IncludeDir.GLAD}",
+			"%{IncludeDir.imgui}",
+			"%{IncludeDir.entt}",
+			"%{IncludeDir.yamlcpp}"
+		}
+	
+		links 
+		{
+			"RodskaEngine"
+		}
+			
+		filter "system:windows"
+			systemversion "latest"
+
+			defines
+			{
+				"RDSK_PLATFORM_WINDOWS",
+				"RDSK_MOD_BUILD_DLL",
+			}
+	
+		filter "configurations:Debug"
+			defines "RDSK_DEBUG"
+			runtime "Debug"
+			symbols "on"
+			
+		filter "configurations:Release"
+			defines "RDSK_RELEASE"
+			runtime "Release"
+			optimize "on"
+	
+		filter "configurations:Dist"
+			defines "RDSK_DIST"
+			runtime "Release"
+			optimize "on"
+	

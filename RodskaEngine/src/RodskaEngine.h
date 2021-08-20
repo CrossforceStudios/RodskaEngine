@@ -46,3 +46,9 @@
 #include "RodskaEngine/Scene/SceneSerializer.h"
 // ----------------------------------------------
 
+// -- Modules  --------------------------
+
+#include "RodskaEngine/Core/PluginCore.h"
+#include "RodskaEngine/Core/ModuleHandler.h"
+
+// ----------------------------------------------
