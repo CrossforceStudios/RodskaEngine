@@ -3,14 +3,15 @@
 
 
 RodskaEngine::RodskaObject dynamite;
-RodskaEngine::RodskaObject backpack;
 RodskaEngine::RodskaObject cube;
+RodskaEngine::RodskaObject cube2;
 
 EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 {
 	m_ActiveScene.reset(new RodskaEngine::Scene());
 	m_Library.Load("FlatColor", ("E:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/FlatColor.glsl"));
 	m_Library.Load("Material", ("E:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Material.glsl"));
+	m_Library.Load("Particle", ("E:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Particles.glsl"));
 
 	m_SHP.reset(new RodskaEngine::SceneHierarchyPanel(m_ActiveScene));
 
@@ -20,6 +21,8 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 	cc.Camera = new RodskaEngine::SceneCamera();
 
 	m_ActiveScene->AddSubsystem("Mesh", new RodskaEngine::MeshSystem(m_Library));
+	m_ActiveScene->AddSubsystem("Particles", new RodskaEngine::ParticleSubsystem(m_Library, m_ActiveScene.get()));
+
 	m_Material.reset(new RodskaEngine::Material());
 	m_Material->Set("material.diffuse", { 0.2f, 0.3f, 0.8f, 1.0f });
 	m_Material->Set("material.specular", { 0.2f, 0.3f, 0.8f, 1.0f });
@@ -96,6 +99,33 @@ void EditorLayer::OnAttach()  {
 		meshComponent1.Color = { 0.0f, 0.0f, 1.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", cube);
 
+		cube2 = m_ActiveScene->CreateObject("ParticleCube");
+		auto& meshComponent4 = cube2.AddComponent<RDSK_BCOMP(Mesh)>();
+		auto& transformComponent4 = cube2.GetComponent<RDSK_BCOMP(Transform)>();
+		glm::vec3 pos4 = glm::vec3{ 0.0f, 0.0f, 0.0f };
+		transformComponent4.Translation = pos4;
+
+		meshComponent4.MeshFile = "assets/models/cube.obj";
+		meshComponent4.Shader = "Material";
+		meshComponent4.Color = { 0.0f, 0.0f, 1.0f, 1.0f };
+
+		auto& partComponent1 = cube2.AddComponent<RDSK_BCOMP(ParticleEmitter)>();
+		partComponent1.Lifetime = 3.0f;
+		partComponent1.MaxParticles = 300;
+		partComponent1.Range = 0.2f;
+		partComponent1.Active = true;
+		partComponent1.CreationPeriod = 0.1f;
+		partComponent1.Speed = glm::vec3(0.0f, 1.0f, 0.0f) * 1.5f;
+		partComponent1.ParticleFile = "assets/textures/particle_anim.png";
+		partComponent1.TextureKind = RodskaEngine::TextureType::Dynamic;
+		partComponent1.SizeX = 4;
+		partComponent1.SizeY = 4;
+
+
+		m_ActiveScene->AddObjectToSubsystem("Mesh", cube2);
+
+		m_ActiveScene->AddObjectToSubsystem("Particles", cube2);
+
 		dynamite = m_ActiveScene->CreateObject("Dynamite");
 		auto& meshComponent2 = dynamite.AddComponent<RDSK_BCOMP(Mesh)>();
 		auto& transformComponent2 = dynamite.GetComponent<RDSK_BCOMP(Transform)>();
@@ -106,18 +136,6 @@ void EditorLayer::OnAttach()  {
 		meshComponent2.Shader = "Material";
 		meshComponent2.Color = { 1.0f, 0.0f, 0.0f, 1.0f };
 		m_ActiveScene->AddObjectToSubsystem("Mesh", dynamite);
-
-		backpack = m_ActiveScene->CreateObject("Backpack");
-		auto& meshComponent3 = backpack.AddComponent<RDSK_BCOMP(Mesh)>();
-		auto& transformComponent3 = backpack.GetComponent<RDSK_BCOMP(Transform)>();
-		glm::vec3 pos3 = glm::vec3{ 0.0f, 0.0f, 0.0f };
-		transformComponent3.Translation = pos3;
-
-		meshComponent3.MeshFile = "assets/models/backpack/backpack.obj";
-		meshComponent3.Shader = "Material";
-		meshComponent3.Color = { 0.0f, 1.0f, 0.0f, 1.0f };
-
-		m_ActiveScene->AddObjectToSubsystem("Mesh", backpack);
 	}
 	 m_SHP->SetContext(m_ActiveScene);
 	 m_CamEntity.AddComponent<RDSK_BCOMP(NativeScript)>().Bind<CameraController>();

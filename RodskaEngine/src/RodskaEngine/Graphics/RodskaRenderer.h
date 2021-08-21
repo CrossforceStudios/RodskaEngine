@@ -13,11 +13,14 @@ namespace RodskaEngine {
 		static void OnWindowResize(uint32_t width, uint32_t height);
 
 		static void SubmitMesh(const Ref<VertexArray> vertexArray, const Ref<Shader> shader, const glm::mat4& transform = glm::mat4(1.0f));
+		static void SubmitParticles(const Ref<VertexArray> vertexArray,  const Ref<Shader> particleShader, const glm::mat4& transform = glm::mat4(1.0f));
+
 		static void Init();
 
 		inline static RHIAPI::RHI GetRHI() {return RHIAPI::GetRHI();}
 	private:
 		static glm::mat4 ViewProjectionMatrix;
+		static glm::mat4 ViewMatrix;
 	};
 
 

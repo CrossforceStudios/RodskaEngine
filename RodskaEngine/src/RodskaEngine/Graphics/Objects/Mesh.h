@@ -13,16 +13,20 @@ namespace RodskaEngine {
 		PosAndTexCoord = 1,
 		PosAndNormal = 2
 	};
+	enum class MeshType {
+		Mesh = 0,
+		Particle = 1
+	};
 	class Mesh : public Object3D {
 	public:
 		~Mesh();
 		Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices);
-		Mesh(std::vector<float*> vertices, std::vector<unsigned int> indices);
 		Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices, std::vector<glm::vec3> normals);
+		Mesh(std::vector<glm::vec3> vertices, std::vector<glm::vec2> texCoords, std::vector<unsigned int> indices);
 
 	public:
 		virtual void AddVertex(const glm::vec3& vertex) override;
-		virtual void AddVertex(float* vertex) override;
+		virtual void AddTexCoord(const glm::vec2& texCoord) override;
 		virtual void SetupBuffers(const BufferLayout& vertexBufferLayout) override;
 		virtual void SetupArray() override;
 		virtual void AddIndex(const unsigned int index) override;
@@ -41,16 +45,19 @@ namespace RodskaEngine {
 		Ref<Shader> GetShader(const std::string& name);
 		void SetCurrentShader(const std::string& name);
 		VertexType GetVertexType() { return m_VertexType; }
-		static Ref<Mesh> CreateFromObjFile(const std::string& path, bool debug = true);
+		void SetVertexType(VertexType vType) { m_VertexType = vType; }
+		void SetMeshType(MeshType mType) { m_Type = mType; }
+		static Ref<Mesh> CreateFromObjFile(const std::string& path, VertexType useCase = VertexType::PosAndNormal);
 	private:
 		std::vector<glm::vec3> m_Vertices;
 		std::vector<unsigned int> m_Indices;
-		std::vector<float*> m_Vertices5;
+		std::vector<glm::vec2> m_TexCoords;
 		std::vector<glm::vec3> m_Normals;
 		VertexType m_VertexType;
 		Ref<VertexBuffer> m_VertexBuffer;
 		Ref<VertexArray> m_VertexArray;
 		Ref<IndexBuffer> m_IndexBuffer;
+		MeshType m_Type = MeshType::Mesh;
 		ShaderLibrary m_ShaderLibrary;
 		std::string m_CurrentShader;
 	private:

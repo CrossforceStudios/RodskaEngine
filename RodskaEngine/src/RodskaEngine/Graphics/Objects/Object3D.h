@@ -14,7 +14,7 @@ namespace RodskaEngine {
 	public:
 		virtual ~Object3D() = default;
 		virtual void AddVertex(const glm::vec3& vertex) = 0;
-		virtual void AddVertex(float* vertex) = 0;
+		virtual void AddTexCoord(const glm::vec2& texCoord) = 0;
 
 		virtual void AddIndex(const unsigned int index) = 0;
 		virtual const Ref<IndexBuffer> GetIndexBuffer() = 0;

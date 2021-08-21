@@ -11,9 +11,11 @@
 #include <RodskaEngine/Graphics/Camera/Camera.h>
 #include "RodskaEngine/UI/Editor/PropertyRegistry.h"
 #include "imgui.h"
+#include "RodskaEngine/Graphics/Texture.h"
 
 namespace RodskaEngine {
 	class ScriptableRodskaObject;
+	class FlowParticleEmitter;
 	RDSK_DEFCOMP(Transform)
 
 		glm::vec3 Translation = { 0.0f, 0.0f, 0.0f };
@@ -40,6 +42,7 @@ namespace RodskaEngine {
 
 	RDSK_DEFCOMP(Mesh)
 		std::string MeshFile;
+		bool IsParticle = false;
 		std::string Shader;
 		glm::vec4 Color{ 1.0f, 1.0f, 1.0f, 1.0f };
 		RDSKComponent_Mesh() = default;
@@ -90,6 +93,24 @@ namespace RodskaEngine {
 			OnDestroy = [](RDSK_COMP(NativeScript)*  nsc) { delete nsc->Object; nsc->Object = nullptr; };
 
 		}
+	};
+
+	RDSK_DEFCOMP(ParticleEmitter)
+		glm::vec3 Speed;
+		float Range;
+		float Lifetime;
+		uint32_t MaxParticles;
+		float CreationPeriod;
+		FlowParticleEmitter* Emitter;
+		bool Active;
+		TextureType TextureKind = TextureType::Static;
+		float SizeX = 1.0f;
+		float SizeY = 1.0f;
+
+		float UpdateTime = 0.2f;
+		std::string ParticleFile;
+		RDSKComponent_ParticleEmitter() = default;
+		RDSKComponent_ParticleEmitter(const RDSK_COMP(ParticleEmitter) & other) = default;
 	};
 
 

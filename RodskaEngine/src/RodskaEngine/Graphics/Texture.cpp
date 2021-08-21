@@ -5,13 +5,13 @@
 #include <Platform/OpenGL/OpenGLTexture.h>
 
 namespace RodskaEngine {
-	Texture2D* Texture2D::Create(const std::string& path) {
+	Ref<Texture2D> Texture2D::Create(const std::string& path, TextureType texType, int rows, int cols) {
 		switch (RodskaRenderer::GetRHI()) {
 		case RHIAPI::RHI::None:
 			RDSK_CORE_ASSERT(false, "RHI::None is unsupported.");
 			return nullptr;
 		case RHIAPI::RHI::OpenGL:
-			return new OpenGLTexture2D(path);
+			return CreateRef<OpenGLTexture2D>(path, texType, rows, cols);
 
 		}
 		RDSK_CORE_ASSERT(false, "Unknown RHI!");

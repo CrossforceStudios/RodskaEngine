@@ -38,7 +38,7 @@ namespace RodskaEngine {
 		glm::mat4 m_view;
 		glm::mat4 m_viewProjection;
 		glm::mat4 m_Transform;
-		CameraType m_CameraType = CameraType::Orthographic;
+		CameraType m_CameraType = CameraType::Perspective;
 		float m_Rotation = 0.0f;
 		float m_FOV = 45.0f;
 

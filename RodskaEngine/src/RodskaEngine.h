@@ -33,6 +33,9 @@
 
 #include "RodskaEngine/Graphics/Objects/Mesh.h"
 
+#include "RodskaEngine/Graphics/Particles/ParticleEmitter.h"
+#include "RodskaEngine/Graphics/Particles/Emitters/FlowParticleEmitter.h"
+#include "RodskaEngine/Graphics/Objects/Particle.h"
 
 // ----------------------------------------------
 
@@ -42,6 +45,7 @@
 #include "RodskaEngine/Scene/BuiltinComponents.h"
 #include "RodskaEngine/Scene/RodskaObject.h"
 #include "RodskaEngine/Scene/Subsystems/MeshSystem.h"
+#include "RodskaEngine/Scene/Subsystems/ParticleSubsystem.h"
 #include "RodskaEngine/Scene/ScriptableRodskaObject.h"
 #include "RodskaEngine/Scene/SceneSerializer.h"
 // ----------------------------------------------

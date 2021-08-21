@@ -134,7 +134,7 @@ namespace RodskaEngine {
 			for (int i = 0; i < floatValues.size(); i++) {
 				ed::BeginNode(1 + i + colorValues.size());
 				ImGui::TextUnformatted("Color");
-				ed::BeginPin(1000 + i + colorValues.size(), ed::PinKind::Output);
+				ed::BeginPin((uint64_t)(1000 + i + colorValues.size()), ed::PinKind::Output);
 				floatLinks[1000 + i + colorValues.size()] = floatValues[i];
 				ImGui::DragFloat("Float Value", &floatValues[i], 0.01f, 0.0f, 1.0f, "%.2f");
 				ed::EndPin();

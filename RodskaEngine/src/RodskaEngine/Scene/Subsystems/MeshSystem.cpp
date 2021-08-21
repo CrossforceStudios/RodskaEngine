@@ -36,7 +36,9 @@ namespace RodskaEngine {
 	void MeshSystem::AddObject(RodskaObject& object)
 	{
 		RDSK_COMP(Mesh) meshComponent = object.GetComponent<RDSK_COMP(Mesh)>();
-		Ref<Mesh> mesh = Mesh::CreateFromObjFile(meshComponent.MeshFile, false);
+		if (object.HasComponent<RDSK_COMP(ParticleEmitter)>() && meshComponent.IsParticle)
+			return;
+		Ref<Mesh> mesh = Mesh::CreateFromObjFile(meshComponent.MeshFile);
 		switch (mesh->GetVertexType()) {
 			case VertexType::Position:
 				mesh->SetupBuffers({
