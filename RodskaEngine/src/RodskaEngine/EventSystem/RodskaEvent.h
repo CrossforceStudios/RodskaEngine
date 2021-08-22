@@ -46,7 +46,7 @@ namespace RodskaEngine {
 		protected:
 	};
 
-	class RodskaEventDispatcher 
+	class RODSKA_EAPI RodskaEventDispatcher
 	{
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;

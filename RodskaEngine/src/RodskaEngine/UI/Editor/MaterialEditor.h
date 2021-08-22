@@ -17,7 +17,7 @@ namespace RodskaEngine {
 		ed::PinId  InputId;
 		ed::PinId  OutputId;
 	};
-	class MaterialEditor : public GUIBuilder {
+	class RODSKA_EAPI  MaterialEditor : public GUIBuilder {
 	public:
 		MaterialEditor(Ref<Material>& ref)
 			: m_Material(ref)

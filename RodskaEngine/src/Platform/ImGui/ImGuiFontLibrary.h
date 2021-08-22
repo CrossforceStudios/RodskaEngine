@@ -4,7 +4,7 @@
 #include "imgui.h"
 
 namespace RodskaEngine {
-	class ImGuiFontLibrary : public FontLibrary<ImFont*> {
+	class RODSKA_EAPI ImGuiFontLibrary : public FontLibrary<ImFont*> {
 	public:
 		ImGuiFontLibrary(const std::string& tag);
 		virtual void SetFont(const std::string& name, const std::string& path, float fontSize) override;

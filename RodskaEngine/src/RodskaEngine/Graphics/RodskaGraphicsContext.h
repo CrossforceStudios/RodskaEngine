@@ -1,7 +1,7 @@
 #pragma once
 
 namespace RodskaEngine {
-	class RodskaGraphicsContext {
+	class RODSKA_EAPI RodskaGraphicsContext {
 	public:
 		virtual void Init() = 0;
 		virtual void SwapBuffers() = 0;

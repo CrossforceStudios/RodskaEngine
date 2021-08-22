@@ -9,7 +9,7 @@
 
 namespace RodskaEngine {
 	
-	class OpenGLFramebuffer : public Framebuffer {
+	class RODSKA_EAPI OpenGLFramebuffer : public Framebuffer {
 	public:
 		OpenGLFramebuffer(const FramebufferSpecification& spec);
 		virtual ~OpenGLFramebuffer();

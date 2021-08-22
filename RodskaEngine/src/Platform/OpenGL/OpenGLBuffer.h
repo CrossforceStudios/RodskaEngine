@@ -5,7 +5,7 @@
 #include <RodskaEngine/Graphics/GraphicsCore.h>
 
 namespace RodskaEngine {
-	class OpenGLVertexBuffer : public VertexBuffer {
+	class RODSKA_EAPI OpenGLVertexBuffer : public VertexBuffer {
 	public:
 		OpenGLVertexBuffer(float* vertices, uint32_t size);
 		virtual ~OpenGLVertexBuffer() ;
@@ -17,7 +17,7 @@ namespace RodskaEngine {
 		BufferLayout m_Layout;
 	};
 
-	class OpenGLIndexBuffer : public IndexBuffer {
+	class RODSKA_EAPI OpenGLIndexBuffer : public IndexBuffer {
 	public:
 		OpenGLIndexBuffer(uint32_t* indices, uint32_t size);
 		virtual ~OpenGLIndexBuffer() ;

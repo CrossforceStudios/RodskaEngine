@@ -7,7 +7,7 @@
 #include <RodskaEngine/Graphics/Texture.h>
 
 namespace RodskaEngine {
-	class Particle  {
+	class RODSKA_EAPI Particle  {
 	public:
 		Particle() = default;
 		Particle(Ref<Mesh> mesh, Ref<Texture2D> texture, float ttl, glm::vec3 newSpeed, float updateTime);

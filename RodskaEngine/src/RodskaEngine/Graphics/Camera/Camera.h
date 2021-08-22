@@ -3,7 +3,7 @@
 #include <glm/glm.hpp>
 
 namespace RodskaEngine {
-	class Camera {
+	class RODSKA_EAPI Camera {
 	public:
 		Camera() = default;
 		virtual ~Camera() = default;

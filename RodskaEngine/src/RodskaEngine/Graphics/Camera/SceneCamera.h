@@ -6,7 +6,7 @@
 #include "CameraCore.h"
 
 namespace RodskaEngine {
-	class SceneCamera : public Camera {
+	class RODSKA_EAPI SceneCamera : public Camera {
 	public: 
 		SceneCamera() : m_view(1.0f) {
 			RecalculateProjection();

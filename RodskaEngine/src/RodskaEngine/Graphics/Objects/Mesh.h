@@ -17,7 +17,7 @@ namespace RodskaEngine {
 		Mesh = 0,
 		Particle = 1
 	};
-	class Mesh : public Object3D {
+	class RODSKA_EAPI Mesh : public Object3D {
 	public:
 		~Mesh();
 		Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices);

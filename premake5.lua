@@ -32,9 +32,9 @@ group ""
 
 project "RodskaEngine"
 	location "RodskaEngine"
-	kind "StaticLib"
+	kind "SharedLib"
 	language "C++"
-	staticruntime "on"
+	staticruntime "off"
 	cppdialect "C++17"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -117,7 +117,7 @@ project "RodskaEditor"
 	language "C++"
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	staticruntime "on"
+	staticruntime "off"
 	cppdialect "C++17"
 
 	files 

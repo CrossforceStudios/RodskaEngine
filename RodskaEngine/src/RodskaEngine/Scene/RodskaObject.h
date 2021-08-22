@@ -7,7 +7,7 @@
 
 namespace RodskaEngine {
 	class Scene;
-	class RodskaObject {
+	class RODSKA_EAPI RodskaObject {
 	public:
 		RodskaObject() = default;
 		RodskaObject(entt::entity id, Scene* scene);

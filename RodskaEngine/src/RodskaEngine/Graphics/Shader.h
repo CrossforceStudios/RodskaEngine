@@ -8,7 +8,7 @@
 
 
 namespace RodskaEngine {
-	class Shader {
+	class RODSKA_EAPI Shader {
 	public:
 		virtual ~Shader() = default;
 
@@ -21,7 +21,7 @@ namespace RodskaEngine {
 	};
 
 
-	class ShaderLibrary {
+	class RODSKA_EAPI ShaderLibrary {
 	public:
 		void Add(const Ref<Shader>& shader);
 		void Add(const std::string& name, const Ref<Shader>& shader);

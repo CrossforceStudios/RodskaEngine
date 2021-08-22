@@ -8,7 +8,7 @@ namespace RodskaEngine {
 	typedef std::vector<Ref<VertexBuffer>> VertexBufferVector;
 	typedef std::vector<Ref<IndexBuffer>> IndexBufferVector;
 
-	class VertexArray {
+	class RODSKA_EAPI VertexArray {
 	public:
 		virtual ~VertexArray() {}
 

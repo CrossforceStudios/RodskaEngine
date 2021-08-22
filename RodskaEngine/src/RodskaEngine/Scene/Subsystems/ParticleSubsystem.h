@@ -4,7 +4,7 @@
 #include "RodskaEngine/Scene/Subsystem.h"
 
 namespace RodskaEngine {
-	class ParticleSubsystem : public Subsystem {
+	class RODSKA_EAPI ParticleSubsystem : public Subsystem {
 	public:
 		ParticleSubsystem(ShaderLibrary library, Scene* scene);
 		~ParticleSubsystem();

@@ -2,7 +2,7 @@
 
 
 namespace RodskaEngine {
-	class TimeStep {
+	class RODSKA_EAPI TimeStep {
 	public:
 		TimeStep(float time = 0.0f) 
 		: m_Time(time) {

@@ -14,7 +14,7 @@ namespace RodskaEngine {
 	typedef std::function<void(RodskaObject&)> ObjectScriptAddFunc;
 
 	typedef std::pair<std::string, ObjectDisplayFunc> PropRegistryPair;
-	class PropertyRegistry {
+	class RODSKA_EAPI PropertyRegistry {
 	public:
 		PropertyRegistry() {
 			

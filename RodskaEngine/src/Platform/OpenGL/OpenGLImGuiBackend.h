@@ -106,7 +106,7 @@ namespace RodskaEngine {
 
         ImGuiGLFWData() { memset(this, 0, sizeof(*this)); }
     };
-	class OpenGLImGuiBackend : public ImGuiBackend {
+	class RODSKA_EAPI OpenGLImGuiBackend : public ImGuiBackend {
 	public:
         static ImGuiGLFWData* currentData;
         static OpenGLImGuiData currentGLData;

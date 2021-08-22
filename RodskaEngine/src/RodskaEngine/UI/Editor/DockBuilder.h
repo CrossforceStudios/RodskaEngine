@@ -17,7 +17,7 @@ namespace RodskaEngine {
 
         }
     };
-	class DockBuilder : public GUIBuilder {
+	class RODSKA_EAPI DockBuilder : public GUIBuilder {
         
     public:
         DockBuilder(DockConfig& config);

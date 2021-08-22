@@ -85,7 +85,8 @@ namespace RodskaEngine {
 		ScriptableRodskaObject*(*OnInstantiate)() ;
 		void (*OnDestroy)(RDSK_COMP(NativeScript)*);
 
-
+		RDSKComponent_NativeScript() = default;
+		RDSKComponent_NativeScript(const RDSK_COMP(NativeScript)& other) = default;
 
 		template<typename T>
 		void Bind() {

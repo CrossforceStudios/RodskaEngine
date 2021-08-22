@@ -7,7 +7,7 @@ namespace RodskaEngine {
 		uint32_t Samples = 1;
 		bool SwapChainTarget = false;
 	};
-	class Framebuffer {
+	class RODSKA_EAPI Framebuffer {
 	public:
 		virtual const FramebufferSpecification& GetSpecification() const = 0;
 		virtual const uint32_t GetColorAttachmentRenderID() const = 0;

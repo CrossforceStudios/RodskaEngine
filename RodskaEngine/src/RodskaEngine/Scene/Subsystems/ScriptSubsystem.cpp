@@ -21,6 +21,7 @@ namespace RodskaEngine {
 			if (m_Objects[i].HasComponent<RDSK_COMP(NativeScript)>()) {
 				auto& nsc = m_Objects[i].GetComponent<RDSK_COMP(NativeScript)>();
 				if (nsc.OnInstantiate) {
+					RDSK_CORE_INFO("Script found.");
 					if (!nsc.Object) {
 						nsc.Object = nsc.OnInstantiate();
 						nsc.Object->m_Object = &m_Objects[i];

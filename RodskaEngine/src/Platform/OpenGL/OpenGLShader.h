@@ -3,7 +3,7 @@
 #include "RodskaEngine/Graphics/Shader.h"
 
 namespace RodskaEngine {
-	class OpenGLShader : public Shader {
+	class RODSKA_EAPI OpenGLShader : public Shader {
 	public:
 		OpenGLShader(const std::string& path);
 		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);

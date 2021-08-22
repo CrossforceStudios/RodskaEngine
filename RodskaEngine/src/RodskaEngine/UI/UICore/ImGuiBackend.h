@@ -3,7 +3,7 @@
 #include "RodskaEngine/Graphics/RodskaRenderer.h"
 
 namespace RodskaEngine {
-	class ImGuiBackend {
+	class RODSKA_EAPI ImGuiBackend {
 	public:
 		ImGuiBackend() = default;
 		virtual ~ImGuiBackend() = default;

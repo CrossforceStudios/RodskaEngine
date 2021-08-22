@@ -4,7 +4,7 @@
 
 namespace RodskaEngine {
 
-	class SceneHierarchySystem : public Subsystem {
+	class RODSKA_EAPI SceneHierarchySystem : public Subsystem {
 	public:
 		SceneHierarchySystem();
 		~SceneHierarchySystem();

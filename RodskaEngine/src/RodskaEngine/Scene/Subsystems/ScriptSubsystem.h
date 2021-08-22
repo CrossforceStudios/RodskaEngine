@@ -6,7 +6,7 @@
 
 namespace RodskaEngine {
 
-	class ScriptSubsystem : public Subsystem {
+	class RODSKA_EAPI ScriptSubsystem : public Subsystem {
 	public:
 		ScriptSubsystem(Scene* scene);
 		~ScriptSubsystem();

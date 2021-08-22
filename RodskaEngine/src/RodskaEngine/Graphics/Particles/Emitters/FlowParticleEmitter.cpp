@@ -36,7 +36,6 @@ namespace RodskaEngine {
 		while (it != m_ParticleObjects.end()) {
 			Particle* particle = *it;
 			auto elTime = particle->UpdateLifetime(ts);
-			RDSK_CORE_INFO("Particle Time: {0}", elTime);
 			if (elTime <= 0.0f) {
 				
 				counts.push_back(counter);

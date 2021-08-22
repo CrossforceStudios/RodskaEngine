@@ -6,7 +6,7 @@ namespace RodskaEngine {
 		Global,
 		Local
 	};
-	class Theme {
+	class RODSKA_EAPI Theme {
 	public:
 		Theme() {}
 		~Theme(){}

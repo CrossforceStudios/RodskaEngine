@@ -6,7 +6,7 @@
 struct GLFWwindow;
 
 namespace RodskaEngine {
-	class OpenGLContext : public RodskaGraphicsContext {
+	class RODSKA_EAPI OpenGLContext : public RodskaGraphicsContext {
 	public:
 		OpenGLContext(GLFWwindow* wHandle);
 

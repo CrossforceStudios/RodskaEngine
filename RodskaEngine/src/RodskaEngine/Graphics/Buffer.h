@@ -90,7 +90,7 @@ namespace RodskaEngine {
 	
 	typedef BufferElementVector::const_iterator BufferIterator;
 	
-	class BufferLayout {
+	class RODSKA_EAPI BufferLayout {
 
 	public:
 		BufferLayout() {}
@@ -121,7 +121,7 @@ namespace RodskaEngine {
 		uint32_t m_Stride = 0;
 	};
 
-	class VertexBuffer {
+	class RODSKA_EAPI VertexBuffer {
 	public:
 		virtual ~VertexBuffer() {};
 		
@@ -138,7 +138,7 @@ namespace RodskaEngine {
 	};
 
 	
-	class IndexBuffer {
+	class RODSKA_EAPI IndexBuffer {
 	public:
 		virtual ~IndexBuffer() {};
 

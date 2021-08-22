@@ -10,7 +10,7 @@ namespace RodskaEngine {
 		Dynamic = 1
 	};
 	typedef uint32_t TexturePosition;
-	class Texture {
+	class RODSKA_EAPI Texture {
 	public:
 		virtual uint32_t GetWidth() const = 0;
 		virtual uint32_t GetHeight() const = 0;
@@ -23,7 +23,7 @@ namespace RodskaEngine {
 		virtual void Bind(uint32_t slot = 0) const = 0;
 	};
 
-	class Texture2D : public Texture {
+	class RODSKA_EAPI Texture2D : public Texture {
 	public:
 		static Ref<Texture2D> Create(const std::string& path, TextureType texType, int rows = 1, int cols = 1);
 	};

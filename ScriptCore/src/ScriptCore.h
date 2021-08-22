@@ -47,8 +47,7 @@ extern "C" {
     {
         std::map<std::string, RodskaEngine::ObjectScriptAddFunc> script_map;
         RodskaEngine::ObjectScriptAddFunc meshCountFunc = [](RodskaEngine::RodskaObject& object) {
-            auto& scriptComp = object.GetComponent<RDSK_BCOMP(NativeScript)>();
-            scriptComp.Bind<MeshCountScript>();
+            object.GetComponent<RDSK_BCOMP(NativeScript)>().Bind<MeshCountScript>();
         };
 
         script_map["Mesh Count"] = meshCountFunc;

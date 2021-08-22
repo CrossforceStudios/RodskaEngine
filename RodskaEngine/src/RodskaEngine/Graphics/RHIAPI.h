@@ -4,7 +4,7 @@
 #include "VertexArray.h"
 namespace RodskaEngine {
 	
-	class RHIAPI {
+	class RODSKA_EAPI RHIAPI {
 	public:
 		enum class RHI {
 			None = 0,

@@ -7,7 +7,7 @@
 
 
 namespace RodskaEngine {
-	class SceneViewport : public GUIBuilder {
+	class RODSKA_EAPI SceneViewport : public GUIBuilder {
 		public:
 
 			SceneViewport(Ref<Framebuffer> framebuffer, Ref<Scene> scene) : m_FramebufferScene(framebuffer), m_ActiveScene(m_ActiveScene) {

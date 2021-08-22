@@ -6,7 +6,7 @@
 #include "RodskaEngine/Core/EngineCore.h"
 
 namespace RodskaEngine {
-	class RodskaRenderer {
+	class RODSKA_EAPI RodskaRenderer {
 	public:
 		static void BeginScene(Camera* camera);
 		static void EndScene();

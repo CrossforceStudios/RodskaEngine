@@ -5,7 +5,7 @@
 
 namespace RodskaEngine {
 	class RodskaObject;
-	class Subsystem {
+	class RODSKA_EAPI Subsystem {
 	public:
 		Subsystem() {};
 		 ~Subsystem() {};

@@ -4,7 +4,7 @@
 namespace RodskaEngine {
 
 	template<typename TFont>
-	class FontLibrary {
+	class RODSKA_EAPI FontLibrary {
 
 	public:
 		FontLibrary() = default;

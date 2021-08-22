@@ -5,7 +5,7 @@
 #include <yaml-cpp/yaml.h>
 
 namespace RodskaEngine {
-	class SceneSerializer {
+	class RODSKA_EAPI SceneSerializer {
 	public:
 		SceneSerializer(const Ref<Scene> scene);
 

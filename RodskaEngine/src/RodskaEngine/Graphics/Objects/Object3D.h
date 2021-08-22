@@ -9,7 +9,7 @@
 namespace RodskaEngine {
 	using vec5 = glm::vec<5, float, glm::packed_highp>;
 
-	class Object3D {
+	class RODSKA_EAPI Object3D {
 	// Buffer Methods + Constructor
 	public:
 		virtual ~Object3D() = default;

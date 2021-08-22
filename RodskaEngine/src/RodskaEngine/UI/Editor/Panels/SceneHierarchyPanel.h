@@ -6,7 +6,7 @@
 
 namespace RodskaEngine {
 
-	class SceneHierarchyPanel : public GUIBuilder {
+	class RODSKA_EAPI SceneHierarchyPanel : public GUIBuilder {
 	public:
 		SceneHierarchyPanel(const Ref<Scene>& scene);
 		virtual void OnCreate() override;

@@ -13,7 +13,7 @@
 namespace RodskaEngine {
 	class RodskaObject;
 	class Subsystem;
-	class Scene {
+	class RODSKA_EAPI Scene {
 	public:
 		Scene();
 		~Scene();

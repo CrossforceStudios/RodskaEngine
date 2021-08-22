@@ -7,7 +7,7 @@ namespace RodskaEngine {
 	class RodskaObject;
 	class Scene;
 
-	class ScriptableRodskaObject {
+	class RODSKA_EAPI ScriptableRodskaObject {
 	public:
 		RodskaObject* GetObject();
 		virtual ~ScriptableRodskaObject() {};

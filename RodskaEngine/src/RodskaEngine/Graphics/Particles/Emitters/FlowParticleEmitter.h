@@ -5,7 +5,7 @@
 
 namespace RodskaEngine {
 	typedef std::vector<Particle*>::iterator ParticleIterator;
-	class FlowParticleEmitter : public BaseParticleEmitter {
+	class RODSKA_EAPI FlowParticleEmitter : public BaseParticleEmitter {
 	public:
 		FlowParticleEmitter() = default;
 		FlowParticleEmitter(Particle baseParticle, RDSK_COMP(Transform) transform, uint32_t maxParticles, float creationPeriodMillis);

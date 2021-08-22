@@ -4,7 +4,7 @@
 #include <RodskaEngine/Scene/RodskaObject.h>
 
 namespace RodskaEngine {
-	class BaseParticleEmitter {
+	class RODSKA_EAPI BaseParticleEmitter {
 	public:
 		virtual ~BaseParticleEmitter() = default;
 		virtual Particle GetBaseParticle() = 0;

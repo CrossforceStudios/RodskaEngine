@@ -21,7 +21,7 @@ class RodskaEditor : public RodskaEngine::RodskaApp {
 public:
 	RodskaEditor() {
 		RodskaEngine::RegisterAllBuiltinComponents();
-		auto modules = LoadModules("E:\\RodskaEngine\\RodskaEditor\\plugins\\");
+		auto modules = LoadModules("plugins\\");
 		RDSK_INFO("Found {0} modules.", modules.size());
 		for (auto& modh : modules) {
 			auto modu = modh.load();

@@ -4,7 +4,7 @@
 #include "RodskaEngine/UI/UILayer.h"
 
 namespace RodskaEngine {
-	class ImGuiExtras {
+	class RODSKA_EAPI ImGuiExtras {
 	public:
 		static void TransformUI(const std::string& title, RDSK_COMP(Transform)& transform);
 		static void CameraTypeUI(const std::string& label, RDSK_COMP(Camera)& camera);

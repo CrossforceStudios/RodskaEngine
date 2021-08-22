@@ -6,7 +6,7 @@
 #include "RodskaEngine/Scene/RodskaObject.h"
 
 namespace RodskaEngine {
-	class MeshSystem : public Subsystem {
+	class RODSKA_EAPI MeshSystem : public Subsystem {
 	public:
 		MeshSystem() = default;
 		MeshSystem(const ShaderLibrary& library) : m_Library(library) {

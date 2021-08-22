@@ -3,7 +3,7 @@
 #include "RodskaEngine/Graphics/RHIAPI.h"
 
 namespace RodskaEngine {
-	class RHICommand {
+	class RODSKA_EAPI  RHICommand {
 	
 	public:
 		inline static void Init() {

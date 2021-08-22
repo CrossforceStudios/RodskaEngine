@@ -4,7 +4,7 @@
 #include "RodskaEngine/Graphics/GraphicsCore.h"
 
 namespace RodskaEngine {
-	class OpenGLTexture2D : public Texture2D {
+	class RODSKA_EAPI OpenGLTexture2D : public Texture2D {
 	public:
 		OpenGLTexture2D(const std::string& path, TextureType texType, int rows = 1, int cols = 1);
 		virtual ~OpenGLTexture2D() ;

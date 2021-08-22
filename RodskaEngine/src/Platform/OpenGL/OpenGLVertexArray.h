@@ -4,7 +4,7 @@
 
 namespace RodskaEngine {
 
-	class OpenGLVertexArray : public VertexArray {
+	class RODSKA_EAPI OpenGLVertexArray : public VertexArray {
 	public:
 			OpenGLVertexArray();
 			~OpenGLVertexArray();

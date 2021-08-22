@@ -6,7 +6,7 @@
 #include "imgui.h"
 
 namespace RodskaEngine {
-	class EditorDock : public DockBuilder {
+	class RODSKA_EAPI EditorDock : public DockBuilder {
 	public:
 		void CreateUI(const std::string& title, bool* openPtr = nullptr, ImGuiWindowFlags flags = 0);
 		EditorDock(DockConfig& config) : DockBuilder(config) {  }

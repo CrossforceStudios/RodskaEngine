@@ -26,7 +26,7 @@ namespace RodskaEngine {
 
 	
 
-	class Material {
+	class RODSKA_EAPI Material {
 	public:
 
 		inline void Set(const std::string& name, const glm::vec4& color) {
