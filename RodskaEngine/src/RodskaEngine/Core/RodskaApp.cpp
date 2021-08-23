@@ -18,7 +18,7 @@ namespace RodskaEngine {
 	{
 		RDSK_CORE_ASSERT(!CurrentApp, "Application already exists!");
 		CurrentApp = this;
-
+		SceneRegistry = new SceneAdapter();
 		m_Viewport = std::unique_ptr<Viewport>(Viewport::Create());
 		m_Viewport->SetEventCallback(RDSK_BIND_EVENT_CB(RodskaApp, OnEvent));
 		RodskaRenderer::Init();

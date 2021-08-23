@@ -7,37 +7,37 @@ namespace RodskaEngine {
 	class RodskaObject;
 	class Scene;
 
-	class RODSKA_EAPI ScriptableRodskaObject {
+	class  ScriptableRodskaObject {
 	public:
-		RodskaObject* GetObject();
-		virtual ~ScriptableRodskaObject() {};
+		RODSKA_EAPI RodskaObject* GetObject();
+		RODSKA_EAPI virtual ~ScriptableRodskaObject() {};
 		template<typename T>
-		bool HasComponent() {
+		RODSKA_EAPI bool HasComponent() {
 			return GetObject()->HasComponent<T>();
 		}
 
 		template<typename T, typename... Args>
-		T& AddComponent(Args&... args) {
+		RODSKA_EAPI T& AddComponent(Args&... args) {
 			RDSK_CORE_ASSERT(!HasComponent<T>(), "Entity already has component!");
 			return GetObject()->AddComponent<T>(std::forward<Args>(args)...);
 		}
 
 		template<typename T>
-		T& GetComponent() {
+		RODSKA_EAPI T& GetComponent() {
 			RDSK_CORE_ASSERT(HasComponent<T>(), "Entity does not have component!");
 			return GetObject()->GetComponent<T>();
 
 		}
 
 		template<typename T>
-		void RemoveComponent() {
+		RODSKA_EAPI void RemoveComponent() {
 			RDSK_CORE_ASSERT(HasComponent<T>(), "Entity does not have component!");
 			GetObject()->RemoveComponent<T>();
 		}
 	public:
-		virtual void OnCreate(){}
-		virtual void OnUpdate(Scene* scene, TimeStep ts) {}
-		virtual void OnDestroy(){}
+		RODSKA_EAPI virtual void OnCreate(){}
+		RODSKA_EAPI virtual void OnUpdate(Scene* scene, TimeStep ts) {}
+		RODSKA_EAPI virtual void OnDestroy(){}
 	private:
 		RodskaObject* m_Object;
 		friend class Scene;

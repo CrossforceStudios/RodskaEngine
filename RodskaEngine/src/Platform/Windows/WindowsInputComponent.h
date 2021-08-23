@@ -2,7 +2,7 @@
 #include "RodskaEngine/Input/InputComponent.h"
 
 namespace RodskaEngine {
-	class RODSKA_EAPI WindowsInputComponent :  public InputComponent {
+	class  WindowsInputComponent :  public InputComponent {
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) override;
 		virtual bool IsMouseButtonPressedImpl(int button) override;

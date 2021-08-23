@@ -3,21 +3,21 @@
 
 
 namespace RodskaEngine {
-	typedef std::vector<Layer*> LayerVector;
-	typedef LayerVector::iterator LayerIterator;
-	class RODSKA_EAPI LayerStack
+	typedef RODSKA_EAPI std::vector<Layer*> LayerVector;
+	typedef RODSKA_EAPI LayerVector::iterator LayerIterator;
+	class  LayerStack
 	{
 	public:
-		LayerStack();
-		~LayerStack();
+		RODSKA_EAPI LayerStack();
+		RODSKA_EAPI ~LayerStack();
 
-		void PushLayer(Layer* layer);
-		void PushOverlay(Layer* overlay);
-		void PopLayer(Layer* layer);
-		void PopOverlay(Layer* overlay);
+		RODSKA_EAPI void PushLayer(Layer* layer);
+		RODSKA_EAPI void PushOverlay(Layer* overlay);
+		RODSKA_EAPI void PopLayer(Layer* layer);
+		RODSKA_EAPI void PopOverlay(Layer* overlay);
 
-		LayerIterator begin() { return m_Layers.begin(); }
-		LayerIterator end() { return m_Layers.end(); }
+		RODSKA_EAPI LayerIterator begin() { return m_Layers.begin(); }
+		RODSKA_EAPI LayerIterator end() { return m_Layers.end(); }
 	private:
 		LayerVector m_Layers;
 		LayerIterator m_LayerInsert;

@@ -6,28 +6,26 @@
 #include "CameraCore.h"
 
 namespace RodskaEngine {
-	class RODSKA_EAPI SceneCamera : public Camera {
+	class  SceneCamera : public Camera {
 	public: 
-		SceneCamera() : m_view(1.0f) {
-			RecalculateProjection();
-		};
-		~SceneCamera() {};
-		virtual void SetPosition(const glm::vec3& position) override { m_Transform = glm::translate(glm::mat4(1.0f), position); RecalculateProjection(); };
+		RODSKA_EAPI SceneCamera();
+		RODSKA_EAPI ~SceneCamera() {};
+		RODSKA_EAPI virtual void SetPosition(const glm::vec3& position) override { m_Transform = glm::translate(glm::mat4(1.0f), position); RecalculateProjection(); };
 
-		virtual void SetTransform(const glm::mat4& transform) { m_Transform = transform; RecalculateProjection(); };
-		float GetOrthoSize() { return OrthographicSize; }
-		float GetOrthoNear() { return OrthographicNear; }
-		float GetOrthoFar() { return OrthographicFar; }
-		float GetFOV() { return m_FOV; }
-		void SetFOV(float fov) { m_FOV = fov; RecalculateProjection(); }
-		void SetOrthographic(float size, float nearClip, float farClip);
-		CameraType GetCameraType() { return m_CameraType; }
-		void SetCameraType(const CameraType& cameraType) { m_CameraType = cameraType; RecalculateProjection(); }
-		virtual void SetViewportSize(uint32_t width, uint32_t height) override;
+		RODSKA_EAPI virtual void SetTransform(const glm::mat4& transform) { m_Transform = transform; RecalculateProjection(); };
+		RODSKA_EAPI float GetOrthoSize() { return OrthographicSize; }
+		RODSKA_EAPI float GetOrthoNear() { return OrthographicNear; }
+		RODSKA_EAPI float GetOrthoFar() { return OrthographicFar; }
+		RODSKA_EAPI float GetFOV() { return m_FOV; }
+		RODSKA_EAPI void SetFOV(float fov) { m_FOV = fov; RecalculateProjection(); }
+		RODSKA_EAPI void SetOrthographic(float size, float nearClip, float farClip);
+		RODSKA_EAPI CameraType GetCameraType() { return m_CameraType; }
+		RODSKA_EAPI void SetCameraType(const CameraType& cameraType) { m_CameraType = cameraType; RecalculateProjection(); }
+		RODSKA_EAPI virtual void SetViewportSize(uint32_t width, uint32_t height) override;
 		
-		virtual const glm::mat4& GetProjectionMatrix() override  { return m_projection; };
-		virtual const glm::mat4& GetViewMatrix() override  { return m_view; };
-		virtual const glm::mat4& GetViewProjectionMatrix() override { return m_viewProjection; };
+		RODSKA_EAPI virtual const glm::mat4 GetProjectionMatrix() override  { return m_projection; };
+		RODSKA_EAPI virtual const glm::mat4 GetViewMatrix() override  { return m_view; };
+		RODSKA_EAPI virtual const glm::mat4 GetViewProjectionMatrix() override { return m_viewProjection; };
 	private:
 		void RecalculateProjection();
 	private:

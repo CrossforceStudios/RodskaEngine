@@ -6,13 +6,13 @@
 struct GLFWwindow;
 
 namespace RodskaEngine {
-	class RODSKA_EAPI OpenGLContext : public RodskaGraphicsContext {
+	class  OpenGLContext : public RodskaGraphicsContext {
 	public:
-		OpenGLContext(GLFWwindow* wHandle);
+		RODSKA_EAPI OpenGLContext(GLFWwindow* wHandle);
 
-		virtual void Init() override;
-		virtual void SwapBuffers() override;
-		virtual void GetVersioning() override;
+		RODSKA_EAPI virtual void Init() override;
+		RODSKA_EAPI virtual void SwapBuffers() override;
+		RODSKA_EAPI virtual void GetVersioning() override;
 	private:
 		GLFWwindow* windowHandle;
 	};

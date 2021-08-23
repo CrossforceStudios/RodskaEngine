@@ -137,4 +137,16 @@ namespace RodskaEngine {
 			}
 		}
 	}
+	void RegisterComp(std::string name, const std::string& t, ObjectDisplayFunc f, ObjectCompAddFunc fa, ObjectDisplayCondFunc fc) {
+		PropRegister.AddPropertyFunction(name, t, f, fa, fc);
+	}
+	void RegisterSer(ObjectSerializeFunc f){
+		RodskaEngine::PropRegister.AddSerializationFunction(f);
+	}
+	void RegisterDeSer(ObjectDeserializeFunc f) {
+		RodskaEngine::PropRegister.AddDeserializationFunction(f);
+	}
+	void RegisterScript(const std::string& t, ObjectScriptAddFunc f) {
+		RodskaEngine::PropRegister.AddScriptAddFunction(t, f);
+	}
 }

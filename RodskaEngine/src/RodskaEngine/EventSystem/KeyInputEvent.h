@@ -3,10 +3,10 @@
 #include "RodskaEvent.h"
 
 namespace RodskaEngine {
-	class RODSKA_EAPI KeyInputEvent : public RodskaEvent 
+	class  KeyInputEvent : public RodskaEvent 
 	{
 	public:
-		inline int GetKeyCode() const { return m_KeyCode; }
+		RODSKA_EAPI inline int GetKeyCode() const { return m_KeyCode; }
 
 		RDSK_EVENT_CLASS_CATEGORY(EventCategoryKeyboard | EventCategoryInput)
 	protected:
@@ -18,15 +18,15 @@ namespace RodskaEngine {
 
 	};
 
-	class RODSKA_EAPI KeyPressedEvent : public KeyInputEvent 
+	class KeyPressedEvent : public KeyInputEvent 
 	{
 	public:
-		KeyPressedEvent(int keycode, int repeatCount)
+		RODSKA_EAPI KeyPressedEvent(int keycode, int repeatCount)
 			: KeyInputEvent(keycode), m_RepeatCount(repeatCount) {}
 
-		inline int GetRepeatCount() const { return m_RepeatCount; }
+		RODSKA_EAPI inline int GetRepeatCount() const { return m_RepeatCount; }
 
-		std::string ToString() const override 
+		RODSKA_EAPI std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode << " (" << m_RepeatCount << " repeats)";
@@ -38,13 +38,13 @@ namespace RodskaEngine {
 		int m_RepeatCount;
 	};
 
-	class RODSKA_EAPI KeyReleasedEvent : public KeyInputEvent
+	class  KeyReleasedEvent : public KeyInputEvent
 	{
 	public:
-		KeyReleasedEvent(int keycode)
+		RODSKA_EAPI KeyReleasedEvent(int keycode)
 			: KeyInputEvent(keycode) {}
 
-		std::string ToString() const override
+		RODSKA_EAPI std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyPressedEvent: " << m_KeyCode;
@@ -54,13 +54,13 @@ namespace RodskaEngine {
 		RDSK_EVENT_CLASS_TYPE(KeyReleased)
 	};
 
-	class RODSKA_EAPI KeyTypedEvent : public KeyInputEvent
+	class  KeyTypedEvent : public KeyInputEvent
 	{
 	public:
-		KeyTypedEvent(int keycode)
+		RODSKA_EAPI KeyTypedEvent(int keycode)
 			: KeyInputEvent(keycode) {}
 
-		std::string ToString() const override
+		RODSKA_EAPI std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "KeyTypedEvent: " << m_KeyCode;

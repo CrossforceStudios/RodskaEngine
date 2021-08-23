@@ -5,13 +5,13 @@
 
 namespace RodskaEngine {
 	class RodskaObject;
-	class RODSKA_EAPI Subsystem {
+	class  Subsystem {
 	public:
-		Subsystem() {};
-		 ~Subsystem() {};
-		 virtual void AddObject(RodskaObject& object) {};
-		 virtual void OnUpdate(TimeStep ts) {};
-		std::string GetSystemClass() const { return m_SystemClass; }
+		RODSKA_EAPI Subsystem() {};
+		RODSKA_EAPI ~Subsystem() {};
+		RODSKA_EAPI virtual void AddObject(RodskaObject& object) {};
+		RODSKA_EAPI virtual void OnUpdate(TimeStep ts) {};
+		RODSKA_EAPI std::string GetSystemClass() const { return m_SystemClass; }
 	private:
 		std::string m_SystemClass;
 	};

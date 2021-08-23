@@ -4,12 +4,12 @@
 
 namespace RodskaEngine {
 
-	class RODSKA_EAPI SceneHierarchySystem : public Subsystem {
+	class  SceneHierarchySystem : public Subsystem {
 	public:
-		SceneHierarchySystem();
-		~SceneHierarchySystem();
-		virtual void AddObject(RodskaObject& object) override;
-		const std::vector<RodskaObject> GetAllObjects();
+		RODSKA_EAPI SceneHierarchySystem();
+		RODSKA_EAPI ~SceneHierarchySystem();
+		RODSKA_EAPI virtual void AddObject(RodskaObject& object) override;
+		RODSKA_EAPI const std::vector<RodskaObject> GetAllObjects();
 	private:
 		std::vector<RodskaObject> m_Objects;
 	};

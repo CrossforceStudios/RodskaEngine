@@ -6,17 +6,17 @@
 #include "RodskaEngine/Scene/RodskaObject.h"
 
 namespace RodskaEngine {
-	class RODSKA_EAPI MeshSystem : public Subsystem {
+	class  MeshSystem : public Subsystem {
 	public:
-		MeshSystem() = default;
-		MeshSystem(const ShaderLibrary& library) : m_Library(library) {
+		RODSKA_EAPI MeshSystem() = default;
+		RODSKA_EAPI MeshSystem(const ShaderLibrary& library) : m_Library(library) {
 			m_VertexArray = VertexArray::Create();
 		}
-		virtual void OnUpdate(TimeStep ts) override;
+		RODSKA_EAPI virtual void OnUpdate(TimeStep ts) override;
 
-		virtual void AddObject(RodskaObject& object) override;
+		RODSKA_EAPI virtual void AddObject(RodskaObject& object) override;
 	public:
-		int GetMeshCount() { return m_Meshes.size(); }
+		RODSKA_EAPI int GetMeshCount() { return m_Meshes.size(); }
 	private:
 		void ProcessShader(const std::string& shaderName, Ref<Mesh> mesh, const glm::vec4& color, const glm::mat4& transform);
 	private:

@@ -6,15 +6,15 @@ namespace RodskaEngine {
 		Global,
 		Local
 	};
-	class RODSKA_EAPI Theme {
+	class  Theme {
 	public:
-		Theme() {}
-		~Theme(){}
-		void Apply();
-		void Unapply();
-		void AddStyleColor(ImGuiCol colorKey, ImVec4 color);
-		void AddStyleVector(ImGuiStyleVar key, ImVec2 style);
-		void AddStyleFloat(ImGuiStyleVar key, float style);
+		RODSKA_EAPI Theme() {}
+		RODSKA_EAPI ~Theme(){}
+		RODSKA_EAPI void  Apply();
+		RODSKA_EAPI void  Unapply();
+		RODSKA_EAPI void  AddStyleColor(ImGuiCol colorKey, ImVec4 color);
+		RODSKA_EAPI void  AddStyleVector(ImGuiStyleVar key, ImVec2 style);
+		RODSKA_EAPI void  AddStyleFloat(ImGuiStyleVar key, float style);
 		
 	private:
 		void ApplyColor(ImGuiCol colorKey);

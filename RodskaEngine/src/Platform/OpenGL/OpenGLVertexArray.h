@@ -4,18 +4,18 @@
 
 namespace RodskaEngine {
 
-	class RODSKA_EAPI OpenGLVertexArray : public VertexArray {
+	class  OpenGLVertexArray : public VertexArray {
 	public:
-			OpenGLVertexArray();
-			~OpenGLVertexArray();
-			virtual void Bind() const override;
-			virtual void Unbind() const override;
+		RODSKA_EAPI OpenGLVertexArray();
+		RODSKA_EAPI ~OpenGLVertexArray();
+		RODSKA_EAPI virtual void Bind() const override;
+		RODSKA_EAPI virtual void Unbind() const override;
 
-			virtual void AddVertexBuffer(const Ref<VertexBuffer>& vBuffer) override;
-			virtual void  SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) override;
+		RODSKA_EAPI virtual void AddVertexBuffer(const Ref<VertexBuffer>& vBuffer) override;
+		RODSKA_EAPI virtual void  SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) override;
 
-			virtual const VertexBufferVector& GetVertexBuffers() const override;
-			virtual const Ref<IndexBuffer>& GetIndexBuffer() const override;
+		RODSKA_EAPI virtual const VertexBufferVector& GetVertexBuffers() const override;
+		RODSKA_EAPI virtual const Ref<IndexBuffer>& GetIndexBuffer() const override;
 	private:
 		VertexBufferVector m_VertexBuffers;
 		Ref<IndexBuffer> m_IndexBuffer;

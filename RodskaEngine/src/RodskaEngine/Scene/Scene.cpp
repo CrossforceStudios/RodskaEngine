@@ -25,7 +25,8 @@ namespace RodskaEngine {
 		m_Subsystems.at(sysName)->AddObject(object);
 	}
 	RodskaObject Scene::CreateObject(const std::string& name) {
-		RodskaObject o = { m_Registry.create(), this };
+		auto id = m_Registry.create();
+		RodskaObject o = { id, this };
 		o.AddComponent<RDSK_COMP(Transform)>();
 		auto& tag = o.AddComponent<RDSK_COMP(Tag)>(name);
 		tag.Tag = (name.empty()) ? "RodskaObject" : name;

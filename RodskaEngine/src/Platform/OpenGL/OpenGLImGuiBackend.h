@@ -106,7 +106,7 @@ namespace RodskaEngine {
 
         ImGuiGLFWData() { memset(this, 0, sizeof(*this)); }
     };
-	class RODSKA_EAPI OpenGLImGuiBackend : public ImGuiBackend {
+	class OpenGLImGuiBackend : public ImGuiBackend {
 	public:
         static ImGuiGLFWData* currentData;
         static OpenGLImGuiData currentGLData;
@@ -114,18 +114,18 @@ namespace RodskaEngine {
         void* Viewport;
         OpenGLClientAPI clientAPI;
     public:
-        OpenGLImGuiBackend();
-        ~OpenGLImGuiBackend() {}
-		virtual const bool Init() override;
-        virtual void UpdateMonitors() override;
-        virtual char* GetBackendTag() { return "imgui_impl_rdsk_opengl"; }
-        virtual void NewFrame() override;
-        virtual void Shutdown() override;
-        virtual bool CreateDeviceObjects() override;
-        virtual void DestroyDeviceObjects() override;
-        virtual void RenderDrawData(ImDrawData* data) override;
+        RODSKA_EAPI OpenGLImGuiBackend();
+        RODSKA_EAPI ~OpenGLImGuiBackend() {}
+        RODSKA_EAPI virtual const bool Init() override;
+        RODSKA_EAPI virtual void UpdateMonitors() override;
+        RODSKA_EAPI virtual char* GetBackendTag() { return "imgui_impl_rdsk_opengl"; }
+        RODSKA_EAPI virtual void NewFrame() override;
+        RODSKA_EAPI virtual void Shutdown() override;
+        RODSKA_EAPI virtual bool CreateDeviceObjects() override;
+        RODSKA_EAPI virtual void DestroyDeviceObjects() override;
+        RODSKA_EAPI virtual void RenderDrawData(ImDrawData* data) override;
     public:
-        void addImGuiShader(const std::string& name, const std::string& shaderPath);
+        RODSKA_EAPI void addImGuiShader(const std::string& name, const std::string& shaderPath);
     protected:
         virtual void InitPlatformInterface() override;
         virtual void InitRendererInterface() override;

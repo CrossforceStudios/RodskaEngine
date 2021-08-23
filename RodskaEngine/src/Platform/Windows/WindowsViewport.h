@@ -5,21 +5,21 @@
 #include "RodskaEngine/Graphics/RodskaGraphicsContext.h"
 
 namespace RodskaEngine {
-	class RODSKA_EAPI WindowsViewport : public Viewport
+	class  WindowsViewport : public Viewport
 	{
 	public:
-		WindowsViewport(const ViewportProps& props);
-		virtual ~WindowsViewport();
+		RODSKA_EAPI WindowsViewport(const ViewportProps& props);
+		RODSKA_EAPI virtual ~WindowsViewport();
 
-		void OnUpdate() override;
+		RODSKA_EAPI void OnUpdate() override;
 
-		inline unsigned int GetWidth() const override { return m_Data.Width; };
-		inline unsigned int GetHeight() const override { return m_Data.Height; };
+		RODSKA_EAPI inline unsigned int GetWidth() const override { return m_Data.Width; };
+		RODSKA_EAPI inline unsigned int GetHeight() const override { return m_Data.Height; };
 
-		inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
-		void SetVSync(bool enabled) override;
-		bool IsVSync()  const override;
-		inline virtual void* GetNativeWindow() const override {
+		RODSKA_EAPI inline void SetEventCallback(const EventCallbackFn& callback) override { m_Data.EventCallback = callback; }
+		RODSKA_EAPI void SetVSync(bool enabled) override;
+		RODSKA_EAPI bool IsVSync()  const override;
+		RODSKA_EAPI inline virtual void* GetNativeWindow() const override {
 			return m_Window;
 		}
 	private:

@@ -7,19 +7,19 @@
 #include <RodskaEngine/UI/UILayer.h>
 #include "ModuleHandler.h"
 namespace RodskaEngine {
-	class RODSKA_EAPI RodskaApp
+	class  RodskaApp
 	{
 	public:
-		RodskaApp();
-		virtual ~RodskaApp();
-		void Run();
-		void OnEvent(RodskaEvent& e);
-		void PushOverlay(Layer* overlay);
-		void PushLayer(Layer* layer);
-		void Close();
-		std::vector<ModuleHandler> LoadModules(std::string plugPath);
-		inline static RodskaApp& Get() { return *CurrentApp; }
-		inline Viewport& GetViewport() { return *m_Viewport; }
+		RODSKA_EAPI RodskaApp();
+		RODSKA_EAPI virtual ~RodskaApp();
+		RODSKA_EAPI void Run();
+		RODSKA_EAPI void OnEvent(RodskaEvent& e);
+		RODSKA_EAPI void PushOverlay(Layer* overlay);
+		RODSKA_EAPI void PushLayer(Layer* layer);
+		RODSKA_EAPI void Close();
+		RODSKA_EAPI std::vector<ModuleHandler> LoadModules(std::string plugPath);
+		RODSKA_EAPI inline static RodskaApp& Get() { return *CurrentApp; }
+		RODSKA_EAPI inline Viewport& GetViewport() { return *m_Viewport; }
 	private:
 		bool OnWindowClose(WindowClosedEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
@@ -35,5 +35,5 @@ namespace RodskaEngine {
 
 
 	// Client use only.
-	RodskaApp* CreateApplication();
+	RODSKA_EAPI RodskaApp* CreateApplication();
 };

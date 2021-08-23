@@ -32,7 +32,7 @@ group ""
 
 project "RodskaEngine"
 	location "RodskaEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
 	staticruntime "off"
 	cppdialect "C++17"
@@ -94,6 +94,7 @@ project "RodskaEngine"
 			"RDSK_PLATFORM_WINDOWS",
 			"RDSK_BUILD_DLL",
 			"GLFW_INCLUDE_NONE",
+			"RDSK_DYNAMIC_LINK"
 		}
 
 	filter "configurations:Debug"

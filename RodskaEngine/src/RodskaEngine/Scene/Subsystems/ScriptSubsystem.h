@@ -6,12 +6,12 @@
 
 namespace RodskaEngine {
 
-	class RODSKA_EAPI ScriptSubsystem : public Subsystem {
+	class  ScriptSubsystem : public Subsystem {
 	public:
-		ScriptSubsystem(Scene* scene);
-		~ScriptSubsystem();
-		virtual void AddObject(RodskaObject& object) override;
-		virtual void OnUpdate(TimeStep ts) override;
+		RODSKA_EAPI ScriptSubsystem(Scene* scene);
+		RODSKA_EAPI ~ScriptSubsystem();
+		RODSKA_EAPI virtual void AddObject(RodskaObject& object) override;
+		RODSKA_EAPI virtual void OnUpdate(TimeStep ts) override;
 
 	private:
 		std::vector<RodskaObject> m_Objects;

@@ -12,9 +12,9 @@ namespace RodskaEngine {
 		const float GetRotation() { return m_Rotation; }
 	    void SetProjection(float left, float right, float bottom, float top);
 
-		 const glm::mat4& GetProjectionMatrix() { return m_projection; };
-		 const glm::mat4& GetViewMatrix()  { return m_view;  };
-		 const glm::mat4& GetViewProjectionMatrix() { return m_viewProjection; };
+		 virtual const glm::mat4 GetProjectionMatrix() override { return m_projection; };
+		 virtual const glm::mat4 GetViewMatrix() override { return m_view;  };
+		 virtual const glm::mat4 GetViewProjectionMatrix() override { return m_viewProjection; };
 
 	private:
 		void RecalculateViewMatrix();

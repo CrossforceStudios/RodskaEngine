@@ -7,17 +7,17 @@
 
 
 namespace RodskaEngine {
-	class RODSKA_EAPI SceneViewport : public GUIBuilder {
+	class  SceneViewport : public GUIBuilder {
 		public:
 
-			SceneViewport(Ref<Framebuffer> framebuffer, Ref<Scene> scene) : m_FramebufferScene(framebuffer), m_ActiveScene(m_ActiveScene) {
+			RODSKA_EAPI SceneViewport(Ref<Framebuffer> framebuffer, Ref<Scene> scene) : m_FramebufferScene(framebuffer), m_ActiveScene(m_ActiveScene) {
 				m_Spec = m_FramebufferScene->GetSpecification();
 				m_ViewportSize = { (float)m_Spec.Width, (float)m_Spec.Height };
 			}
-			uint32_t GetWidth() { return  (uint32_t)m_ViewportSize.x; }
-			uint32_t GetHeight() { return  (uint32_t)m_ViewportSize.y; }
-			void SetScene(const Ref<Scene> scene) { m_ActiveScene = scene; };
-			virtual void OnCreate() override;
+			RODSKA_EAPI uint32_t GetWidth() { return  (uint32_t)m_ViewportSize.x; }
+			RODSKA_EAPI uint32_t GetHeight() { return  (uint32_t)m_ViewportSize.y; }
+			RODSKA_EAPI void SetScene(const Ref<Scene> scene) { m_ActiveScene = scene; };
+			RODSKA_EAPI virtual void OnCreate() override;
 	private:
 		Ref<Framebuffer> m_FramebufferScene;
 		FramebufferSpecification m_Spec;

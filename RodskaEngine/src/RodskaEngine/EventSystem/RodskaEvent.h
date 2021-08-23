@@ -24,41 +24,41 @@ namespace RodskaEngine {
 		EventCategoryUser = RDSK_BIT(5)
 	};
 
-#define RDSK_EVENT_CLASS_TYPE(type) static EventType GetStaticType() { return  EventType::type; }\
-							virtual EventType GetEventType() const override { return  GetStaticType(); }\
-							virtual const char* GetName() const override { return  #type; }
+#define RDSK_EVENT_CLASS_TYPE(type) RODSKA_EAPI static EventType GetStaticType() { return  EventType::type; }\
+							RODSKA_EAPI  EventType GetEventType() const override { return  GetStaticType(); }\
+							RODSKA_EAPI virtual const char* GetName() const override { return  #type; }
 
 
-#define RDSK_EVENT_CLASS_CATEGORY(category) virtual int  GetCategoryFlags() const override { return category; }
+#define RDSK_EVENT_CLASS_CATEGORY(category) RODSKA_EAPI virtual int  GetCategoryFlags() const override { return category; }
 
-	class RODSKA_EAPI RodskaEvent {
+	class  RodskaEvent {
 		friend class RodskaEventDispatcher;
 		public:
 			bool Handled = false;
-			virtual EventType GetEventType() const = 0;
-			virtual const char* GetName() const = 0;
-			virtual int GetCategoryFlags() const = 0;
-			virtual std::string ToString() const { return GetName(); }
-			inline bool IsInCategory(EventCategory category) 
+			RODSKA_EAPI virtual EventType GetEventType() const = 0;
+			RODSKA_EAPI virtual const char* GetName() const = 0;
+			RODSKA_EAPI virtual int GetCategoryFlags() const = 0;
+			RODSKA_EAPI virtual std::string ToString() const { return GetName(); }
+			RODSKA_EAPI inline bool IsInCategory(EventCategory category)
 			{
 				return GetCategoryFlags() & category;
 			}
 		protected:
 	};
 
-	class RODSKA_EAPI RodskaEventDispatcher
+	class  RodskaEventDispatcher
 	{
 		template<typename T>
 		using EventFn = std::function<bool(T&)>;
 	public:
-		RodskaEventDispatcher(RodskaEvent& event)
+		RODSKA_EAPI RodskaEventDispatcher(RodskaEvent& event)
 			: m_Event(event)
 		{
 
 		}
 
 		template <typename T>
-		bool Dispatch(EventFn<T> func)
+		RODSKA_EAPI bool Dispatch(EventFn<T> func)
 		{
 			if (m_Event.GetEventType() == T::GetStaticType())
 			{

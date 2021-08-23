@@ -3,23 +3,23 @@
 #include "RodskaEngine/Graphics/Shader.h"
 
 namespace RodskaEngine {
-	class RODSKA_EAPI OpenGLShader : public Shader {
+	class  OpenGLShader : public Shader {
 	public:
-		OpenGLShader(const std::string& path);
-		OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
-	    ~OpenGLShader();
+		RODSKA_EAPI OpenGLShader(const std::string& path);
+		RODSKA_EAPI OpenGLShader(const std::string& name, const std::string& vertexSrc, const std::string& fragmentSrc);
+		RODSKA_EAPI ~OpenGLShader();
 
-		virtual void Bind() const override;
-		virtual void Unbind() const override;
-		virtual const std::string& GetName() const override { return m_Name; };
+		RODSKA_EAPI virtual void Bind() const override;
+		RODSKA_EAPI virtual void Unbind() const override;
+		RODSKA_EAPI virtual const std::string& GetName() const override { return m_Name; };
 
-		virtual void UploadUniformMat(const std::string& name, const glm::mat4& matrix);
-		virtual void UploadUniformFloat(const std::string& name, const glm::vec4& values);
-		virtual void UploadUniformFloat(const std::string& name, const glm::vec3& values);
-		virtual void UploadUniformFloat(const std::string& name, const glm::vec2& values);
-		virtual void UploadUniformFloat(const std::string& name, float value);
-		virtual void UploadUniformInt(const std::string& name, int values);
-		virtual void UploadUniformMat(const std::string& name, const glm::mat3& values);
+		RODSKA_EAPI virtual void UploadUniformMat(const std::string& name, const glm::mat4& matrix);
+		RODSKA_EAPI virtual void UploadUniformFloat(const std::string& name, const glm::vec4& values);
+		RODSKA_EAPI virtual void UploadUniformFloat(const std::string& name, const glm::vec3& values);
+		RODSKA_EAPI virtual void UploadUniformFloat(const std::string& name, const glm::vec2& values);
+		RODSKA_EAPI virtual void UploadUniformFloat(const std::string& name, float value);
+		RODSKA_EAPI virtual void UploadUniformInt(const std::string& name, int values);
+		RODSKA_EAPI virtual void UploadUniformMat(const std::string& name, const glm::mat3& values);
 
 	private:
 		bool CompileFromSource(const std::unordered_map<GLenum, std::string>& shaderSources);

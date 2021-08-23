@@ -13,40 +13,40 @@
 namespace RodskaEngine {
 	class RodskaObject;
 	class Subsystem;
-	class RODSKA_EAPI Scene {
+	class Scene {
 	public:
-		Scene();
-		~Scene();
-		void SetVPMatrix(const glm::mat4& matrix);
-		const glm::mat4& GetVPMatrix() const;
-		void OnUpdate(TimeStep ts);
-		RodskaObject CreateObject(const std::string& name = "");
-		void AddSubsystem(std::string name, Subsystem* system) {
+		RODSKA_EAPI Scene();
+		RODSKA_EAPI ~Scene();
+		RODSKA_EAPI void  SetVPMatrix(const glm::mat4& matrix);
+		RODSKA_EAPI const glm::mat4&  GetVPMatrix() const;
+		RODSKA_EAPI void  OnUpdate(TimeStep ts);
+		RODSKA_EAPI RodskaObject  CreateObject(const std::string& name = "");
+		RODSKA_EAPI void  AddSubsystem(std::string name, Subsystem* system) {
 			m_Subsystems.insert(std::pair<std::string,RodskaEngine::Subsystem*>(name, system));
 		}
-		void OnViewportResize(uint32_t width, uint32_t height);
+		RODSKA_EAPI void  OnViewportResize(uint32_t width, uint32_t height);
 		template<typename T>
-		std::vector<T> GetComponentsOfType() {
+		RODSKA_EAPI std::vector<T> GetComponentsOfType() {
 			return SceneRegistry->GetComponentsOfType<T>(this);
 		}
 
-		const std::vector<RodskaObject> GetAllObjects();
+		RODSKA_EAPI const std::vector<RodskaObject> GetAllObjects();
 		
-		void AddObjectToSubsystem(std::string sysName, RodskaObject& object);
+		RODSKA_EAPI void AddObjectToSubsystem(std::string sysName, RodskaObject& object);
 
-		Subsystem* GetSubsystem(const std::string& name) {
+		RODSKA_EAPI Subsystem* GetSubsystem(const std::string& name) {
 			return m_Subsystems.at(name);
 		}
-		void SetupCamera(SceneCamera* camera);
+		RODSKA_EAPI void SetupCamera(SceneCamera* camera);
 		template<typename T>
-		bool HasComponent(RodskaObject* object) {
+		RODSKA_EAPI bool HasComponent(RodskaObject* object) {
 			return m_Registry.any_of<T>(object->GetId());
 		}
 
 	    
 		
 	public:
-		SceneCamera* mainCamera;
+		 SceneCamera* mainCamera;
 	private:
 		entt::registry m_Registry;
 		glm::mat4 ViewProjectionMatrix;

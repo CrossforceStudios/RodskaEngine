@@ -5,15 +5,15 @@
 #include <yaml-cpp/yaml.h>
 
 namespace RodskaEngine {
-	class RODSKA_EAPI SceneSerializer {
+	class  SceneSerializer {
 	public:
-		SceneSerializer(const Ref<Scene> scene);
+		RODSKA_EAPI SceneSerializer(const Ref<Scene> scene);
 
 
-		void SerializeEditor(const std::string& file);
-		void SerializeRuntime(const std::string& file);
-		bool DeserializeEditor(const std::string& file);
-		bool DeserializeRuntime(const std::string& file);
+		RODSKA_EAPI void SerializeEditor(const std::string& file);
+		RODSKA_EAPI void SerializeRuntime(const std::string& file);
+		RODSKA_EAPI bool DeserializeEditor(const std::string& file);
+		RODSKA_EAPI bool DeserializeRuntime(const std::string& file);
 
 	private:
 		Ref<Scene> m_SceneContext;

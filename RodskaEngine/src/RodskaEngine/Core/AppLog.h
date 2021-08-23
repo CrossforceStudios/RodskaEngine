@@ -12,8 +12,8 @@ namespace RodskaEngine{
     class RODSKA_EAPI AppLog {
     public:
         static void InitLogs();
-        inline static std::shared_ptr<spdlog::logger> GetCoreLogger() { return s_CoreLog; }
-        inline static std::shared_ptr<spdlog::logger> GetClientLogger() { return s_ClientLog; }
+        static std::shared_ptr<spdlog::logger> GetCoreLogger();
+        static std::shared_ptr<spdlog::logger> GetClientLogger();
         
     };
      

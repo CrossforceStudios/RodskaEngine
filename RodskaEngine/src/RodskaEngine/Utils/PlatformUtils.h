@@ -3,10 +3,10 @@
 #include <string>
 
 namespace RodskaEngine {
-	class RODSKA_EAPI FileDialogs {
+	class  FileDialogs {
 	public:
-		static std::string Open(const char* filter);
-		static std::string Save(const char* filter);
+		RODSKA_EAPI static std::string Open(const char* filter);
+		RODSKA_EAPI static std::string Save(const char* filter);
 
 	};
 };

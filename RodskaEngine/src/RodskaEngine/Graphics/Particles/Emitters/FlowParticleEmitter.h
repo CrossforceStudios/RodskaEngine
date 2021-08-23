@@ -4,34 +4,34 @@
 #include <RodskaEngine/Graphics/Texture.h>
 
 namespace RodskaEngine {
-	typedef std::vector<Particle*>::iterator ParticleIterator;
-	class RODSKA_EAPI FlowParticleEmitter : public BaseParticleEmitter {
+	typedef RODSKA_EAPI std::vector<Particle*>::iterator ParticleIterator;
+	class  FlowParticleEmitter : public BaseParticleEmitter {
 	public:
-		FlowParticleEmitter() = default;
-		FlowParticleEmitter(Particle baseParticle, RDSK_COMP(Transform) transform, uint32_t maxParticles, float creationPeriodMillis);
-		~FlowParticleEmitter();
+		RODSKA_EAPI FlowParticleEmitter() = default;
+		RODSKA_EAPI FlowParticleEmitter(Particle baseParticle, RDSK_COMP(Transform) transform, uint32_t maxParticles, float creationPeriodMillis);
+		RODSKA_EAPI ~FlowParticleEmitter();
 	public:
-		virtual Particle GetBaseParticle() override;
-		virtual std::vector<Particle*> GetParticleObjects() override;
-		virtual void SetViewMatrix(const glm::mat4& viewMatrix) override { m_ViewMatrix = viewMatrix; };
+		RODSKA_EAPI virtual Particle GetBaseParticle() override;
+		RODSKA_EAPI virtual std::vector<Particle*> GetParticleObjects() override;
+		RODSKA_EAPI virtual void SetViewMatrix(const glm::mat4& viewMatrix) override { m_ViewMatrix = viewMatrix; };
 
 	public:
-		float GetCreationPeriod() const { return m_CreationPeriod; }
-		uint32_t GetMaxParticles() const { return m_MaxParticles; }
-		float GetPositionRNDRange() const { return m_PosRndRange; }
-		float GetSpeedRNDRange() const { return m_SpeedRndRange; }
-		float GetScaleRNDRange() const { return m_ScaleRndRange; }
-		bool IsActive() const { return m_Active; }
-		virtual const glm::mat4& GetTransform() const override;
+		RODSKA_EAPI float GetCreationPeriod() const { return m_CreationPeriod; }
+		RODSKA_EAPI uint32_t GetMaxParticles() const { return m_MaxParticles; }
+		RODSKA_EAPI float GetPositionRNDRange() const { return m_PosRndRange; }
+		RODSKA_EAPI float GetSpeedRNDRange() const { return m_SpeedRndRange; }
+		RODSKA_EAPI float GetScaleRNDRange() const { return m_ScaleRndRange; }
+		RODSKA_EAPI bool IsActive() const { return m_Active; }
+		RODSKA_EAPI virtual const glm::mat4& GetTransform() const override;
 	public:
-		void SetCreationPeriod(float creationPeriod) { m_CreationPeriod = creationPeriod; }
-		void SetMaxParticles(uint32_t maxParticles) { m_MaxParticles = maxParticles; }
-		void SetPositionRNDRange(float posRndRange) { m_PosRndRange = posRndRange; }
-		void SetSpeedRNDRange(float speedRndRange) { m_SpeedRndRange = speedRndRange; }
-		void SetScaleRNDRange(float scaleRndRange) { m_ScaleRndRange = scaleRndRange; }
-		void SetActive(bool active) { m_Active = active; }
+		RODSKA_EAPI void SetCreationPeriod(float creationPeriod) { m_CreationPeriod = creationPeriod; }
+		RODSKA_EAPI void SetMaxParticles(uint32_t maxParticles) { m_MaxParticles = maxParticles; }
+		RODSKA_EAPI void SetPositionRNDRange(float posRndRange) { m_PosRndRange = posRndRange; }
+		RODSKA_EAPI void SetSpeedRNDRange(float speedRndRange) { m_SpeedRndRange = speedRndRange; }
+		RODSKA_EAPI void SetScaleRNDRange(float scaleRndRange) { m_ScaleRndRange = scaleRndRange; }
+		RODSKA_EAPI void SetActive(bool active) { m_Active = active; }
 	public:
-		virtual void OnUpdateParticle(TimeStep ts);
+		RODSKA_EAPI virtual void OnUpdateParticle(TimeStep ts);
 	private:
 		void CreateParticle();
 		void UpdatePosition(Particle* particle, float elapsedTime);

@@ -4,13 +4,13 @@
 
 
 namespace RodskaEngine {
-	class RODSKA_EAPI WindowResizeEvent : public RodskaEvent {
+	class  WindowResizeEvent : public RodskaEvent {
 	public:
-		WindowResizeEvent(unsigned int width, unsigned int height) : m_Width(width), m_Height(height) {}
-		inline unsigned int GetWidth() const { return m_Width; }
-		inline unsigned int GetHeight() const { return m_Height; }
+		RODSKA_EAPI WindowResizeEvent(unsigned int width, unsigned int height) : m_Width(width), m_Height(height) {}
+		RODSKA_EAPI inline unsigned int GetWidth() const { return m_Width; }
+		RODSKA_EAPI inline unsigned int GetHeight() const { return m_Height; }
 
-		std::string ToString() const override
+		RODSKA_EAPI std::string ToString() const override
 		{
 			std::stringstream ss;
 			ss << "WindowResizeEvent: " << m_Width << ", " << m_Height;
@@ -22,34 +22,34 @@ namespace RodskaEngine {
 		unsigned int m_Width, m_Height;
 	};
 
-	class RODSKA_EAPI WindowClosedEvent : public RodskaEvent {
+	class WindowClosedEvent : public RodskaEvent {
 	public:
-		WindowClosedEvent() {}
+		RODSKA_EAPI WindowClosedEvent() {}
 
 		RDSK_EVENT_CLASS_TYPE(WindowClose)
 		RDSK_EVENT_CLASS_CATEGORY(EventCategoryRodska)
 	};
 
 
-	class RODSKA_EAPI RodskaTickEvent : public RodskaEvent {
+	class  RodskaTickEvent : public RodskaEvent {
 	public:
-		RodskaTickEvent() {}
+		RODSKA_EAPI RodskaTickEvent() {}
 
 		RDSK_EVENT_CLASS_TYPE(RodskaTick)
 		RDSK_EVENT_CLASS_CATEGORY(EventCategoryRodska)
 	};
 
-	class RODSKA_EAPI RodskaUpdateEvent : public RodskaEvent {
+	class  RodskaUpdateEvent : public RodskaEvent {
 	public:
-		RodskaUpdateEvent() {}
+		RODSKA_EAPI RodskaUpdateEvent() {}
 
 		RDSK_EVENT_CLASS_TYPE(RodskaUpdate)
 		RDSK_EVENT_CLASS_CATEGORY(EventCategoryRodska)
 	};
 
-	class RODSKA_EAPI RodskaRenderEvent : public RodskaEvent {
+	class RodskaRenderEvent : public RodskaEvent {
 	public:
-		RodskaRenderEvent() {}
+		RODSKA_EAPI RodskaRenderEvent() {}
 
 		RDSK_EVENT_CLASS_TYPE(RodskaRender)
 		RDSK_EVENT_CLASS_CATEGORY(EventCategoryRodska)

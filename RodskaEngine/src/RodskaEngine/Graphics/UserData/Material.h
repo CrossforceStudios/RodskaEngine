@@ -22,27 +22,27 @@ namespace RodskaEngine {
 
 		}
 	};
-	typedef std::vector<MaterialProperty> AcceptedMaterialProperties;
+	typedef RODSKA_EAPI std::vector<MaterialProperty> AcceptedMaterialProperties;
 
 	
 
-	class RODSKA_EAPI Material {
+	class  Material {
 	public:
 
-		inline void Set(const std::string& name, const glm::vec4& color) {
+		RODSKA_EAPI inline void Set(const std::string& name, const glm::vec4& color) {
 			m_Colors[name] = color;
 		}
-		inline void Set(const std::string& name, float value) {
+		RODSKA_EAPI inline void Set(const std::string& name, float value) {
 			m_Floats[name] = value;
 		}
-		inline glm::vec4& GetColor(const std::string& name) {
+		RODSKA_EAPI inline glm::vec4& GetColor(const std::string& name) {
 			return m_Colors[name];
 		}
-		inline float GetFloat(const std::string& name) {
+		RODSKA_EAPI inline float GetFloat(const std::string& name) {
 			return m_Floats[name];
 		}
 
-		inline static AcceptedMaterialProperties GetProperties() {
+		RODSKA_EAPI inline static AcceptedMaterialProperties GetProperties() {
 			return {
 				{"Diffuse Color", MaterialPropertyType::Color, "material.diffuse"},
 				{"Specular Color", MaterialPropertyType::Color, "material.specular"},

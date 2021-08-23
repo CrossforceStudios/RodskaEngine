@@ -6,26 +6,26 @@
 namespace RodskaEngine {
 	class RodskaObject;
 	class Scene;
-	typedef std::function<void(RodskaObject)> ObjectDisplayFunc;
-	typedef std::function<void(RodskaObject&)> ObjectCompAddFunc;
-	typedef std::function<bool(RodskaObject)> ObjectDisplayCondFunc;
-	typedef std::function<void(YAML::Emitter&, RodskaObject)> ObjectSerializeFunc;
-	typedef std::function<void(RodskaObject&, Ref<Scene>& , YAML::detail::iterator_value)> ObjectDeserializeFunc;
-	typedef std::function<void(RodskaObject&)> ObjectScriptAddFunc;
+	typedef RODSKA_EAPI std::function<void(RodskaObject)> ObjectDisplayFunc;
+	typedef RODSKA_EAPI std::function<void(RodskaObject&)> ObjectCompAddFunc;
+	typedef RODSKA_EAPI std::function<bool(RodskaObject)> ObjectDisplayCondFunc;
+	typedef RODSKA_EAPI std::function<void(YAML::Emitter&, RodskaObject)> ObjectSerializeFunc;
+	typedef RODSKA_EAPI std::function<void(RodskaObject&, Ref<Scene>& , YAML::detail::iterator_value)> ObjectDeserializeFunc;
+	typedef RODSKA_EAPI std::function<void(RodskaObject&)> ObjectScriptAddFunc;
 
-	typedef std::pair<std::string, ObjectDisplayFunc> PropRegistryPair;
-	class RODSKA_EAPI PropertyRegistry {
+	typedef RODSKA_EAPI std::pair<std::string, ObjectDisplayFunc> PropRegistryPair;
+	class  PropertyRegistry {
 	public:
-		PropertyRegistry() {
+		RODSKA_EAPI PropertyRegistry() {
 			
 		};
-		void AddPropertyFunction(const std::string& name, const std::string& title,  ObjectDisplayFunc func, ObjectCompAddFunc addFunc, ObjectDisplayCondFunc check);
-		void AddSerializationFunction(ObjectSerializeFunc func);
-		void AddDeserializationFunction(ObjectDeserializeFunc func);
-		void AddScriptAddFunction(std::string title, ObjectScriptAddFunc func);
-		void RenderPropertyFunctions(RodskaObject object, Ref<Scene> scene, bool displayTag = false);
-		RodskaObject& DeserializeComponents(Ref<Scene>& scene, YAML::detail::iterator_value data);
-		void SerializeComponents(YAML::Emitter& out, RodskaObject object);
+		RODSKA_EAPI void AddPropertyFunction(const std::string& name, const std::string& title,  ObjectDisplayFunc func, ObjectCompAddFunc addFunc, ObjectDisplayCondFunc check);
+		RODSKA_EAPI void AddSerializationFunction(ObjectSerializeFunc func);
+		RODSKA_EAPI void AddDeserializationFunction(ObjectDeserializeFunc func);
+		RODSKA_EAPI void AddScriptAddFunction(std::string title, ObjectScriptAddFunc func);
+		RODSKA_EAPI void RenderPropertyFunctions(RodskaObject object, Ref<Scene> scene, bool displayTag = false);
+		RODSKA_EAPI RodskaObject& DeserializeComponents(Ref<Scene>& scene, YAML::detail::iterator_value data);
+		RODSKA_EAPI void SerializeComponents(YAML::Emitter& out, RodskaObject object);
 		
 	private:
 		std::vector<ObjectDisplayFunc> m_PropFuncs;
@@ -39,19 +39,13 @@ namespace RodskaEngine {
 		std::vector<ObjectScriptAddFunc> m_Scripts;
 
 	};
-	extern PropertyRegistry PropRegister;
-
+	RODSKA_EAPI extern PropertyRegistry PropRegister;
 #ifndef RDSK_REGISTER_COMP
-	#define RDSK_REGISTER_COMP(name,t,f,fa,fc) RodskaEngine::PropRegister.AddPropertyFunction(name,t,f,fa,fc);
+#define RDSK_REGISTER_COMP
+	RODSKA_EAPI void RegisterComp(std::string name, const std::string& t, ObjectDisplayFunc f, ObjectCompAddFunc fa, ObjectDisplayCondFunc fc);
+	RODSKA_EAPI void RegisterSer(ObjectSerializeFunc f);
+	RODSKA_EAPI void RegisterDeSer(ObjectDeserializeFunc f);
+	RODSKA_EAPI void RegisterScript(const std::string& t, ObjectScriptAddFunc f);
 #endif // !RDSK_REGISTER_COMP
-#ifndef RDSK_RC_SERIALIZER
-#define RDSK_RC_SERIALIZER(f) RodskaEngine::PropRegister.AddSerializationFunction(f);
-#endif // !RDSK_RC_SERIALIZER
-#ifndef RDSK_RC_DESERIALIZER
-#define RDSK_RC_DESERIALIZER(f) RodskaEngine::PropRegister.AddDeserializationFunction(f);
-#endif // !RDSK_RC_DESERIALIZER
-#ifndef RDSK_REGISTER_SCRIPT
-#define RDSK_REGISTER_SCRIPT(t,f) RodskaEngine::PropRegister.AddScriptAddFunction(t,f);
-#endif // !RDSK_REGISTER_SCRIPT
 
 }

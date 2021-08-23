@@ -17,12 +17,12 @@ namespace RodskaEngine {
 
         }
     };
-	class RODSKA_EAPI DockBuilder : public GUIBuilder {
+	class  DockBuilder : public GUIBuilder {
         
     public:
-        DockBuilder(DockConfig& config);
-        virtual void Create(const std::string& title, bool* openPtr = nullptr, ImGuiWindowFlags flags = 0);
-        virtual void OnCreateMenu() {}
+        RODSKA_EAPI DockBuilder(DockConfig& config);
+        RODSKA_EAPI virtual void Create(const std::string& title, bool* openPtr = nullptr, ImGuiWindowFlags flags = 0);
+        RODSKA_EAPI virtual void OnCreateMenu() {}
 
     private:
         void SetupFullscreen();

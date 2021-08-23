@@ -2,28 +2,14 @@
 #include "RodskaEngine/Core/EngineCore.h"
 #include <utility>
 namespace RodskaEngine {
-	typedef std::pair<float, float> MousePosition;
-	class RODSKA_EAPI InputComponent {
+	typedef RODSKA_EAPI std::pair<float, float> MousePosition;
+	class  InputComponent {
 	public:
-		inline static bool IsKeyPressed(int keycode) {
-			return s_Instance->IsKeyPressedImpl
-			(keycode); 
-		};
-		inline static bool IsMouseButtonPressed(int button) {
-			return s_Instance->IsMouseButtonPressedImpl
-			(button);
-		};
-		inline static float GetMouseX() {
-			return s_Instance->GetMouseXImpl
-			();
-		};
-		inline static float GetMouseY() {
-			return s_Instance->GetMouseYImpl
-			();
-		};
-		inline static MousePosition GetMousePos() {
-			return s_Instance->GetMousePosImpl();
-		}
+		RODSKA_EAPI static bool IsKeyPressed(int keycode);
+		RODSKA_EAPI inline static bool IsMouseButtonPressed(int button);
+		RODSKA_EAPI inline static float GetMouseX();
+		RODSKA_EAPI inline static float GetMouseY();
+		RODSKA_EAPI inline static MousePosition GetMousePos();
 	protected:
 		virtual bool IsKeyPressedImpl(int keycode) = 0;
 		virtual bool IsMouseButtonPressedImpl(int button) = 0;

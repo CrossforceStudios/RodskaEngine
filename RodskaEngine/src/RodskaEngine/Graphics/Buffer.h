@@ -90,20 +90,20 @@ namespace RodskaEngine {
 	
 	typedef BufferElementVector::const_iterator BufferIterator;
 	
-	class RODSKA_EAPI BufferLayout {
+	class  BufferLayout {
 
 	public:
-		BufferLayout() {}
-		BufferLayout(const InitialBufferElemList& elements) 
+		RODSKA_EAPI BufferLayout() {}
+		RODSKA_EAPI BufferLayout(const InitialBufferElemList& elements)
 		: m_Elements(elements) {
 			CalculateOffsetsAndStride();
 		}
-		inline uint32_t GetStride() const { return m_Stride; }
-		inline const BufferElementVector& GetElements() const { return m_Elements; }
-		BufferElementVector::iterator begin() { return m_Elements.begin(); }
-		BufferElementVector::iterator end() { return m_Elements.end(); }
-		const BufferElementVector::const_iterator begin() const { return m_Elements.begin(); }
-		const BufferElementVector::const_iterator end() const { return m_Elements.end(); }
+		RODSKA_EAPI inline uint32_t GetStride() const { return m_Stride; }
+		RODSKA_EAPI inline const BufferElementVector& GetElements() const { return m_Elements; }
+		RODSKA_EAPI BufferElementVector::iterator begin() { return m_Elements.begin(); }
+		RODSKA_EAPI BufferElementVector::iterator end() { return m_Elements.end(); }
+		RODSKA_EAPI const BufferElementVector::const_iterator begin() const { return m_Elements.begin(); }
+		RODSKA_EAPI const BufferElementVector::const_iterator end() const { return m_Elements.end(); }
 
 	private:
 		void CalculateOffsetsAndStride() {
@@ -121,34 +121,34 @@ namespace RodskaEngine {
 		uint32_t m_Stride = 0;
 	};
 
-	class RODSKA_EAPI VertexBuffer {
+	class  VertexBuffer {
 	public:
-		virtual ~VertexBuffer() {};
+		RODSKA_EAPI virtual ~VertexBuffer() {};
 		
 
 
-		virtual void Bind() const = 0;
-		virtual void Unbind() const = 0;
-		virtual void SetLayout(const BufferLayout& layout) = 0;
-		virtual const BufferLayout& GetLayout() const = 0;
+		RODSKA_EAPI virtual void Bind() const = 0;
+		RODSKA_EAPI virtual void Unbind() const = 0;
+		RODSKA_EAPI virtual void SetLayout(const BufferLayout& layout) = 0;
+		RODSKA_EAPI virtual const BufferLayout& GetLayout() const = 0;
 		
-		static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
+		RODSKA_EAPI static Ref<VertexBuffer> Create(float* vertices, uint32_t size);
 	protected:
 		RendererID m_RendererID;
 	};
 
 	
-	class RODSKA_EAPI IndexBuffer {
+	class  IndexBuffer {
 	public:
-		virtual ~IndexBuffer() {};
+		RODSKA_EAPI virtual ~IndexBuffer() {};
 
 
-		virtual void Bind() const = 0;
-		virtual void Unbind() const  = 0;
+		RODSKA_EAPI virtual void Bind() const = 0;
+		RODSKA_EAPI virtual void Unbind() const  = 0;
 
-		virtual uint32_t GetCount() const = 0;;
+		RODSKA_EAPI virtual uint32_t GetCount() const = 0;;
 
-		static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t size);
+		RODSKA_EAPI static Ref<IndexBuffer> Create(uint32_t* indices, uint32_t size);
 	protected:
 		RendererID m_RendererID;
 

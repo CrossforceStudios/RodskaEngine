@@ -4,13 +4,13 @@
 #include "imgui.h"
 
 namespace RodskaEngine {
-	class RODSKA_EAPI ImGuiFontLibrary : public FontLibrary<ImFont*> {
+	class  ImGuiFontLibrary : public FontLibrary<ImFont*> {
 	public:
-		ImGuiFontLibrary(const std::string& tag);
-		virtual void SetFont(const std::string& name, const std::string& path, float fontSize) override;
-		virtual ImFont* GetFont(const std::string& name) override;
-		virtual const std::string& GetTag() const override;
-		virtual void SetTag(const std::string& tag) override;
+		RODSKA_EAPI ImGuiFontLibrary(const std::string& tag);
+		RODSKA_EAPI virtual void SetFont(const std::string& name, const std::string& path, float fontSize) override;
+		RODSKA_EAPI virtual ImFont* GetFont(const std::string& name) override;
+		RODSKA_EAPI virtual const std::string& GetTag() const override;
+		RODSKA_EAPI virtual void SetTag(const std::string& tag) override;
 
 
 	private:

@@ -8,29 +8,29 @@
 
 
 namespace RodskaEngine {
-	class RODSKA_EAPI Shader {
+	class  Shader {
 	public:
-		virtual ~Shader() = default;
+		RODSKA_EAPI	virtual ~Shader() = default;
 
-		virtual void Bind() const = 0;
-		virtual void Unbind() const = 0;
-		virtual const std::string& GetName() const = 0;
+		RODSKA_EAPI	virtual void Bind() const = 0;
+		RODSKA_EAPI	virtual void Unbind() const = 0;
+		RODSKA_EAPI	virtual const std::string& GetName() const = 0;
 
-		static Ref<Shader> Create( const std::string& path);
-		static Ref<Shader> Create(const std::string& name,  const std::string& vertexSrc, const std::string& fragmentSrc);
+		RODSKA_EAPI	static Ref<Shader> Create( const std::string& path);
+		RODSKA_EAPI	static Ref<Shader> Create(const std::string& name,  const std::string& vertexSrc, const std::string& fragmentSrc);
 	};
 
 
-	class RODSKA_EAPI ShaderLibrary {
+	class  ShaderLibrary {
 	public:
-		void Add(const Ref<Shader>& shader);
-		void Add(const std::string& name, const Ref<Shader>& shader);
+		RODSKA_EAPI void Add(const Ref<Shader>& shader);
+		RODSKA_EAPI void Add(const std::string& name, const Ref<Shader>& shader);
 
-		Ref<Shader> Load(const std::string& path);
-		Ref<Shader> Load(const std::string& name, const std::string& path);
+		RODSKA_EAPI Ref<Shader> Load(const std::string& path);
+		RODSKA_EAPI Ref<Shader> Load(const std::string& name, const std::string& path);
 
-		Ref<Shader> Get(const std::string& name);
-		bool HasShader(const std::string& name) const;
+		RODSKA_EAPI Ref<Shader> Get(const std::string& name);
+		RODSKA_EAPI bool HasShader(const std::string& name) const;
 
 	private:
 		std::unordered_map<std::string, Ref<Shader>> m_Shaders;

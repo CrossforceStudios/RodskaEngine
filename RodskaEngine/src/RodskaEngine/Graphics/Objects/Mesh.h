@@ -17,37 +17,37 @@ namespace RodskaEngine {
 		Mesh = 0,
 		Particle = 1
 	};
-	class RODSKA_EAPI Mesh : public Object3D {
+	class Mesh : public Object3D {
 	public:
-		~Mesh();
-		Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices);
-		Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices, std::vector<glm::vec3> normals);
-		Mesh(std::vector<glm::vec3> vertices, std::vector<glm::vec2> texCoords, std::vector<unsigned int> indices);
+		RODSKA_EAPI ~Mesh();
+		RODSKA_EAPI Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices);
+		RODSKA_EAPI Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices, std::vector<glm::vec3> normals);
+		RODSKA_EAPI Mesh(std::vector<glm::vec3> vertices, std::vector<glm::vec2> texCoords, std::vector<unsigned int> indices);
 
 	public:
-		virtual void AddVertex(const glm::vec3& vertex) override;
-		virtual void AddTexCoord(const glm::vec2& texCoord) override;
-		virtual void SetupBuffers(const BufferLayout& vertexBufferLayout) override;
-		virtual void SetupArray() override;
-		virtual void AddIndex(const unsigned int index) override;
-		virtual void SetShaderLibrary(const ShaderLibrary& shaderLibrary) override;
-		virtual const Ref<IndexBuffer> GetIndexBuffer() override {
+		RODSKA_EAPI virtual void AddVertex(const glm::vec3& vertex) override;
+		RODSKA_EAPI virtual void AddTexCoord(const glm::vec2& texCoord) override;
+		RODSKA_EAPI virtual void SetupBuffers(const BufferLayout& vertexBufferLayout) override;
+		RODSKA_EAPI virtual void SetupArray() override;
+		RODSKA_EAPI virtual void AddIndex(const unsigned int index) override;
+		RODSKA_EAPI virtual void SetShaderLibrary(const ShaderLibrary& shaderLibrary) override;
+		RODSKA_EAPI virtual const Ref<IndexBuffer> GetIndexBuffer() override {
 			return m_IndexBuffer;
 		}
 
-		virtual const Ref<VertexBuffer> GetVertexBuffer() override {
+		RODSKA_EAPI virtual const Ref<VertexBuffer> GetVertexBuffer() override {
 			return m_VertexBuffer;
 		}
-		virtual void SubmitToGPU(const glm::mat4& transform) override;
-		virtual void SubmitToGPU(const glm::mat4& transform, Ref<Shader> shader) override;
+		RODSKA_EAPI virtual void SubmitToGPU(const glm::mat4& transform) override;
+		RODSKA_EAPI virtual void SubmitToGPU(const glm::mat4& transform, Ref<Shader> shader) override;
 
 	public:
-		Ref<Shader> GetShader(const std::string& name);
-		void SetCurrentShader(const std::string& name);
-		VertexType GetVertexType() { return m_VertexType; }
-		void SetVertexType(VertexType vType) { m_VertexType = vType; }
-		void SetMeshType(MeshType mType) { m_Type = mType; }
-		static Ref<Mesh> CreateFromObjFile(const std::string& path, VertexType useCase = VertexType::PosAndNormal);
+		RODSKA_EAPI Ref<Shader> GetShader(const std::string& name);
+		RODSKA_EAPI void SetCurrentShader(const std::string& name);
+		RODSKA_EAPI VertexType GetVertexType() { return m_VertexType; }
+		RODSKA_EAPI void SetVertexType(VertexType vType) { m_VertexType = vType; }
+		RODSKA_EAPI void SetMeshType(MeshType mType) { m_Type = mType; }
+		RODSKA_EAPI static Ref<Mesh> CreateFromObjFile(const std::string& path, VertexType useCase = VertexType::PosAndNormal);
 	private:
 		std::vector<glm::vec3> m_Vertices;
 		std::vector<unsigned int> m_Indices;

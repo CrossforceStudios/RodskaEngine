@@ -6,13 +6,13 @@
 
 namespace RodskaEngine {
 
-	class RODSKA_EAPI SceneHierarchyPanel : public GUIBuilder {
+	class  SceneHierarchyPanel : public GUIBuilder {
 	public:
-		SceneHierarchyPanel(const Ref<Scene>& scene);
-		virtual void OnCreate() override;
-		virtual void OnCreateProperties();
-		virtual void Create(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) override;
-		void SetContext(const Ref<Scene>& scene);
+		RODSKA_EAPI SceneHierarchyPanel(const Ref<Scene>& scene);
+		RODSKA_EAPI virtual void OnCreate() override;
+		RODSKA_EAPI virtual void OnCreateProperties();
+		RODSKA_EAPI virtual void Create(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) override;
+		RODSKA_EAPI void SetContext(const Ref<Scene>& scene);
 	private:
 		void DrawComponents();
 	private:

@@ -15,7 +15,7 @@ namespace RodskaEngine {
 	typedef char* (*versionFunc)();
 	typedef Ref<RodskaEngineModule> (*loadFunc)();
 	typedef std::map<std::string, RodskaEngine::ObjectScriptAddFunc>(*scriptTypesFunc)();
-	class RODSKA_EAPI ModuleHandler {
+	class  ModuleHandler {
 #if defined(__linux__)
 		void* handle;
 #elif defined(_WIN32)
@@ -27,7 +27,7 @@ namespace RodskaEngine {
 		loadFunc _load;
 		scriptTypesFunc _scriptTypes;
 	public:
-		ModuleHandler(std::string name) {
+		RODSKA_EAPI ModuleHandler(std::string name) {
 #if defined(__linux__)
 			handle = dlopen(name.c_str(), RTLD_LAZY);
 			_load = (Ref<RodskaEngineModule>(*)())dlsym(handle, "load");
@@ -50,20 +50,20 @@ namespace RodskaEngine {
 
 		}
 
-		std::string get_name() {
+		RODSKA_EAPI std::string  get_name() {
 			return std::string(_get_name());
 		}
 
-		std::string get_version() {
+		RODSKA_EAPI std::string  get_version() {
 			return std::string(_get_version());
 		}
 
-		std::map<std::string, RodskaEngine::ObjectScriptAddFunc> get_script_types() {
+		RODSKA_EAPI std::map<std::string, RodskaEngine::ObjectScriptAddFunc>  get_script_types() {
 			return _scriptTypes();
 		}
 		
 
-		Ref<RodskaEngineModule> load() {
+		RODSKA_EAPI Ref<RodskaEngineModule>  load() {
 			if (!instance)
 				instance = _load();
 			return instance;

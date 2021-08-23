@@ -5,6 +5,9 @@
 #include <glm/ext/matrix_transform.hpp>
 
 namespace RodskaEngine {
+	SceneCamera::SceneCamera() : m_view(1.0f) {
+		RecalculateProjection();
+	};
 	void SceneCamera::SetOrthographic(float size, float nearClip, float farClip)
 	{
 		OrthographicSize = size;

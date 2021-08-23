@@ -32,7 +32,7 @@
 
 #define RDSK_BCOMP(cname) RodskaEngine::RDSKComponent_##cname
 
-#define RDSK_DEFCOMP(cname) struct RDSKComponent_##cname {
+#define RDSK_DEFCOMP(cname) struct RDSKComponent_##cname 
 
 
 

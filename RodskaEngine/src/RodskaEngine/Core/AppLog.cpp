@@ -11,5 +11,8 @@ namespace RodskaEngine {
 		 s_ClientLog = spdlog::stdout_color_mt("RodskaClient");
 		 s_ClientLog->set_level(spdlog::level::trace);
 	 }
+	 std::shared_ptr<spdlog::logger> AppLog::GetCoreLogger() { return s_CoreLog; }
+	 std::shared_ptr<spdlog::logger> AppLog::GetClientLogger() { return s_ClientLog; }
+
 }
 

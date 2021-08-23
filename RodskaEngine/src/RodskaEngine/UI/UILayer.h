@@ -10,18 +10,18 @@
 
 namespace RodskaEngine {
 
-	class RODSKA_EAPI UILayer : public Layer {
+	class  UILayer : public Layer {
 	public:
-		UILayer();
-		~UILayer();
-		virtual void OnAttach() override;
-		virtual void OnDetach() override;
-		virtual void OnGUIRender() override;
+		RODSKA_EAPI UILayer();
+		RODSKA_EAPI ~UILayer();
+		RODSKA_EAPI virtual void OnAttach() override;
+		RODSKA_EAPI virtual void OnDetach() override;
+		RODSKA_EAPI virtual void OnGUIRender() override;
 
-		void Begin();
-		void End();
+		RODSKA_EAPI void Begin();
+		RODSKA_EAPI void End();
 	public:
-		static Ref<ImGuiFontLibrary> Fonts;
+		RODSKA_EAPI static Ref<ImGuiFontLibrary> Fonts;
 	private:
 		void SetupTheme();
 	private:

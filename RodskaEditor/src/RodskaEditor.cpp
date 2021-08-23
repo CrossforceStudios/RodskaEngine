@@ -30,8 +30,9 @@ public:
 				continue;
 			}
 			for (auto& scriptIt : modh.get_script_types()) {
-				RDSK_REGISTER_SCRIPT(scriptIt.first, scriptIt.second);
+				RegisterScript(scriptIt.first, scriptIt.second);
 			}
+
 		}
 		EditorLayer* eLayer = new EditorLayer();
 		PushLayer(eLayer);

@@ -50,9 +50,9 @@ namespace RodskaEngine {
 		};
 
 
-		RDSK_REGISTER_COMP("Tag", "Tag", tagFunc, tagAddFunc, tagCheckFunc);
-		RDSK_RC_SERIALIZER(tagSerFunc);
-		RDSK_RC_DESERIALIZER(tagDSFunc);
+		RegisterComp("Tag", "Tag", tagFunc, tagAddFunc, tagCheckFunc);
+		RegisterSer(tagSerFunc);
+		RegisterDeSer(tagDSFunc);
 
 		RodskaEngine::ObjectDisplayFunc transformFunc = [](RodskaEngine::RodskaObject object) {
 			if (object.HasComponent<RDSK_COMP(Transform)>()) {
@@ -92,9 +92,9 @@ namespace RodskaEngine {
 			}
 		};
 
-		RDSK_REGISTER_COMP("Transform", "Transform", transformFunc, transformAddFunc, transformCheckFunc);
-		RDSK_RC_SERIALIZER(transformSerFunc);
-		RDSK_RC_DESERIALIZER(transformDSFunc);
+		RegisterComp("Transform", "Transform", transformFunc, transformAddFunc, transformCheckFunc);
+		RegisterSer(transformSerFunc);
+		RegisterDeSer(transformDSFunc);
 
 
 		RodskaEngine::ObjectDisplayFunc meshFunc = [](RodskaEngine::RodskaObject object) {
@@ -142,9 +142,9 @@ namespace RodskaEngine {
 			}
 		};
 
-		RDSK_REGISTER_COMP("Mesh", "Mesh", meshFunc, meshAddFunc, meshCheckFunc);
-		RDSK_RC_SERIALIZER(meshSerFunc);
-		RDSK_RC_DESERIALIZER(meshDSFunc);
+		RegisterComp("Mesh", "Mesh", meshFunc, meshAddFunc, meshCheckFunc);
+		RegisterSer(meshSerFunc);
+		RegisterDeSer(meshDSFunc);
 
 		RodskaEngine::ObjectDisplayFunc lightFunc = [](RodskaEngine::RodskaObject& object) {
 			if (object.HasComponent<RDSK_COMP(Light)>()) {
@@ -183,12 +183,11 @@ namespace RodskaEngine {
 			}
 		};
 
-		RDSK_REGISTER_COMP("Light", "Light", lightFunc, lightAddFunc, lightCheckFunc);
-		RDSK_RC_SERIALIZER(lightSerFunc);
-		RDSK_RC_DESERIALIZER(lightDSFunc);
+		RegisterComp("Light", "Light", lightFunc, lightAddFunc, lightCheckFunc);
+		RegisterSer(lightSerFunc);
+		RegisterDeSer(lightDSFunc);
 
-		{
-			RodskaEngine::ObjectDisplayFunc cameraFunc = [](RodskaEngine::RodskaObject& object) {
+		RodskaEngine::ObjectDisplayFunc cameraFunc = [](RodskaEngine::RodskaObject& object) {
 				if (object.HasComponent<RDSK_COMP(Camera)>()) {
 					auto& cam = object.GetComponent<RDSK_COMP(Camera)>();
 					{
@@ -257,9 +256,9 @@ namespace RodskaEngine {
 				}
 			};
 
-			RDSK_REGISTER_COMP("Camera", "Camera", cameraFunc, cameraAddFunc, cameraCheckFunc);
-			RDSK_RC_SERIALIZER(cameraSerFunc);
-			RDSK_RC_DESERIALIZER(cameraDSFunc);
-		}
+			RegisterComp("Camera", "Camera", cameraFunc, cameraAddFunc, cameraCheckFunc);
+			RegisterSer(cameraSerFunc);
+			RegisterDeSer(cameraDSFunc);
 	}
 }
+
