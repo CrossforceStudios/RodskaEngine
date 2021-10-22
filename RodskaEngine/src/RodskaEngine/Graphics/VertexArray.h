@@ -10,18 +10,20 @@ namespace RodskaEngine {
 
 	class  VertexArray {
 	public:
-		RODSKA_EAPI virtual ~VertexArray() {}
+		 virtual ~VertexArray() {}
 
-		RODSKA_EAPI virtual void Bind() const = 0;
-		RODSKA_EAPI virtual void Unbind() const = 0;
+		 virtual void Bind() const = 0;
+		 virtual void Unbind() const = 0;
 
-		RODSKA_EAPI virtual void AddVertexBuffer(const Ref<VertexBuffer>& vBuffer) = 0;
-		RODSKA_EAPI virtual void  SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) = 0;
+		 virtual void AddVertexBuffer(const Ref<VertexBuffer>& vBuffer) = 0;
+		 virtual void  SetIndexBuffer(const Ref<IndexBuffer>& indexBuffer) = 0;
 
-		RODSKA_EAPI virtual const VertexBufferVector& GetVertexBuffers() const = 0;
-		RODSKA_EAPI virtual const Ref<IndexBuffer>& GetIndexBuffer() const = 0;
+		 virtual const VertexBufferVector& GetVertexBuffers() const = 0;
+		 virtual const Ref<IndexBuffer>& GetIndexBuffer() const = 0;
 
+		 virtual const std::vector<uint32_t>& GetStrides() const = 0;
+		 virtual const std::vector<uint32_t>& GetOffsets() const = 0;
 
-		RODSKA_EAPI static Ref<VertexArray> Create();
+		 static Ref<VertexArray> Create();
 	};
 };

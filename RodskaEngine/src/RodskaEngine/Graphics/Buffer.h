@@ -104,6 +104,7 @@ namespace RodskaEngine {
 		RODSKA_EAPI BufferElementVector::iterator end() { return m_Elements.end(); }
 		RODSKA_EAPI const BufferElementVector::const_iterator begin() const { return m_Elements.begin(); }
 		RODSKA_EAPI const BufferElementVector::const_iterator end() const { return m_Elements.end(); }
+		RODSKA_EAPI inline uint32_t GetOffset() const { return m_TotalOffset; }
 
 	private:
 		void CalculateOffsetsAndStride() {
@@ -114,11 +115,14 @@ namespace RodskaEngine {
 				offset += element.Size;
 				m_Stride += element.Size;
 			}
+			m_TotalOffset = offset;
 		}
 
 	private:
 		BufferElementVector m_Elements;
 		uint32_t m_Stride = 0;
+		uint32_t m_TotalOffset = 0;
+
 	};
 
 	class  VertexBuffer {

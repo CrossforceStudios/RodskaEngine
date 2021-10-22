@@ -29,8 +29,15 @@ namespace RodskaEngine {
 
 	void RodskaRenderer::SubmitMesh(const Ref<VertexArray> vertexArray, const Ref<Shader> shader, const glm::mat4& transform) {
 		shader->Bind();
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat("u_ViewProjection", ViewProjectionMatrix);
-		std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat("u_Transform", transform);
+		switch (GetRHI()) {
+			case RHIAPI::RHI::OpenGL:
+				std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat("u_ViewProjection", ViewProjectionMatrix);
+				std::dynamic_pointer_cast<OpenGLShader>(shader)->UploadUniformMat("u_Transform", transform);
+				break;
+			case RHIAPI::RHI::D3D11:
+
+				break;
+		}
 		vertexArray->Bind();
 		RHICommand::DrawIndexed(vertexArray);
 		vertexArray->Unbind();
