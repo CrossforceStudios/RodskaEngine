@@ -2,13 +2,39 @@
 #include "EngineCore.h"
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
-
+#include "spdlog/sinks/base_sink.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
+#include "spdlog/details/null_mutex.h"
+#include <mutex>
 
 namespace RodskaEngine{
-   
+
+    void AddMsg(std::string msg);
+    std::vector<std::string> GetMsgs();
+    void FlushMsg();
+
+    template<typename Mutex>
+    class IOPanelSink : public spdlog::sinks::base_sink<Mutex> {
+    protected:
+        void sink_it_(const spdlog::details::log_msg& msg) override {
+            spdlog::memory_buf_t formatted;
+            spdlog::sinks::base_sink<Mutex>::formatter_->format(msg, formatted);
+            std::stringstream ss;
+            ss << fmt::to_string(formatted);
+            AddMsg(ss.str());
+        }
+
+        void flush_() override {
+            FlushMsg();
+        }
+    };
+
+    using IoPanelSinkMT = IOPanelSink<std::mutex>;
+    using IoPanelSinkST = IOPanelSink<spdlog::details::null_mutex>;
+
     extern std::shared_ptr<spdlog::logger> s_CoreLog;
     extern std::shared_ptr<spdlog::logger> s_ClientLog;
+
     class RODSKA_EAPI AppLog {
     public:
         static void InitLogs();

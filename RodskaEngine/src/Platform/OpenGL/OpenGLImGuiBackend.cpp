@@ -390,14 +390,14 @@ namespace RodskaEngine {
 
     OpenGLImGuiBackend::OpenGLImGuiBackend()
     {
-        addImGuiShader("opengl_410_core_vert", "assets/shaders/OpenGL/imgui_410_vert.glsl");
-        addImGuiShader("opengl_410_core_frag", "assets/shaders/OpenGL/imgui_410_frag.glsl");
-        addImGuiShader("opengl_300_es_frag", "assets/shaders/OpenGL/imgui_300_es_frag.glsl");
-        addImGuiShader("opengl_300_es_vert", "assets/shaders/OpenGL/imgui_300_es_vert.glsl");
-        addImGuiShader("opengl_130_vert", "assets/shaders/OpenGL/imgui_130_vert.glsl");
-        addImGuiShader("opengl_130_frag", "assets/shaders/OpenGL/imgui_130_frag.glsl");
-        addImGuiShader("opengl_120_vert", "assets/shaders/OpenGL/imgui_120_vert.glsl");
-        addImGuiShader("opengl_120_frag", "assets/shaders/OpenGL/imgui_120_frag.glsl");
+        addImGuiShader("opengl_410_core_vert", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_410_vert.glsl");
+        addImGuiShader("opengl_410_core_frag", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_410_frag.glsl");
+        addImGuiShader("opengl_300_es_frag", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_300_es_frag.glsl");
+        addImGuiShader("opengl_300_es_vert", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_300_es_vert.glsl");
+        addImGuiShader("opengl_130_vert", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_130_vert.glsl");
+        addImGuiShader("opengl_130_frag", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_130_frag.glsl");
+        addImGuiShader("opengl_120_vert", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_120_vert.glsl");
+        addImGuiShader("opengl_120_frag", "D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/imgui_120_frag.glsl");
 
     }
 

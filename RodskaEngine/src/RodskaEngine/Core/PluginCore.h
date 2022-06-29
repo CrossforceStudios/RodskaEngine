@@ -2,6 +2,10 @@
 #include <string>
 #include "RodskaEngine/UI/Editor/PropertyRegistry.h"
 #include "EngineCore.h"
+#ifdef _WIN32
+#include <Windows.h>
+#endif // _WIN32
+
 
 namespace RodskaEngine {
 	class RODSKA_EAPI RodskaEngineModule {
@@ -13,7 +17,7 @@ namespace RodskaEngine {
 #if defined(__linux__)
 #define RDSK_ENGINE_MODULE(classType, pluginName, pluginVersion)     \
   extern "C" {                                                  \
-    RodskaEngine::Ref<RodskaEngine::RodskaEngineModule> load()                              \
+    RodskaEngine::Ref<RodskaEngine::RodskaEngineModule> rdsk_load()                              \
     {                                                           \
       return RodskaEngine::CreateRef<##classType>();                     \
     }                                                           \
@@ -29,5 +33,15 @@ namespace RodskaEngine {
     }                                                           \
   }
 #elif defined(_WIN32)
-  
-#endif
+    #define RDSK_ENGINE_MODULE(classType, pluginName, pluginVersion)  \
+          extern "C"  RODSKA_EAPI RodskaEngine::Ref<RodskaEngine::RodskaEngineModule> rdsk_load() { \
+                return RodskaEngine::CreateRef<##classType>();                 \
+            }                                                                 \
+           extern "C" RODSKA_EAPI const char* name(){           \
+                return ##pluginName;    \
+            }       \
+            extern "C" RODSKA_EAPI const char* version(){ \
+                return ##pluginVersion; \
+            }`  \   
+             
+ #endif

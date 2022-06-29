@@ -12,6 +12,7 @@
 #include "RodskaEngine/UI/Editor/EditorDock.h"
 #include "RodskaEngine/UI/Editor/SceneViewport.h"
 #include "RodskaEngine/UI/Editor/Panels/SceneHierarchyPanel.h"
+#include "RodskaEngine/UI/Editor/Panels/IOPanel.h"
 
 #include "RodskaEngine/UI/UILayer.h"
 

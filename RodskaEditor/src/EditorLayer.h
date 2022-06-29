@@ -12,6 +12,8 @@ public:
 	virtual void OnEvent(RodskaEngine::RodskaEvent& e) override;
 	virtual void OnUpdate(RodskaEngine::TimeStep ts) override;
 	virtual void OnGUIRender() override;
+	virtual void OnAttachGameUI() override;
+	virtual void OnRenderGameUI() override;
 	virtual void OnAttach() override;
 private:
 	RodskaEngine::ShaderLibrary m_Library;
@@ -20,6 +22,8 @@ private:
 	static inline bool showEditor = false;
 	RodskaEngine::Ref<RodskaEngine::MaterialEditor> m_MatEditor;
 	RodskaEngine::Ref<RodskaEngine::EditorDock> m_EditorUI;
+	RodskaEngine::Ref <RodskaEngine::IOPanel> m_IOPanel;
+
 	RodskaEngine::Ref<RodskaEngine::SceneHierarchyPanel> m_SHP;
 	RodskaEngine::Ref<RodskaEngine::Framebuffer> m_Framebuffer;
 	RodskaEngine::Ref<RodskaEngine::SceneViewport> m_SceneViewport;

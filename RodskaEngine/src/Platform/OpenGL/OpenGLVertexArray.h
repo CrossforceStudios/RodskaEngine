@@ -16,6 +16,9 @@ namespace RodskaEngine {
 
 		RODSKA_EAPI virtual const VertexBufferVector& GetVertexBuffers() const override;
 		RODSKA_EAPI virtual const Ref<IndexBuffer>& GetIndexBuffer() const override;
+		virtual const std::vector<uint32_t>& GetStrides() const override;
+		virtual const std::vector<uint32_t>& GetOffsets() const override;
+
 	private:
 		VertexBufferVector m_VertexBuffers;
 		Ref<IndexBuffer> m_IndexBuffer;

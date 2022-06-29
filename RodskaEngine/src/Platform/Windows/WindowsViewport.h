@@ -2,6 +2,8 @@
 #include "RodskaEngine/Core/EngineCore.h"
 #include "RodskaEngine/Core/Viewport.h"
 #include <GLFW/glfw3.h>
+#define GLFW_EXPOSE_NATIVE_WIN32
+#include <glfw/glfw3native.h>
 #include "RodskaEngine/Graphics/RodskaGraphicsContext.h"
 
 namespace RodskaEngine {

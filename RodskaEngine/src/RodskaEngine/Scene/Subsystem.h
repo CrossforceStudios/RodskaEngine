@@ -10,7 +10,9 @@ namespace RodskaEngine {
 		RODSKA_EAPI Subsystem() {};
 		RODSKA_EAPI ~Subsystem() {};
 		RODSKA_EAPI virtual void AddObject(RodskaObject& object) {};
+		RODSKA_EAPI virtual bool HasObject(RodskaObject& object) = 0;
 		RODSKA_EAPI virtual void OnUpdate(TimeStep ts) {};
+		RODSKA_EAPI virtual void SetCamera(SceneCamera* camera) {};
 		RODSKA_EAPI std::string GetSystemClass() const { return m_SystemClass; }
 	private:
 		std::string m_SystemClass;

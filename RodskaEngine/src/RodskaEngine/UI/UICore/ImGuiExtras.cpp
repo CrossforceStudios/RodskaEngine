@@ -2,7 +2,7 @@
 #include "glm/gtc/type_ptr.hpp"
 #include "RodskaEngine/Scene/BuiltinComponents.h"
 #include "ImGuiExtras.h"
-
+#include "RodskaEngine/Utils/PlatformUtils.h"
 namespace RodskaEngine {
 	void ImGuiExtras::TransformUI(const std::string& title, RDSK_COMP(Transform)& transform) {
 		ImGui::Text("%s",title.c_str());
@@ -33,6 +33,40 @@ namespace RodskaEngine {
 		
 		
 
+	}
+
+
+	void ImGuiExtras::UIFileTypeWidget(const std::string& label, RDSK_COMP(UI)& ui, bool isStylesheet, float columnWidth) {
+		ImGui::PushID(label.c_str());
+		ImGui::Columns(4);
+		ImGui::SetColumnWidth(0, columnWidth);
+		ImGui::Text(label.c_str());
+		ImGui::NextColumn();
+		float lineHeight = GImGui->Font->FontSize + GImGui->Style.FramePadding.y + 2.0f;
+		ImVec2 buttonSize = { lineHeight * 4,  lineHeight };
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.15f, 0.8f, 0.2f, 1.0f });
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4{ 0.2f, 0.9f, 0.3f, 1.0f });
+		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.15f, 0.8f, 0.2f, 1.0f });
+		if (ImGui::Button("Open...")) {
+			if (isStylesheet) {
+				ui.UIStylesheet = FileDialogs::Open("RML Stylesheet(*.rcss)\0 * .rcss\0");
+			}
+			else {
+				ui.UIFile =  FileDialogs::Open("RML Document(*.rml)\0 * .rml\0");
+			}
+		}
+		ImGui::PopStyleColor(3);
+		ImGui::NextColumn();
+		
+		ImGui::PushStyleColor(ImGuiCol_Button, ImVec4{ 0.15f, 0.2f, 0.8f, 1.0f });
+		ImGui::PushStyleColor(ImGuiCol_ButtonHovered, ImVec4{ 0.2f, 0.3f, 0.9f, 1.0f });
+		ImGui::PushStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.15f,  0.2f, 0.8f, 1.0f });
+		if (ImGui::Button("Edit")) {
+			// Edit here
+		}
+		ImGui::PopStyleColor(3);
+		ImGui::Columns(1);
+		ImGui::PopID();
 	}
 
 	void ImGuiExtras::Vec3(const std::string& label, glm::vec3& values, float resetValue, float columnWidth)

@@ -11,10 +11,10 @@
 	void CameraController::OnDestroy()
 	{
 	}
-	void CameraController::OnUpdate(RodskaEngine::TimeStep ts) {
+	void CameraController::OnUpdate(RodskaEngine::Scene* scene, RodskaEngine::TimeStep ts) {
 		float xInput = 0.0f;
 		float yInput = 0.0f;
-		float rInput = 0.0f;
+		float zInput = 0.0f;
 		auto& transform = GetComponent<RDSK_BCOMP(Transform)>();
 
 		if (RodskaEngine::InputComponent::IsKeyPressed(RDSK_KEY_A))
@@ -25,8 +25,10 @@
 			yInput = 1.0f;
 		else if (RodskaEngine::InputComponent::IsKeyPressed(RDSK_KEY_S))
 			yInput = -1.0f;
-
+		if (RodskaEngine::InputComponent::IsKeyPressed(RDSK_KEY_Q))
+			zInput = 1.0f;
+		else if (RodskaEngine::InputComponent::IsKeyPressed(RDSK_KEY_E))
+			zInput = -1.0f;
 		float time = ts;
-
-		transform.Translation += + glm::vec3(xInput* (m_CameraTranslationSpeed * time), yInput* (m_CameraTranslationSpeed * time), 0.0f);
+		transform.Translation += + glm::vec3(xInput* (m_CameraTranslationSpeed * time), yInput* (m_CameraTranslationSpeed * time), zInput * (m_CameraTranslationSpeed * time));
 	}

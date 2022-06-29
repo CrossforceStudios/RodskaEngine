@@ -34,9 +34,9 @@ namespace RodskaEngine {
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigViewportsNoAutoMerge = true;
 		//io.ConfigViewportsNoTaskBarIcon = true;
-		Fonts->SetFont("AtkinsonHDefault", "assets/fonts/AtkinsonHyperlegible-Regular.ttf", 18.0f);
+		Fonts->SetFont("AtkinsonHDefault", "D:/RodskaEngine/RodskaEditor/assets/fonts/AtkinsonHyperlegible-Regular.ttf", 18.0f);
 		io.FontDefault = Fonts->GetFont("AtkinsonHDefault");
-		Fonts->SetFont("AtkinsonHBold","assets/fonts/AtkinsonHyperlegible-Bold.ttf", 18.0f);
+		Fonts->SetFont("AtkinsonHBold","D:/RodskaEngine/RodskaEditor/assets/fonts/AtkinsonHyperlegible-Bold.ttf", 18.0f);
 		SetupTheme();
 		// Setup Dear ImGui style
 		m_DarkTheme->Apply();

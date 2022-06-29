@@ -8,8 +8,7 @@ namespace RodskaEngine {
 	public:
 		RODSKA_EAPI static void TransformUI(const std::string& title, RDSK_COMP(Transform)& transform);
 		RODSKA_EAPI static void CameraTypeUI(const std::string& label, RDSK_COMP(Camera)& camera);
-
-	private:
-		static void Vec3(const std::string& label, glm::vec3& values, float resetValue = 0.0f, float columnWidth = 100.0f);
+		RODSKA_EAPI static void UIFileTypeWidget(const std::string& label, RDSK_COMP(UI)& ui, bool isStylesheet, float columnWidth = 100.0f);
+		RODSKA_EAPI static void Vec3(const std::string& label, glm::vec3& values, float resetValue = 0.0f, float columnWidth = 100.0f);
 	};
 };

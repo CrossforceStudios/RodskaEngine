@@ -38,7 +38,7 @@ namespace RodskaEngine {
 					if (ImGui::MenuItem("Plugins")) {
 
 					}
-
+					ImGui::EndMenu();
 				}
 				ImGui::EndMainMenuBar();
 			}

@@ -65,7 +65,7 @@ namespace RodskaEngine {
 		RDSK_CORE_ASSERT(layout.GetElements().size(), "BufferLayout must not be empty.");
 
 		for (const auto& element : layout) {
-			glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)element.Offset);
+			glVertexAttribPointer(index, element.GetComponentCount(), ShaderDataTypeToOpenGLBaseType(element.Type), element.Normalized ? GL_TRUE : GL_FALSE, layout.GetStride(), (const void*)((index) * layout.GetStride()));
 			glEnableVertexAttribArray(index);
 			index++;
 		}
@@ -83,5 +83,23 @@ namespace RodskaEngine {
 
 	const Ref<IndexBuffer>& OpenGLVertexArray::GetIndexBuffer() const {
 		return m_IndexBuffer;
+	}
+	const std::vector<uint32_t>& OpenGLVertexArray::GetStrides() const
+	{
+		std::vector<uint32_t> strides;
+		for (const auto& vBuffer : m_VertexBuffers) {
+			strides.push_back(vBuffer->GetLayout().GetStride());
+		}
+		return strides;
+	}
+	const std::vector<uint32_t>& OpenGLVertexArray::GetOffsets() const
+	{
+		std::vector<uint32_t> offsets;
+		uint32_t offset = 0;
+		for (const auto& vBuffer : m_VertexBuffers) {
+			offsets.push_back(0);
+			offset += vBuffer->GetLayout().GetOffset();
+		}
+		return offsets;
 	}
 };

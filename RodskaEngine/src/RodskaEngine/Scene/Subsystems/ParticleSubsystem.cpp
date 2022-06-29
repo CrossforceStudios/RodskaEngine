@@ -38,6 +38,7 @@ namespace RodskaEngine {
 		particleComponent.Emitter = emitter;
 		m_Objects.push_back(object);
 	}
+
 	void ParticleSubsystem::OnUpdate(TimeStep ts)
 	{
 		for (auto& emitter : m_Emitters) {

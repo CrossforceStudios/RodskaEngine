@@ -14,7 +14,12 @@ namespace RodskaEngine {
 		RODSKA_EAPI virtual void OnEvent(RodskaEvent& e) {}
 		RODSKA_EAPI virtual void OnGUIRender() {}
 
+
 		RODSKA_EAPI inline const std::string& GetName() const { return m_DebugName; }
+
+	public:
+		RODSKA_EAPI virtual void OnAttachGameUI() {}
+		RODSKA_EAPI virtual void OnRenderGameUI() {}
 	protected:
 		std::string m_DebugName;
 

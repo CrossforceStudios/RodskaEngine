@@ -41,5 +41,6 @@ namespace RodskaEngine {
 	}
 	void Direct3D11Shader::Unbind() const
 	{
+
 	}
 }

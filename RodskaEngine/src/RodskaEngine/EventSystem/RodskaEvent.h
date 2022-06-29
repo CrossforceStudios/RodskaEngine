@@ -10,6 +10,7 @@ namespace RodskaEngine {
 		RodskaTick, RodskaUpdate, RodskaRender,
 		KeyPressed, KeyReleased, KeyTyped,
 		MouseButtonPressed, MouseButtonReleased, MouseMoved, MouseScrolled,
+		GuiMouseMoved,
 		Custom,
 	};
 

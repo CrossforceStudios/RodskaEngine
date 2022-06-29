@@ -50,9 +50,12 @@ namespace RodskaEngine {
 		};
 
 
+
 		RegisterComp("Tag", "Tag", tagFunc, tagAddFunc, tagCheckFunc);
 		RegisterSer(tagSerFunc);
 		RegisterDeSer(tagDSFunc);
+		RegisterActions("Tags", {});
+
 
 		RodskaEngine::ObjectDisplayFunc transformFunc = [](RodskaEngine::RodskaObject object) {
 			if (object.HasComponent<RDSK_COMP(Transform)>()) {
@@ -95,6 +98,8 @@ namespace RodskaEngine {
 		RegisterComp("Transform", "Transform", transformFunc, transformAddFunc, transformCheckFunc);
 		RegisterSer(transformSerFunc);
 		RegisterDeSer(transformDSFunc);
+		RegisterActions("Transform", {});
+
 
 
 		RodskaEngine::ObjectDisplayFunc meshFunc = [](RodskaEngine::RodskaObject object) {
@@ -145,12 +150,26 @@ namespace RodskaEngine {
 		RegisterComp("Mesh", "Mesh", meshFunc, meshAddFunc, meshCheckFunc);
 		RegisterSer(meshSerFunc);
 		RegisterDeSer(meshDSFunc);
+		RegisterActions("Mesh", {
+			{  "Add Mesh to Renderer", [](std::string name, RodskaObject& object, Ref<Scene>& scene) {
+					if (!scene->HasObjectInSubsystem("Mesh",object)) {
+						scene->AddObjectToSubsystem("Mesh",object);
+					}
+			}}
+		});
+
 
 		RodskaEngine::ObjectDisplayFunc lightFunc = [](RodskaEngine::RodskaObject& object) {
 			if (object.HasComponent<RDSK_COMP(Light)>()) {
 				auto& light = object.GetComponent<RDSK_COMP(Light)>();
 				{
-					if (ImGui::ColorEdit4("Mesh Color", glm::value_ptr(light.LightColor))) {}
+					if (ImGui::ColorEdit4("Light Color", glm::value_ptr(light.LightColor))) {}
+					if (ImGui::DragFloat("Light Intensity", &light.Ambience, 0.1f, 0.0f, 1.0f)) {}
+					if (ImGui::DragFloat("Linear Attenuation", &light.LinearAttenuation, 0.1f, 0.0f, 1.0f)) {}
+					if (ImGui::DragFloat("Constant Attenuation", &light.ConstantAttenuation, 0.1f, 0.0f, 1.0f)) {}
+					if (ImGui::DragFloat("Exponent Attentuation", &light.ExponentAttenuation, 0.1f, 0.0f, 1.0f)) {}
+					ImGuiExtras::Vec3("Light Position", (light.Position));
+
 				}
 			}
 
@@ -169,6 +188,11 @@ namespace RodskaEngine {
 			if (object.HasComponent<RDSK_COMP(Light)>()) {
 				auto light = object.GetComponent<RDSK_COMP(Light)>();
 				emit << YAML::Key << "LightColor" << YAML::Value << light.LightColor;
+				emit << YAML::Key << "Intensity" << YAML::Value << light.Ambience;
+				emit << YAML::Key << "ConstantAttenuation" << YAML::Value << light.ConstantAttenuation;
+				emit << YAML::Key << "LinearAttenuation" << YAML::Value << light.LinearAttenuation;
+				emit << YAML::Key << "ExponentAttenuation" << YAML::Value << light.ExponentAttenuation;
+				emit << YAML::Key << "Position" << YAML::Value << light.Position;
 
 			}
 		};
@@ -177,15 +201,27 @@ namespace RodskaEngine {
 			auto comp = data["RDSK_COMP_Light"];
 			if (comp.IsDefined()) {
 				glm::vec4 color = data["RDSK_COMP_Light"]["LightColor"].as<glm::vec4>();
+				float intensity = data["RDSK_COMP_Light"]["Intensity"].as<float>();
+				float lAtt = data["RDSK_COMP_Light"]["LinearAttenuation"].as<float>();
+				float cAtt = data["RDSK_COMP_Light"]["ConstantAttenuation"].as<float>();
+				float eAtt = data["RDSK_COMP_Light"]["ExponentAttenuation"].as<float>();
+				glm::vec3 lightPos = data["RDSK_COMP_Light"]["Position"].as<glm::vec3>();
 
 				auto& light = object.AddComponent<RDSK_COMP(Light)>();
 				light.LightColor = color;
+				light.Ambience = intensity;
+				light.LinearAttenuation = lAtt;
+				light.ConstantAttenuation = cAtt;
+				light.ExponentAttenuation = eAtt;
+				light.Position = lightPos;
 			}
 		};
 
 		RegisterComp("Light", "Light", lightFunc, lightAddFunc, lightCheckFunc);
 		RegisterSer(lightSerFunc);
 		RegisterDeSer(lightDSFunc);
+		RegisterActions("Light", {});
+
 
 		RodskaEngine::ObjectDisplayFunc cameraFunc = [](RodskaEngine::RodskaObject& object) {
 				if (object.HasComponent<RDSK_COMP(Camera)>()) {
@@ -259,6 +295,111 @@ namespace RodskaEngine {
 			RegisterComp("Camera", "Camera", cameraFunc, cameraAddFunc, cameraCheckFunc);
 			RegisterSer(cameraSerFunc);
 			RegisterDeSer(cameraDSFunc);
+			RegisterActions("Camera", {});
+
+
+			RodskaEngine::ObjectDisplayFunc uiFunc = [](RodskaEngine::RodskaObject& object) {
+				if (object.HasComponent<RDSK_COMP(UI)>()) {
+					auto& ui = object.GetComponent<RDSK_COMP(UI)>();
+					{
+						ImGuiExtras::UIFileTypeWidget("Existing UI", ui, false);
+						ImGuiExtras::UIFileTypeWidget("Existing Style", ui, false);
+					}
+				}
+
+			};
+
+			RodskaEngine::ObjectCompAddFunc uiAddFunc = [](RodskaEngine::RodskaObject& object) {
+				if (!object.HasComponent<RDSK_COMP(UI)>())
+					object.AddComponent<RDSK_COMP(UI)>();
+			};
+
+			RodskaEngine::ObjectDisplayCondFunc uiCheckFunc = [](RodskaEngine::RodskaObject& object) {
+				return object.HasComponent<RDSK_COMP(UI)>();
+			};
+
+			RodskaEngine::ObjectSerializeFunc uiSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+				if (object.HasComponent<RDSK_COMP(UI)>()) {
+					auto ui = object.GetComponent<RDSK_COMP(UI)>();
+					emit << YAML::Key << "File" << YAML::Value << ui.UIFile;
+					emit << YAML::Key << "Stylesheet" << YAML::Value << ui.UIStylesheet;
+				}
+			};
+
+			RodskaEngine::ObjectDeserializeFunc uiDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+				auto comp = data["RDSK_COMP_UI"];
+				if (comp.IsDefined()) {
+					std::string uiFile = data["RDSK_COMP_UI"]["File"].as<std::string>();
+					std::string uiStylesheet = data["RDSK_COMP_UI"]["Stylesheet"].as<std::string>();
+
+					auto& ui = object.AddComponent<RDSK_COMP(UI)>();
+					ui.UIFile = uiFile;
+					ui.UIStylesheet = uiStylesheet;
+				}
+			};
+
+			RegisterComp("UI", "UI", uiFunc, uiAddFunc, uiCheckFunc);
+			RegisterSer(uiSerFunc);
+			RegisterDeSer(uiDSFunc);
+			RegisterActions("UI", {});
+
+			RodskaEngine::ObjectDisplayFunc matFunc = [](RodskaEngine::RodskaObject& object) {
+				if (object.HasComponent<RDSK_COMP(Material)>()) {
+					auto& mat = object.GetComponent<RDSK_COMP(Material)>();
+					{
+						if (ImGui::ColorEdit4("Diffuse Color", glm::value_ptr(mat.Diffuse))) {}
+						if (ImGui::ColorEdit4("Specular Color", glm::value_ptr(mat.Specular))) {}
+						if (ImGui::ColorEdit4("Ambient Color", glm::value_ptr(mat.Ambient))) {}
+						if (ImGui::Checkbox("Texture?", &mat.UsesTexture)) {}
+						if (ImGui::DragFloat("Metallic", &mat.Reflectance, 0.01, 0.0f, 1.0f)) {}
+					}
+				}
+
+			};
+
+			RodskaEngine::ObjectCompAddFunc matAddFunc = [](RodskaEngine::RodskaObject& object) {
+				if (!object.HasComponent<RDSK_COMP(Material)>())
+					object.AddComponent<RDSK_COMP(Material)>();
+			};
+
+			RodskaEngine::ObjectDisplayCondFunc matCheckFunc = [](RodskaEngine::RodskaObject& object) {
+				return object.HasComponent<RDSK_COMP(Material)>();
+			};
+
+			RodskaEngine::ObjectSerializeFunc matSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+				if (object.HasComponent<RDSK_COMP(Material)>()) {
+					auto mat = object.GetComponent<RDSK_COMP(Material)>();
+					emit << YAML::Key << "Diffuse" << YAML::Value << mat.Diffuse;
+					emit << YAML::Key << "Ambient" << YAML::Value << mat.Ambient;
+					emit << YAML::Key << "Specular" << YAML::Value << mat.Specular;
+					emit << YAML::Key << "UsesTexture" << YAML::Value << mat.UsesTexture;
+					emit << YAML::Key << "Reflectance" << YAML::Value << mat.Reflectance;
+				}
+			};
+
+			RodskaEngine::ObjectDeserializeFunc matDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+				auto comp = data["RDSK_COMP_Material"];
+				if (comp.IsDefined()) {
+					glm::vec4 color = data["RDSK_COMP_Material"]["Diffuse"].as<glm::vec4>();
+					glm::vec4 ambient = data["RDSK_COMP_Material"]["Ambient"].as<glm::vec4>();
+					glm::vec4 specular = data["RDSK_COMP_Material"]["Specular"].as<glm::vec4>();
+					bool isTexture = data["RDSK_COMP_Material"]["UsesTexture"].as<bool>();
+					float reflectance = data["RDSK_COMP_Material"]["Reflectance"].as<float>();
+
+					auto& mat = object.AddComponent<RDSK_COMP(Material)>();
+					mat.Diffuse = color;
+					mat.Ambient = ambient;
+					mat.Specular = specular;
+					mat.UsesTexture = isTexture;
+					mat.Reflectance = reflectance;
+				}
+			};
+
+			RegisterComp("Material", "Material", matFunc, matAddFunc, matCheckFunc);
+			RegisterSer(matSerFunc);
+			RegisterDeSer(matDSFunc);
+			RegisterActions("Material", {});
+
 	}
 }
 

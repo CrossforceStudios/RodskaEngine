@@ -141,6 +141,7 @@ namespace RodskaEngine {
 
 	void WindowsViewport::Shutdown() 
 	{
+		m_Context->Shutdown();
 		glfwDestroyWindow(m_Window);
 	}
 

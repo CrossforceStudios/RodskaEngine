@@ -94,8 +94,10 @@ namespace RodskaEngine {
 					ImGui::SameLine(contentRegion.x - lineHeight * 0.5f);
 
 					if (ImGui::Button("+", ImVec2{ lineHeight, lineHeight })) {
-						// Opens something.
+						ImGui::OpenPopup((m_Props[i] + "Action").c_str());
 					}
+					RenderActions(object, scene, m_Props[i]);
+
 				}
 
 				if (title != "Tag" && opened ) {
@@ -107,6 +109,18 @@ namespace RodskaEngine {
 				}
 			}
 		}
+	}
+	void PropertyRegistry::RenderActions(RodskaObject object, Ref<Scene> scene, const std::string& name, bool displayTag)
+	{
+		if (ImGui::BeginPopup((name + "Action").c_str())) {
+			for (auto action : m_Actions.at(m_ActionMap[name])) {
+				if (ImGui::MenuItem(action.Title.c_str())) {
+					action.Action(name, object, scene);
+				}
+			}
+			ImGui::EndPopup();
+		}
+
 	}
 	RodskaObject& PropertyRegistry::DeserializeComponents(Ref<Scene>& scene, YAML::detail::iterator_value data)
 	{
@@ -137,6 +151,12 @@ namespace RodskaEngine {
 			}
 		}
 	}
+	void PropertyRegistry::AddActions(const std::string& name, ActionVector actions)
+	{
+		m_Actions.push_back(actions);
+		m_ActionMap[name] = m_Actions.size() - 1;
+	}
+
 	void RegisterComp(std::string name, const std::string& t, ObjectDisplayFunc f, ObjectCompAddFunc fa, ObjectDisplayCondFunc fc) {
 		PropRegister.AddPropertyFunction(name, t, f, fa, fc);
 	}
@@ -145,6 +165,10 @@ namespace RodskaEngine {
 	}
 	void RegisterDeSer(ObjectDeserializeFunc f) {
 		RodskaEngine::PropRegister.AddDeserializationFunction(f);
+	}
+	void RegisterActions(const std::string& name, ActionVector actions)
+	{
+		RodskaEngine::PropRegister.AddActions(name, actions);
 	}
 	void RegisterScript(const std::string& t, ObjectScriptAddFunc f) {
 		RodskaEngine::PropRegister.AddScriptAddFunction(t, f);

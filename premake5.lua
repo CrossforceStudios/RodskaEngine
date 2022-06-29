@@ -19,6 +19,9 @@ IncludeDir["stb_image"] = "RodskaEngine/vendor/stb_image"
 IncludeDir["tinyobjloader"] = "RodskaEngine/vendor/tinyobjloader"
 IncludeDir["entt"] = "RodskaEngine/vendor/entt/include"
 IncludeDir["yamlcpp"] = "RodskaEngine/vendor/yaml-cpp/include"
+IncludeDir["cmdparser"] = "RodskaEngine/vendor/cmdparser"
+IncludeDir["pythonw"] = "C:/Program Files/Python38/Include"
+IncludeDir["ultralight"] = "RodskaEngine/vendor/ultralight/include"
 
 group "Dependencies"
 	include "RodskaEngine/vendor/GLFW"
@@ -32,7 +35,7 @@ group ""
 
 project "RodskaEngine"
 	location "RodskaEngine"
-	kind "StaticLib"
+	kind "SharedLib"
 	language "C++"
 	staticruntime "off"
 	cppdialect "C++17"
@@ -53,8 +56,8 @@ project "RodskaEngine"
 		"%{prj.name}/vendor/stb_image/**.h",
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl"
-		
+		"%{prj.name}/vendor/glm/glm/**.inl",
+
 	}
 
 	includedirs
@@ -68,7 +71,9 @@ project "RodskaEngine"
 		"%{IncludeDir.stb_image}",
 		"%{IncludeDir.tinyobjloader}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.yamlcpp}"
+		"%{IncludeDir.yamlcpp}",
+		"%{IncludeDir.ultralight}"
+
 	}
 
 	defines 
@@ -83,7 +88,11 @@ project "RodskaEngine"
 		"imgui",
 		"tinyobjloader",
 		"yaml-cpp",
-		"opengl32.lib"
+		"C:/Program Files/Python38/libs/python38_d.lib",
+		"opengl32.lib",
+		"RodskaEngine/vendor/ultralight/lib/win/x64/Ultralight.lib",
+		"RodskaEngine/vendor/ultralight/lib/win/x64/UltralightCore.lib",
+		"RodskaEngine/vendor/ultralight/lib/win/x64/WebCore.lib",
 	}
 
 	filter "system:windows"
@@ -97,20 +106,25 @@ project "RodskaEngine"
 			"RDSK_DYNAMIC_LINK"
 		}
 
+		includedirs {
+			"%{IncludeDir.pythonw}"
+		}
+
 	filter "configurations:Debug"
 		defines "RDSK_DEBUG"
 		runtime "Debug"
 		symbols "on"
-	
 	filter "configurations:Release"
 		defines "RDSK_RELEASE"
 		runtime "Release"
 		optimize "on"
-
+		
 	filter "configurations:Dist"
 		defines "RDSK_DIST"
 		runtime "Release"
 		optimize "on"
+	
+
 
 project "RodskaEditor"
 	location "RodskaEditor"
@@ -135,7 +149,9 @@ project "RodskaEditor"
 		"%{IncludeDir.GLAD}",
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.entt}",
-		"%{IncludeDir.yamlcpp}"
+		"%{IncludeDir.yamlcpp}",
+		"%{IncludeDir.GLFW}",
+
 
 	}
 
@@ -144,6 +160,9 @@ project "RodskaEditor"
 		"RodskaEngine"
 	}
 
+	defines {
+	}
+	
 	filter "system:windows"
 		systemversion "latest"
 
@@ -198,7 +217,7 @@ group "Modules"
 	
 		links 
 		{
-			"RodskaEngine"
+			"RodskaEngineShared"
 		}
 			
 		filter "system:windows"
@@ -207,7 +226,6 @@ group "Modules"
 			defines
 			{
 				"RDSK_PLATFORM_WINDOWS",
-				"RDSK_MOD_BUILD_DLL",
 			}
 	
 		filter "configurations:Debug"

@@ -55,6 +55,20 @@ namespace RodskaEngine {
 		}
 	};
 
+	 RDSK_DEFCOMP(Terrain) {
+		 std::string Heightmap;
+		 int MaxY;
+		 int MinY;
+		 std::string TextureFile;
+		 int TextInc;
+		 RODSKA_EAPI RDSKComponent_Terrain() = default;
+		 RODSKA_EAPI RDSKComponent_Terrain(const RDSK_COMP(Terrain) & other) = default;
+		 RODSKA_EAPI RDSKComponent_Terrain(const std::string & heightmap, int minY, int maxY, const std::string & texture, int textInc) : Heightmap(heightmap), MaxY(maxY), MinY(minY), TextureFile(texture), TextInc(textInc) {};
+		 RODSKA_EAPI bool operator ==(const RDSK_COMP(Terrain) & rhs) {
+			 return (Heightmap == rhs.Heightmap) && (MaxY == rhs.MaxY) && (MinY == rhs.MinY) && (TextureFile == rhs.TextureFile) && (TextInc == rhs.TextInc);
+		 }
+	 };
+
 	 RDSK_DEFCOMP(Tag) {
 	    std::string Tag;
 		RODSKA_EAPI RDSKComponent_Tag() = default;
@@ -77,18 +91,31 @@ namespace RodskaEngine {
 	 RDSK_DEFCOMP(Light) {
 		glm::vec4 LightColor = { 0.0f, 0.75f, 0.5f, 1.0f };
 		float Ambience = 0.1f;
+		float ConstantAttenuation = 1;
+		float LinearAttenuation = 0;
+		float ExponentAttenuation = 0;
+		glm::vec3 Position = { 0.0f, 0.0f, 1.0f };
+
 		RODSKA_EAPI RDSKComponent_Light() = default;
 		RODSKA_EAPI RDSKComponent_Light(const RDSK_COMP(Light) & other) = default;
 	};
+
+	 RDSK_DEFCOMP(Material) {
+		 glm::vec4 Diffuse = { 0.0f, 0.75f, 0.5f, 1.0f };
+		 glm::vec4 Ambient = { 0.0f, 0.75f, 0.5f, 1.0f };
+		 glm::vec4 Specular = { 0.0f, 0.75f, 0.5f, 1.0f };
+		 bool UsesTexture = false;
+		 float Reflectance = 0;
+
+		 RODSKA_EAPI RDSKComponent_Material() = default;
+		 RODSKA_EAPI RDSKComponent_Material(const RDSK_COMP(Material) & other) = default;
+	 };
 
 	 RDSK_DEFCOMP(NativeScript) {
 		ScriptableRodskaObject* Object = nullptr;
 
 		ScriptableRodskaObject*(*OnInstantiate)() ;
 		void (*OnDestroy)(RDSK_COMP(NativeScript)*);
-
-		RODSKA_EAPI RDSKComponent_NativeScript() = default;
-		RODSKA_EAPI RDSKComponent_NativeScript(const RDSK_COMP(NativeScript)& other) = default;
 
 		template<typename T>
 		RODSKA_EAPI void Bind() {
@@ -115,6 +142,13 @@ namespace RodskaEngine {
 		RDSKComponent_ParticleEmitter() = default;
 		RDSKComponent_ParticleEmitter(const RDSK_COMP(ParticleEmitter) & other) = default;
 	};
+
+	 RDSK_DEFCOMP(UI) {
+		 std::string UIFile;
+		 std::string UIStylesheet;
+		 RDSKComponent_UI() = default;
+		 RDSKComponent_UI(const RDSK_COMP(UI) & other) = default;
+	 };
 
 
 

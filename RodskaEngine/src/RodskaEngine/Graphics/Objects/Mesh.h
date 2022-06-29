@@ -11,11 +11,14 @@ namespace RodskaEngine {
 	enum class VertexType {
 		Position = 0,
 		PosAndTexCoord = 1,
-		PosAndNormal = 2
+		PosAndNormal = 2,
+		PNT = 3,
+		Terrain = 4,
 	};
 	enum class MeshType {
 		Mesh = 0,
-		Particle = 1
+		Particle = 1,
+		Terrain = 2,
 	};
 	class Mesh : public Object3D {
 	public:
@@ -23,9 +26,10 @@ namespace RodskaEngine {
 		RODSKA_EAPI Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices);
 		RODSKA_EAPI Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices, std::vector<glm::vec3> normals);
 		RODSKA_EAPI Mesh(std::vector<glm::vec3> vertices, std::vector<glm::vec2> texCoords, std::vector<unsigned int> indices);
-
+		RODSKA_EAPI Mesh(std::vector<glm::vec3> vertices, std::vector<glm::vec2> texCoords, std::vector<unsigned int> indices, std::vector<glm::vec3> normals);
+		RODSKA_EAPI Mesh(const std::string& mapPath, float minY, float maxY, const std::string& texturePath, int textInc);
 	public:
-		RODSKA_EAPI virtual void AddVertex(const glm::vec3& vertex) override;
+		virtual void AddVertex(const glm::vec3& vertex) override;
 		RODSKA_EAPI virtual void AddTexCoord(const glm::vec2& texCoord) override;
 		RODSKA_EAPI virtual void SetupBuffers(const BufferLayout& vertexBufferLayout) override;
 		RODSKA_EAPI virtual void SetupArray() override;
@@ -47,7 +51,8 @@ namespace RodskaEngine {
 		RODSKA_EAPI VertexType GetVertexType() { return m_VertexType; }
 		RODSKA_EAPI void SetVertexType(VertexType vType) { m_VertexType = vType; }
 		RODSKA_EAPI void SetMeshType(MeshType mType) { m_Type = mType; }
-		RODSKA_EAPI static Ref<Mesh> CreateFromObjFile(const std::string& path, VertexType useCase = VertexType::PosAndNormal);
+		RODSKA_EAPI static Ref<Mesh> CreateFromObjFile(const std::string& path, VertexType useCase = VertexType::PNT);
+		RODSKA_EAPI static Ref<Mesh> CreateFromHeightmap(const std::string& mapMath, float minY, float maxY, const std::string& texturePath, int textInc);
 	private:
 		std::vector<glm::vec3> m_Vertices;
 		std::vector<unsigned int> m_Indices;
@@ -60,7 +65,10 @@ namespace RodskaEngine {
 		MeshType m_Type = MeshType::Mesh;
 		ShaderLibrary m_ShaderLibrary;
 		std::string m_CurrentShader;
+		float m_MaxY;
+		float m_MinY;
 	private:
 		static std::string readFile(const std::string& path);
+		std::vector<glm::vec3> GetTerrainNormals(const std::vector<glm::vec3>& vertices, int width, int height);
 	};
 };

@@ -5,7 +5,7 @@
 #include "RodskaEngine/Graphics/Camera/OrthographicCamera.h"
 #include "ModuleHandler.h"
 #include <GLFW/glfw3.h>
-
+#include <RodskaEngine/Scripting/AmethystBackend.h>
 namespace RodskaEngine {
 
 	RodskaApp* RodskaApp::CurrentApp = nullptr;
@@ -13,21 +13,30 @@ namespace RodskaEngine {
 
 
 
-	RodskaApp::RodskaApp()
-		: m_LastTime((float)glfwGetTime())
+	RodskaApp::RodskaApp(int argc, char** argv)
+		: m_LastTime((float)glfwGetTime()), m_Parser(argc, argv)
 	{
+		
 		RDSK_CORE_ASSERT(!CurrentApp, "Application already exists!");
 		CurrentApp = this;
 		SceneRegistry = new SceneAdapter();
+		{
+			m_Parser.enable_help();
+			m_Parser.set_optional<std::string>("lang", "slanguage", "python", "The scripting language to be used for making games in Rodska Engine.");
+		}
+		m_Parser.run();
+		AmethystBackend::CurrentOutputMode = AmethystMode::StdLog;
 		m_Viewport = std::unique_ptr<Viewport>(Viewport::Create());
 		m_Viewport->SetEventCallback(RDSK_BIND_EVENT_CB(RodskaApp, OnEvent));
 		RodskaRenderer::Init();
-
+		
+		
 		m_UILayer = new UILayer();
 		PushOverlay(m_UILayer);
-
+		
 	}
 
+	
 	RodskaApp::~RodskaApp() {
 
 	}
@@ -45,6 +54,7 @@ namespace RodskaEngine {
 		RodskaEventDispatcher dispatcher(e);
 		dispatcher.Dispatch<WindowClosedEvent>(RDSK_BIND_EVENT_CB(RodskaApp, OnWindowClose));
 		dispatcher.Dispatch<WindowResizeEvent>(RDSK_BIND_EVENT_CB(RodskaApp, OnWindowResize));
+
 		RDSK_CORE_TRACE("{0}", e.ToString());
 		for (auto it = m_LayerStack.end(); it != m_LayerStack.begin();) {
 			(*--it)->OnEvent(e);
@@ -67,6 +77,10 @@ namespace RodskaEngine {
 		return modules;
 	}
 
+	void RodskaApp::Shutdown()
+	{
+
+	}
 
 	bool RodskaApp::OnWindowClose(WindowClosedEvent& e) {
 		m_IsRunning = false;
@@ -96,7 +110,7 @@ namespace RodskaEngine {
 			float time = (float)glfwGetTime(); // Platform::GetTime
 			TimeStep timestep = time - m_LastTime;
 			 m_LastTime = time;
-
+			 m_ElapsedTime += timestep;
 			 if (!m_Minimized) {
 				 for (Layer* layer : m_LayerStack)
 					 layer->OnUpdate(timestep);
@@ -106,7 +120,9 @@ namespace RodskaEngine {
 				layer->OnGUIRender();
 			m_UILayer->End();
 
+
 			m_Viewport->OnUpdate();
+			
 		}
 	}
 }

@@ -24,6 +24,7 @@ namespace RodskaEngine {
 		RODSKA_EAPI void  AddSubsystem(std::string name, Subsystem* system) {
 			m_Subsystems.insert(std::pair<std::string,RodskaEngine::Subsystem*>(name, system));
 		}
+		RODSKA_EAPI bool HasObjectInSubsystem(std::string name, RodskaObject& object);
 		RODSKA_EAPI void  OnViewportResize(uint32_t width, uint32_t height);
 		template<typename T>
 		RODSKA_EAPI std::vector<T> GetComponentsOfType() {

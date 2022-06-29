@@ -55,6 +55,11 @@ namespace RodskaEngine {
 
 	}
 
+	bool Scene::HasObjectInSubsystem(std::string name, RodskaObject& object)
+	{
+			return m_Subsystems[name]->HasObject(object);
+	}
+
 	void Scene::OnViewportResize(uint32_t width, uint32_t height) {
 		if (mainCamera) {
 			mainCamera->SetViewportSize(width, height);
@@ -77,9 +82,11 @@ namespace RodskaEngine {
 
 		if (mainCamera) {
 			mainCamera->SetTransform(m_Transform);
+
 			RodskaEngine::RodskaRenderer::BeginScene(mainCamera);
 
 			for (auto subsystem : m_Subsystems) {
+				subsystem.second->SetCamera(mainCamera);
 				subsystem.second->OnUpdate(ts);
 			}
 

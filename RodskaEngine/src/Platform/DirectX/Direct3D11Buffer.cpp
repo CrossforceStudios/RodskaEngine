@@ -21,6 +21,8 @@ namespace RodskaEngine {
 
 	Direct3D11VertexBuffer::~Direct3D11VertexBuffer()
 	{
+		m_IntBuffer->Release();
+		m_IntBuffer = nullptr;
 	}
 
 	void Direct3D11VertexBuffer::Bind() const
@@ -73,6 +75,8 @@ namespace RodskaEngine {
 
 	Direct3D11IndexBuffer::~Direct3D11IndexBuffer()
 	{
+		m_Buffer->Release();
+		m_Buffer = 0;
 	}
 
 	void Direct3D11IndexBuffer::Bind() const
