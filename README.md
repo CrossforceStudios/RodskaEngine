@@ -10,3 +10,5 @@ Rodska Engine is a game/application engine that is architecturally similar to Th
 1. 3D Mesh support
 2. ECS (via EnTT)
 3. Editor (via Dear imgui)
+4. Logging (in the UI and in the console)
+5. Particles (WIP)
