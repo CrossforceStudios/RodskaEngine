@@ -7,6 +7,9 @@
 #include <GLFW/glfw3.h>
 #include <RodskaEngine/Scripting/AmethystBackend.h>
 #include <Ultralight/Ultralight.h>
+#ifdef _WIN32 
+	#include <Platform/Windows/WindowsECore.h>
+#endif
 namespace RodskaEngine {
 
 	RodskaApp* RodskaApp::CurrentApp = nullptr;
@@ -20,6 +23,9 @@ namespace RodskaEngine {
 		
 		RDSK_CORE_ASSERT(!CurrentApp, "Application already exists!");
 		CurrentApp = this;
+		#ifdef _WIN32
+			InitWinRL();
+		#endif
 		SceneRegistry = new SceneAdapter();
 		{
 			m_Parser.enable_help();
@@ -34,6 +40,7 @@ namespace RodskaEngine {
 		
 		m_UILayer = new UILayer();
 		PushOverlay(m_UILayer);
+
 		
 	}
 

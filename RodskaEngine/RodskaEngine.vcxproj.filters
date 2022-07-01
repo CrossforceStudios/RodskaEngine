@@ -46,6 +46,9 @@
     <Filter Include="src\RodskaEngine\Graphics\Particles\Emitters">
       <UniqueIdentifier>{E80FBEA1-D422-BEFA-7D0C-9BE769FE5A48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\RodskaEngine\Graphics\UI">
+      <UniqueIdentifier>{434649BA-2F01-3966-D8B8-B1B0C45283F6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\RodskaEngine\Graphics\UserData">
       <UniqueIdentifier>{DE8A00B4-CAC6-031E-33D9-1B151F34AC38}</UniqueIdentifier>
     </Filter>
@@ -72,9 +75,6 @@
     </Filter>
     <Filter Include="src\RodskaEngine\UI\UICore">
       <UniqueIdentifier>{390A6754-251A-1325-8ED3-77437A0202BE}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="src\RodskaEngine\UI\UICore\GameUI">
-      <UniqueIdentifier>{40632876-ACD1-7DF5-F5BA-38F561687391}</UniqueIdentifier>
     </Filter>
     <Filter Include="src\RodskaEngine\Utils">
       <UniqueIdentifier>{B6AB6477-A2A5-8DC9-8B12-24DA77ABF335}</UniqueIdentifier>
@@ -120,6 +120,9 @@
     <ClInclude Include="src\Platform\DirectX\Direct3D11Shader.h">
       <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
+    <ClInclude Include="src\Platform\DirectX\Direct3D11Texture.h">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\DirectX\Direct3D11VertexArray.h">
       <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
@@ -139,6 +142,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLRHIAPI.h">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRenderBuffer.h">
       <Filter>src\Platform\OpenGL</Filter>
     </ClInclude>
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h">
@@ -249,6 +255,9 @@
     <ClInclude Include="src\RodskaEngine\Graphics\RHICommand.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\RenderBuffer.h">
+      <Filter>src\RodskaEngine\Graphics</Filter>
+    </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\RodskaGraphicsContext.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
     </ClInclude>
@@ -260,6 +269,9 @@
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\Texture.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.h">
+      <Filter>src\RodskaEngine\Graphics\UI</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\UserData\Material.h">
       <Filter>src\RodskaEngine\Graphics\UserData</Filter>
@@ -1611,9 +1623,6 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.h" />
-    <ClInclude Include="src\RodskaEngine\Graphics\RenderBuffer.h" />
-    <ClInclude Include="src\Platform\OpenGL\OpenGLRenderBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\DirectX\Direct3D11Buffer.cpp">
@@ -1626,6 +1635,9 @@
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\DirectX\Direct3D11Shader.cpp">
+      <Filter>src\Platform\DirectX</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\DirectX\Direct3D11Texture.cpp">
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\DirectX\Direct3D11VertexArray.cpp">
@@ -1647,6 +1659,9 @@
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLRHIAPI.cpp">
+      <Filter>src\Platform\OpenGL</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRenderBuffer.cpp">
       <Filter>src\Platform\OpenGL</Filter>
     </ClCompile>
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp">
@@ -1729,6 +1744,9 @@
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Graphics\Texture.cpp">
       <Filter>src\RodskaEngine\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.cpp">
+      <Filter>src\RodskaEngine\Graphics\UI</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Graphics\UserData\Material.cpp">
       <Filter>src\RodskaEngine\Graphics\UserData</Filter>
@@ -1820,7 +1838,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.cpp" />
-    <ClCompile Include="src\Platform\OpenGL\OpenGLRenderBuffer.cpp" />
   </ItemGroup>
 </Project>

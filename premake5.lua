@@ -22,6 +22,7 @@ IncludeDir["yamlcpp"] = "RodskaEngine/vendor/yaml-cpp/include"
 IncludeDir["cmdparser"] = "RodskaEngine/vendor/cmdparser"
 IncludeDir["pythonw"] = "C:/Program Files/Python38/Include"
 IncludeDir["ultralight"] = "RodskaEngine/vendor/ultralight/include"
+IncludeDir["DirectXTK"] = "RodskaEngine/vendor/DirectXTK/Inc"
 
 group "Dependencies"
 	include "RodskaEngine/vendor/GLFW"
@@ -29,8 +30,18 @@ group "Dependencies"
 	include "RodskaEngine/vendor/imgui"
 	include "RodskaEngine/vendor/tinyobjloader"
 	include "RodskaEngine/vendor/yaml-cpp"
-
-
+	group "DirectX"
+		externalproject "DirectXTK_Desktop_2022"
+			location "RodskaEngine/vendor/DirectXTK"
+			uuid "8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942"
+			kind "StaticLib"
+			language "C++"
+		externalproject "DirectXTK_Desktop_2022_Win10"
+			location "RodskaEngine/vendor/DirectXTK"
+			uuid "E0B52AE7-E160-4D32-BF3F-910B785E5A8E"
+			kind "StaticLib"
+			language "C++"
+			
 group ""
 
 project "RodskaEngine"
@@ -46,6 +57,9 @@ project "RodskaEngine"
 
 	pchheader "rdskpch.h"
 	pchsource "RodskaEngine/src/rdskpch.cpp"
+
+	
+
 
 	files 
 	{
@@ -72,8 +86,8 @@ project "RodskaEngine"
 		"%{IncludeDir.tinyobjloader}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yamlcpp}",
-		"%{IncludeDir.ultralight}"
-
+		"%{IncludeDir.ultralight}",
+		"%{IncludeDir.DirectXTK}"
 	}
 
 	defines 
@@ -136,12 +150,18 @@ project "RodskaEditor"
 	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
 	staticruntime "off"
 	cppdialect "C++17"
+	
+	
 
+		
 	files 
 	{
 		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp"
+		"%{prj.name}/src/**.cpp",
+		"%{prj.name}/assets/shaders/DirectX/**.hlsl"
 	}
+
+
 
 	includedirs
 	{
@@ -153,6 +173,7 @@ project "RodskaEditor"
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yamlcpp}",
 		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.ultralight}"
 
 
 	}
@@ -187,6 +208,36 @@ project "RodskaEditor"
 		defines "RDSK_DIST"
 		runtime "Release"
 		optimize "on"
+
+		filter("files:**Shader11.hlsl")
+			local shader_dir = "%{prj.name}/assets/shaders/DirectX"
+			shadermodel("5.0")
+			shaderassembler("AssemblyCode")
+			shaderobjectfileoutput(shader_dir.."/compiled/%{file.basename}"..".11.cso")
+			shaderassembleroutput(shader_dir.."/compiled/%{file.basename}"..".11.asm")
+			filter("files:**PixelShader11.hlsl")		
+				removeflags("ExcludeFromBuild")
+				shadertype("Pixel")
+
+			filter("files:**VertexShader11.hlsl")
+				removeflags("ExcludeFromBuild")
+				shadertype("Vertex")
+			
+			shaderoptions({"/WX"})
+	
+	filter("files:**Shader12.hlsl")
+			local shader_dir = "%{prj.name}/assets/shaders/DirectX"
+			shadermodel("5.1")
+			shaderassembler("AssemblyCode")
+			shaderobjectfileoutput(shader_dir.."/compiled/%{file.basename}"..".12.cso")
+			shaderassembleroutput(shader_dir.."/compiled/%{file.basename}"..".12.asm")
+			filter("files:**PixelShader12.hlsl")		
+				shadertype("Pixel")
+
+			filter("files:**VertexShader12.hlsl")
+				shadertype("Vertex")
+			
+			shaderoptions({"/WX"})
 
 group "Modules"
 	project "ScriptCore"

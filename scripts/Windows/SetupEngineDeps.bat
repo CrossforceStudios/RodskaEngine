@@ -14,7 +14,9 @@ pushd ..\..\
     git clone https://github.com/CrossforceStudios/yaml-cpp RodskaEngine/vendor/yaml-cpp
     echo "6) spdlog"
     git clone git://github.com/gabime/spdlog.git RodskaEngine/vendor/spdlog
-    echo "7) Zipped Dependencies"
+    echo "7) DirectXTK"
+    git clone https://github.com/Microsoft/DirectXTK RodskaEngine/vendor/DirectXTK
+    echo "8) Zipped Dependencies"
     SetupZippedDeps.bat
     echo "Done."
 popd

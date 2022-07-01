@@ -79,7 +79,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RDSK_PLATFORM_WINDOWS;RDSK_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\RodskaEngine\vendor\spdlog\include;..\RodskaEngine\src;..\RodskaEngine\vendor\glm;..\RodskaEngine\vendor\GLAD\include;..\RodskaEngine\vendor\imgui;..\RodskaEngine\vendor\entt\include;..\RodskaEngine\vendor\yaml-cpp\include;..\RodskaEngine\vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\RodskaEngine\vendor\spdlog\include;..\RodskaEngine\src;..\RodskaEngine\vendor\glm;..\RodskaEngine\vendor\GLAD\include;..\RodskaEngine\vendor\imgui;..\RodskaEngine\vendor\entt\include;..\RodskaEngine\vendor\yaml-cpp\include;..\RodskaEngine\vendor\GLFW\include;..\RodskaEngine\vendor\ultralight\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -95,7 +95,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RDSK_PLATFORM_WINDOWS;RDSK_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\RodskaEngine\vendor\spdlog\include;..\RodskaEngine\src;..\RodskaEngine\vendor\glm;..\RodskaEngine\vendor\GLAD\include;..\RodskaEngine\vendor\imgui;..\RodskaEngine\vendor\entt\include;..\RodskaEngine\vendor\yaml-cpp\include;..\RodskaEngine\vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\RodskaEngine\vendor\spdlog\include;..\RodskaEngine\src;..\RodskaEngine\vendor\glm;..\RodskaEngine\vendor\GLAD\include;..\RodskaEngine\vendor\imgui;..\RodskaEngine\vendor\entt\include;..\RodskaEngine\vendor\yaml-cpp\include;..\RodskaEngine\vendor\GLFW\include;..\RodskaEngine\vendor\ultralight\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -115,7 +115,7 @@
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>RDSK_PLATFORM_WINDOWS;RDSK_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>..\RodskaEngine\vendor\spdlog\include;..\RodskaEngine\src;..\RodskaEngine\vendor\glm;..\RodskaEngine\vendor\GLAD\include;..\RodskaEngine\vendor\imgui;..\RodskaEngine\vendor\entt\include;..\RodskaEngine\vendor\yaml-cpp\include;..\RodskaEngine\vendor\GLFW\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>..\RodskaEngine\vendor\spdlog\include;..\RodskaEngine\src;..\RodskaEngine\vendor\glm;..\RodskaEngine\vendor\GLAD\include;..\RodskaEngine\vendor\imgui;..\RodskaEngine\vendor\entt\include;..\RodskaEngine\vendor\yaml-cpp\include;..\RodskaEngine\vendor\GLFW\include;..\RodskaEngine\vendor\ultralight\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -140,16 +140,26 @@
     <ClCompile Include="src\RodskaEditor.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <FxCompile Include="assets\shaders\DirectX\ImGuiPixelShader11.hlsl">
+      <ShaderType>Pixel</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>RodskaEditor/assets/shaders/DirectX/compiled/ImGuiPixelShader11.11.cso</ObjectFileOutput>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
+      <AssemblerOutputFile>RodskaEditor/assets/shaders/DirectX/compiled/ImGuiPixelShader11.11.asm</AssemblerOutputFile>
+    </FxCompile>
+    <FxCompile Include="assets\shaders\DirectX\ImGuiVertexShader11.hlsl">
+      <ShaderType>Vertex</ShaderType>
+      <ShaderModel>5.0</ShaderModel>
+      <ObjectFileOutput>RodskaEditor/assets/shaders/DirectX/compiled/ImGuiVertexShader11.11.cso</ObjectFileOutput>
+      <AssemblerOutput>AssemblyCode</AssemblerOutput>
+      <AssemblerOutputFile>RodskaEditor/assets/shaders/DirectX/compiled/ImGuiVertexShader11.11.asm</AssemblerOutputFile>
+      <AdditionalOptions>/WX %(AdditionalOptions)</AdditionalOptions>
+    </FxCompile>
+  </ItemGroup>
+  <ItemGroup>
     <ProjectReference Include="..\RodskaEngine\RodskaEngine.vcxproj">
       <Project>{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <FxCompile Include="assets\shaders\DirectX\ImGuiVertexShader11.hlsl">
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Vertex</ShaderType>
-      <ShaderType Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">Vertex</ShaderType>
-    </FxCompile>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
