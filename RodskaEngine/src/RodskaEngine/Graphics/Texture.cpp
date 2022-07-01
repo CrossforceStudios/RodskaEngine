@@ -17,4 +17,17 @@ namespace RodskaEngine {
 		RDSK_CORE_ASSERT(false, "Unknown RHI!");
 		return nullptr;
 	}
+	Ref<Texture2D> Texture2D::Create(RendererID newId, TextureRole role)
+	{
+		switch (RodskaRenderer::GetRHI()) {
+		case RHIAPI::RHI::None:
+			RDSK_CORE_ASSERT(false, "RHI::None is unsupported.");
+			return nullptr;
+		case RHIAPI::RHI::OpenGL:
+			return CreateRef<OpenGLTexture2D>(newId, role);
+
+		}
+		RDSK_CORE_ASSERT(false, "Unknown RHI!");
+		return nullptr;
+	}
 }

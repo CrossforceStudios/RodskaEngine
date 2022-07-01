@@ -37,7 +37,8 @@
 #include "RodskaEngine/Graphics/Particles/ParticleEmitter.h"
 #include "RodskaEngine/Graphics/Particles/Emitters/FlowParticleEmitter.h"
 #include "RodskaEngine/Graphics/Objects/Particle.h"
-
+// -- Graphics (UI) ---------------------------------------
+#include "RodskaEngine/Graphics/UI/UIGraphicsUtils.h"
 // ----------------------------------------------
 
 // -- Scene & Entities --------------------------

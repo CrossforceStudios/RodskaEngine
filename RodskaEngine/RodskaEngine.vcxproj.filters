@@ -73,6 +73,9 @@
     <Filter Include="src\RodskaEngine\UI\UICore">
       <UniqueIdentifier>{390A6754-251A-1325-8ED3-77437A0202BE}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\RodskaEngine\UI\UICore\GameUI">
+      <UniqueIdentifier>{40632876-ACD1-7DF5-F5BA-38F561687391}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\RodskaEngine\Utils">
       <UniqueIdentifier>{B6AB6477-A2A5-8DC9-8B12-24DA77ABF335}</UniqueIdentifier>
     </Filter>
@@ -1608,6 +1611,9 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\RenderBuffer.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRenderBuffer.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\DirectX\Direct3D11Buffer.cpp">
@@ -1814,5 +1820,7 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRenderBuffer.cpp" />
   </ItemGroup>
 </Project>

@@ -46,6 +46,26 @@ namespace RodskaEngine {
 		stbi_image_free(data);
 	}
 
+	OpenGLTexture2D::OpenGLTexture2D(RendererID newId, TextureRole role) : m_Rows(1), m_Cols(1), m_Width(0), m_Height(0), m_Role(role)
+	{
+		m_RendererUIID = newId;
+		m_Type = TextureType::Dynamic;
+		m_Role = role;
+		switch (role) {
+			case TextureRole::UI:
+			{
+				glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+				glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+				glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+				glTextureParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+				glGenTextures(1, &m_RendererID);
+			}
+			break;
+
+		}
+		
+	}
+
 	OpenGLTexture2D::~OpenGLTexture2D() {
 		glDeleteTextures(1, &m_RendererID);
 	}
@@ -61,6 +81,11 @@ namespace RodskaEngine {
 	}
 
 	void OpenGLTexture2D::Bind(uint32_t slot) const {
+		if (m_Role == TextureRole::UI) {
+			glActiveTexture(GL_TEXTURE_2D + slot);
+			glBindTexture(GL_TEXTURE_2D, m_RendererID);
+			return;
+		}
 		glBindTextureUnit(slot, m_RendererID);
 	}
 	void OpenGLTexture2D::SetPosition(TexturePosition position)
@@ -71,4 +96,36 @@ namespace RodskaEngine {
 	{
 		return m_TexturePos;
 	}
+	TextureRole OpenGLTexture2D::GetRole() const
+	{
+		return m_Role;
+	}
+	void OpenGLTexture2D::Write(ultralight::RefPtr<ultralight::Bitmap> bitmap)
+	{
+		RDSK_ASSERT(m_Role == TextureRole::UI, "Texture must be a UI texture to write UI bitmaps to it.");
+		Bind();
+		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
+		glPixelStorei(GL_UNPACK_ROW_LENGTH, bitmap->row_bytes() / bitmap->bpp());
+		switch (bitmap->format()) {
+		case ultralight::BitmapFormat::A8_UNORM:
+			m_Width = bitmap->width();
+			m_Height = bitmap->height();
+			const void* pixels = bitmap->LockPixels();
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, m_Width, m_Height, 0, GL_RED, GL_UNSIGNED_BYTE, pixels);
+			bitmap->UnlockPixels();
+			break;
+		case ultralight::BitmapFormat::BGRA8_UNORM_SRGB:
+			m_Width = bitmap->width();
+			m_Height = bitmap->height();
+			const void* pixels = bitmap->LockPixels();
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
+			bitmap->UnlockPixels();
+			break;
+		default:
+			RDSK_ERROR("Unhandled UI texture format: {0}", (int)bitmap->format());
+		}
+		glGenerateMipmap(GL_TEXTURE_2D);
+	}
+
+
 };

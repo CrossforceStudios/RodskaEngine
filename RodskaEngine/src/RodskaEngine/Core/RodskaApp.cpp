@@ -6,6 +6,7 @@
 #include "ModuleHandler.h"
 #include <GLFW/glfw3.h>
 #include <RodskaEngine/Scripting/AmethystBackend.h>
+#include <Ultralight/Ultralight.h>
 namespace RodskaEngine {
 
 	RodskaApp* RodskaApp::CurrentApp = nullptr;
@@ -82,6 +83,16 @@ namespace RodskaEngine {
 
 	}
 
+	void RodskaApp::InitAssets(const std::string& assetPath)
+	{
+		m_assetDir = std::filesystem::path(assetPath);
+	}
+
+	const std::string& RodskaApp::getRelativeAsset(const std::string& newPath)
+	{
+		return (m_assetDir / newPath).string();
+	}
+
 	bool RodskaApp::OnWindowClose(WindowClosedEvent& e) {
 		m_IsRunning = false;
 		return true;
@@ -102,6 +113,13 @@ namespace RodskaEngine {
 		return false;
 	}
 
+	void RodskaApp::InitGameUI(const std::string& resPath) {
+		ultralight::Config cfg;
+		cfg.resource_path_prefix = ultralight::String(resPath.c_str());
+		ultralight::Platform::instance().set_config(cfg);
+		m_GameUIConfig.is_accelerated = true;
+		m_GameUIConfig.initial_device_scale = 1.0;
+	}
 
 	void RodskaApp::Run() {
 		

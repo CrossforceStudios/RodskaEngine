@@ -89,7 +89,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;vendor\ultralight\lib\win\x64\AppCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Debug-windows-x86_64\RodskaEngine\RodskaEngine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -112,7 +112,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;vendor\ultralight\lib\win\x64\AppCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Release-windows-x86_64\RodskaEngine\RodskaEngine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -135,7 +135,7 @@
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;vendor\ultralight\lib\win\x64\AppCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <ImportLibrary>..\bin\Dist-windows-x86_64\RodskaEngine\RodskaEngine.lib</ImportLibrary>
     </Link>
   </ItemDefinitionGroup>
@@ -150,6 +150,7 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLContext.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLFramebuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLImGuiBackend.h" />
+    <ClInclude Include="src\Platform\OpenGL\OpenGLRenderBuffer.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLRHIAPI.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
@@ -185,12 +186,14 @@
     <ClInclude Include="src\RodskaEngine\Graphics\Objects\Particle.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\Particles\Emitters\FlowParticleEmitter.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\Particles\ParticleEmitter.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\RenderBuffer.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\RHIAPI.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\RHICommand.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\RodskaGraphicsContext.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\RodskaRenderer.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\Shader.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\Texture.h" />
+    <ClInclude Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\UserData\Material.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\VertexArray.h" />
     <ClInclude Include="src\RodskaEngine\Input\InputCodes.h" />
@@ -653,6 +656,7 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLContext.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLFramebuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLImGuiBackend.cpp" />
+    <ClCompile Include="src\Platform\OpenGL\OpenGLRenderBuffer.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLRHIAPI.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
@@ -681,6 +685,7 @@
     <ClCompile Include="src\RodskaEngine\Graphics\RodskaRenderer.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\Shader.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\Texture.cpp" />
+    <ClCompile Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\UserData\Material.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\VertexArray.cpp" />
     <ClCompile Include="src\RodskaEngine\Input\InputComponent.cpp" />

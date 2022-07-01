@@ -7,6 +7,7 @@
 #include <RodskaEngine/UI/UILayer.h>
 #include "ModuleHandler.h"
 #include "include/cmdparser.hpp"
+#include <Ultralight/Ultralight.h>
 namespace RodskaEngine {
 	class  RodskaApp
 	{
@@ -23,6 +24,9 @@ namespace RodskaEngine {
 		RODSKA_EAPI inline Viewport& GetViewport() { return *m_Viewport; }
 		RODSKA_EAPI inline float GetElapsedTime() { return m_ElapsedTime; }
 		RODSKA_EAPI virtual void Shutdown();
+		RODSKA_EAPI virtual void InitGameUI(const std::string& resPath);
+		RODSKA_EAPI void InitAssets(const std::string& assetPath);
+		RODSKA_EAPI const std::string& getRelativeAsset(const std::string& newPath);
 	private:
 		bool OnWindowClose(WindowClosedEvent& e);
 		bool OnWindowResize(WindowResizeEvent& e);
@@ -36,6 +40,8 @@ namespace RodskaEngine {
 		bool m_Minimized = false;
 		float m_ElapsedTime = 0.0f;
 		cli::Parser m_Parser;
+		ultralight::ViewConfig m_GameUIConfig;
+		std::filesystem::path m_assetDir;
 	};
 
 

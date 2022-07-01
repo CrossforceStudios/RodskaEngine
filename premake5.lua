@@ -93,6 +93,8 @@ project "RodskaEngine"
 		"RodskaEngine/vendor/ultralight/lib/win/x64/Ultralight.lib",
 		"RodskaEngine/vendor/ultralight/lib/win/x64/UltralightCore.lib",
 		"RodskaEngine/vendor/ultralight/lib/win/x64/WebCore.lib",
+		"RodskaEngine/vendor/ultralight/lib/win/x64/AppCore.lib",
+
 	}
 
 	filter "system:windows"
