@@ -3,7 +3,7 @@
 #include <string>
 
 #include <RodskaEngine/Core/EngineCore.h>
-#include <Ultralight/Bitmap.h>
+#include <RodskaEngine/Graphics/GraphicsCore.h>
 
 namespace RodskaEngine {
 	enum class TextureType {
@@ -25,7 +25,6 @@ namespace RodskaEngine {
 		virtual void SetPosition(TexturePosition position) = 0;
 		virtual TexturePosition GetPosition() const = 0;
 		virtual TextureRole GetRole() const = 0;
-		virtual void Write(ultralight::RefPtr<ultralight::Bitmap>) {}
 		virtual void Bind(uint32_t slot = 0) const = 0;
 	};
 

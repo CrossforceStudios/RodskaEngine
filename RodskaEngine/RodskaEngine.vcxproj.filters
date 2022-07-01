@@ -46,9 +46,6 @@
     <Filter Include="src\RodskaEngine\Graphics\Particles\Emitters">
       <UniqueIdentifier>{E80FBEA1-D422-BEFA-7D0C-9BE769FE5A48}</UniqueIdentifier>
     </Filter>
-    <Filter Include="src\RodskaEngine\Graphics\UI">
-      <UniqueIdentifier>{434649BA-2F01-3966-D8B8-B1B0C45283F6}</UniqueIdentifier>
-    </Filter>
     <Filter Include="src\RodskaEngine\Graphics\UserData">
       <UniqueIdentifier>{DE8A00B4-CAC6-031E-33D9-1B151F34AC38}</UniqueIdentifier>
     </Filter>
@@ -269,9 +266,6 @@
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\Texture.h">
       <Filter>src\RodskaEngine\Graphics</Filter>
-    </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.h">
-      <Filter>src\RodskaEngine\Graphics\UI</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Graphics\UserData\Material.h">
       <Filter>src\RodskaEngine\Graphics\UserData</Filter>
@@ -1679,6 +1673,9 @@
     <ClCompile Include="src\Platform\Windows\Win32PlatformUtils.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
+    <ClCompile Include="src\Platform\Windows\WindowsECore.cpp">
+      <Filter>src\Platform\Windows</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\Windows\WindowsInputComponent.cpp">
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
@@ -1686,6 +1683,9 @@
       <Filter>src\Platform\Windows</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Core\AppLog.cpp">
+      <Filter>src\RodskaEngine\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Core\EngineCore.cpp">
       <Filter>src\RodskaEngine\Core</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Core\Layer.cpp">
@@ -1744,9 +1744,6 @@
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Graphics\Texture.cpp">
       <Filter>src\RodskaEngine\Graphics</Filter>
-    </ClCompile>
-    <ClCompile Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.cpp">
-      <Filter>src\RodskaEngine\Graphics\UI</Filter>
     </ClCompile>
     <ClCompile Include="src\RodskaEngine\Graphics\UserData\Material.cpp">
       <Filter>src\RodskaEngine\Graphics\UserData</Filter>

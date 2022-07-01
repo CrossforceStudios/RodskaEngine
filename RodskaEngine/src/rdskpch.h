@@ -22,6 +22,5 @@
 
 #ifdef RDSK_PLATFORM_WINDOWS
 	#include <Windows.h>
-	#include <Platform/Windows/WindowsECore.h>
 #endif // RDSK_PLATFORM_WINDOWS
 

@@ -100,32 +100,7 @@ namespace RodskaEngine {
 	{
 		return m_Role;
 	}
-	void OpenGLTexture2D::Write(ultralight::RefPtr<ultralight::Bitmap> bitmap)
-	{
-		RDSK_ASSERT(m_Role == TextureRole::UI, "Texture must be a UI texture to write UI bitmaps to it.");
-		Bind();
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-		glPixelStorei(GL_UNPACK_ROW_LENGTH, bitmap->row_bytes() / bitmap->bpp());
-		switch (bitmap->format()) {
-		case ultralight::BitmapFormat::A8_UNORM:
-			m_Width = bitmap->width();
-			m_Height = bitmap->height();
-			const void* pixels = bitmap->LockPixels();
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_R8, m_Width, m_Height, 0, GL_RED, GL_UNSIGNED_BYTE, pixels);
-			bitmap->UnlockPixels();
-			break;
-		case ultralight::BitmapFormat::BGRA8_UNORM_SRGB:
-			m_Width = bitmap->width();
-			m_Height = bitmap->height();
-			const void* pixels = bitmap->LockPixels();
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, m_Width, m_Height, 0, GL_BGRA, GL_UNSIGNED_BYTE, pixels);
-			bitmap->UnlockPixels();
-			break;
-		default:
-			RDSK_ERROR("Unhandled UI texture format: {0}", (int)bitmap->format());
-		}
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
+	
 
 
 };

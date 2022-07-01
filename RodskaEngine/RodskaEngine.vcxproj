@@ -23,19 +23,19 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'" Label="Configuration">
-    <ConfigurationType>DynamicLibrary</ConfigurationType>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
     <PlatformToolset>v143</PlatformToolset>
@@ -54,25 +54,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <LinkIncremental>true</LinkIncremental>
     <OutDir>..\bin\Debug-windows-x86_64\RodskaEngine\</OutDir>
     <IntDir>..\bin-int\Debug-windows-x86_64\RodskaEngine\</IntDir>
     <TargetName>RodskaEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Release-windows-x86_64\RodskaEngine\</OutDir>
     <IntDir>..\bin-int\Release-windows-x86_64\RodskaEngine\</IntDir>
     <TargetName>RodskaEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <LinkIncremental>false</LinkIncremental>
     <OutDir>..\bin\Dist-windows-x86_64\RodskaEngine\</OutDir>
     <IntDir>..\bin-int\Dist-windows-x86_64\RodskaEngine\</IntDir>
     <TargetName>RodskaEngine</TargetName>
-    <TargetExt>.dll</TargetExt>
+    <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
@@ -80,18 +77,19 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\ultralight\include;vendor\DirectXTK\Inc;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;vendor\ultralight\lib\win\x64\AppCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Debug-windows-x86_64\RodskaEngine\RodskaEngine.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -99,22 +97,23 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\ultralight\include;vendor\DirectXTK\Inc;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;vendor\ultralight\lib\win\x64\AppCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Release-windows-x86_64\RodskaEngine\RodskaEngine.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
     <ClCompile>
@@ -122,22 +121,23 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\ultralight\include;vendor\DirectXTK\Inc;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;vendor\ultralight\lib\win\x64\Ultralight.lib;vendor\ultralight\lib\win\x64\UltralightCore.lib;vendor\ultralight\lib\win\x64\WebCore.lib;vendor\ultralight\lib\win\x64\AppCore.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <ImportLibrary>..\bin\Dist-windows-x86_64\RodskaEngine\RodskaEngine.lib</ImportLibrary>
     </Link>
+    <Lib>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\DirectX\Direct3D11Buffer.h" />
@@ -194,7 +194,6 @@
     <ClInclude Include="src\RodskaEngine\Graphics\RodskaRenderer.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\Shader.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\Texture.h" />
-    <ClInclude Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\UserData\Material.h" />
     <ClInclude Include="src\RodskaEngine\Graphics\VertexArray.h" />
     <ClInclude Include="src\RodskaEngine\Input\InputCodes.h" />
@@ -665,9 +664,11 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
     <ClCompile Include="src\Platform\Python\PythonBackend.cpp" />
     <ClCompile Include="src\Platform\Windows\Win32PlatformUtils.cpp" />
+    <ClCompile Include="src\Platform\Windows\WindowsECore.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInputComponent.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsViewport.cpp" />
     <ClCompile Include="src\RodskaEngine\Core\AppLog.cpp" />
+    <ClCompile Include="src\RodskaEngine\Core\EngineCore.cpp" />
     <ClCompile Include="src\RodskaEngine\Core\Layer.cpp" />
     <ClCompile Include="src\RodskaEngine\Core\LayerStack.cpp" />
     <ClCompile Include="src\RodskaEngine\Core\ModuleHandler.cpp" />
@@ -687,7 +688,6 @@
     <ClCompile Include="src\RodskaEngine\Graphics\RodskaRenderer.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\Shader.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\Texture.cpp" />
-    <ClCompile Include="src\RodskaEngine\Graphics\UI\UIGraphicsUtils.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\UserData\Material.cpp" />
     <ClCompile Include="src\RodskaEngine\Graphics\VertexArray.cpp" />
     <ClCompile Include="src\RodskaEngine\Input\InputComponent.cpp" />

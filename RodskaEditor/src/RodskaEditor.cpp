@@ -3,10 +3,8 @@
 #include <RodskaEngine.h>
 #include <utility>
 #include <glm/gtc/matrix_transform.hpp>
-#include <Platform/OpenGL/OpenGLShader.h>
 #include <RodskaEngine/UI/Editor/MaterialEditor.h>
 #include <RodskaEngine/UI/Editor/PropertyRegistry.h>
-
 #include "RodskaEngine/Core/Entry.h"
 #include "RodskaEngine/Scene/BuiltinComponents.h"
 #include "EditorLayer.h"

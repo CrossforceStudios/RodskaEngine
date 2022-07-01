@@ -7,7 +7,6 @@
 #include <RodskaEngine/UI/UILayer.h>
 #include "ModuleHandler.h"
 #include "include/cmdparser.hpp"
-#include <Ultralight/Ultralight.h>
 namespace RodskaEngine {
 	class  RodskaApp
 	{
@@ -40,7 +39,6 @@ namespace RodskaEngine {
 		bool m_Minimized = false;
 		float m_ElapsedTime = 0.0f;
 		cli::Parser m_Parser;
-		ultralight::ViewConfig m_GameUIConfig;
 		std::filesystem::path m_assetDir;
 	};
 

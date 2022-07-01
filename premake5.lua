@@ -21,7 +21,6 @@ IncludeDir["entt"] = "RodskaEngine/vendor/entt/include"
 IncludeDir["yamlcpp"] = "RodskaEngine/vendor/yaml-cpp/include"
 IncludeDir["cmdparser"] = "RodskaEngine/vendor/cmdparser"
 IncludeDir["pythonw"] = "C:/Program Files/Python38/Include"
-IncludeDir["ultralight"] = "RodskaEngine/vendor/ultralight/include"
 IncludeDir["DirectXTK"] = "RodskaEngine/vendor/DirectXTK/Inc"
 
 group "Dependencies"
@@ -46,9 +45,9 @@ group ""
 
 project "RodskaEngine"
 	location "RodskaEngine"
-	kind "SharedLib"
+	kind "StaticLib"
 	language "C++"
-	staticruntime "off"
+	staticruntime "on"
 	cppdialect "C++17"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -86,7 +85,6 @@ project "RodskaEngine"
 		"%{IncludeDir.tinyobjloader}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yamlcpp}",
-		"%{IncludeDir.ultralight}",
 		"%{IncludeDir.DirectXTK}"
 	}
 
@@ -104,10 +102,7 @@ project "RodskaEngine"
 		"yaml-cpp",
 		"C:/Program Files/Python38/libs/python38_d.lib",
 		"opengl32.lib",
-		"RodskaEngine/vendor/ultralight/lib/win/x64/Ultralight.lib",
-		"RodskaEngine/vendor/ultralight/lib/win/x64/UltralightCore.lib",
-		"RodskaEngine/vendor/ultralight/lib/win/x64/WebCore.lib",
-		"RodskaEngine/vendor/ultralight/lib/win/x64/AppCore.lib",
+		"runtimeobject.lib"
 
 	}
 
@@ -172,9 +167,7 @@ project "RodskaEditor"
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yamlcpp}",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.ultralight}"
-
+		"%{IncludeDir.GLFW}"
 
 	}
 

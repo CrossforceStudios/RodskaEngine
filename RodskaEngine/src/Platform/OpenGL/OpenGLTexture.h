@@ -2,7 +2,6 @@
 
 #include "RodskaEngine/Graphics/Texture.h"
 #include "RodskaEngine/Graphics/GraphicsCore.h"
-#include <Ultralight/Bitmap.h>
 
 namespace RodskaEngine {
 	class  OpenGLTexture2D : public Texture2D {
@@ -18,7 +17,6 @@ namespace RodskaEngine {
 		RODSKA_EAPI virtual void SetPosition(TexturePosition position) override;
 		RODSKA_EAPI virtual TexturePosition GetPosition() const override;
 		RODSKA_EAPI virtual TextureRole GetRole() const override;
-		RODSKA_EAPI virtual void Write(ultralight::RefPtr<ultralight::Bitmap> bitmap) override;
 	private:
 		uint32_t m_Width;
 		uint32_t m_Height;

@@ -2,9 +2,9 @@
 
 #include "RodskaEngine/Graphics/Texture.h"
 #include "RodskaEngine/Graphics/GraphicsCore.h"
-#include <Ultralight/Bitmap.h>
 #include <d3d11.h>
 #include <d3d10.h>
+#include <Platform/Windows/WindowsECore.h>
 
 namespace RodskaEngine {
 	class Direct3D11Texture : public Texture2D {
