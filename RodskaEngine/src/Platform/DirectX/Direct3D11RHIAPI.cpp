@@ -30,4 +30,8 @@ namespace RodskaEngine {
 	void Direct3D11RHIAPI::SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
 	{
 	}
+	void Direct3D11RHIAPI::ToggleWireframe()
+	{
+		m_UseWires = !m_UseWires;
+	}
 }

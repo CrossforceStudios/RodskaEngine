@@ -68,4 +68,8 @@ namespace RodskaEngine {
 			}
 		}
 	}
+	void RodskaRenderer::ToggleWireframe()
+	{
+		RHICommand::ToggleWireframe();
+	}
 }

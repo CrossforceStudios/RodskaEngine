@@ -18,6 +18,8 @@ namespace RodskaEngine {
 		RODSKA_EAPI virtual void DrawIndexed(const Ref<VertexArray>& vertexArray) override;
 		RODSKA_EAPI virtual void Init() override;
 		RODSKA_EAPI virtual void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) override;
-
+		RODSKA_EAPI virtual void ToggleWireframe() override;
+	private:
+		bool m_UseWires;
 	};
 };

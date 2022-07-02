@@ -13,5 +13,8 @@ namespace RodskaEngine {
 		RODSKA_EAPI virtual void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) override;
 		RODSKA_EAPI virtual void PerformMatrixOperation(std::function<void()> matrixOpFunc) override;
 		RODSKA_EAPI virtual void TranslateMatrix(float x, float y, float z);
+		RODSKA_EAPI virtual void ToggleWireframe() override;
+	private:
+		bool m_UseWires;
 	};
 }

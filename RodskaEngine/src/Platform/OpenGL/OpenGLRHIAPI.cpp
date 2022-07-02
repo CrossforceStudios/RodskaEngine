@@ -17,7 +17,7 @@ namespace RodskaEngine {
 	void OpenGLRHIAPI::Clear(const glm::vec4& color)  {
 		glClearColor(color.r, color.g, color.b, color.a);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-		
+		glPolygonMode(GL_FRONT_AND_BACK, (m_UseWires) ? GL_LINE : GL_FILL);
 	}
 
 	void OpenGLRHIAPI::DrawIndexed(const Ref<VertexArray>& vertexArray)  {
@@ -41,5 +41,9 @@ namespace RodskaEngine {
 
 	void OpenGLRHIAPI::TranslateMatrix(float x, float y, float z) {
 		glTranslatef(x,y,z);
+	}
+	void OpenGLRHIAPI::ToggleWireframe()
+	{
+		m_UseWires = !m_UseWires;
 	}
 }

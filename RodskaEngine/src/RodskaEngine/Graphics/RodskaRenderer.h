@@ -14,7 +14,7 @@ namespace RodskaEngine {
 
 		RODSKA_EAPI	static void SubmitMesh(const Ref<VertexArray> vertexArray, const Ref<Shader> shader, const glm::mat4& transform = glm::mat4(1.0f));
 		RODSKA_EAPI	static void SubmitParticles(const Ref<VertexArray> vertexArray,  const Ref<Shader> particleShader, const glm::mat4& transform = glm::mat4(1.0f));
-
+		RODSKA_EAPI static void ToggleWireframe();
 		RODSKA_EAPI	static void Init();
 
 		RODSKA_EAPI	inline static RHIAPI::RHI GetRHI() {return RHIAPI::GetRHI();}

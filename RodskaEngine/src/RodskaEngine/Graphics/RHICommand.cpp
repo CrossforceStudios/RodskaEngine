@@ -19,6 +19,10 @@ namespace RodskaEngine {
 		}
 		s_RHIAPI->Init();
 	}
+
+	void  RHICommand::ToggleWireframe() {
+		s_RHIAPI->ToggleWireframe();
+	}
 	void RHICommand::DrawIndexed(const Ref<VertexArray>& vertexArray) {
 		s_RHIAPI->DrawIndexed(vertexArray);
 	}

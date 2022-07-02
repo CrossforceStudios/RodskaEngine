@@ -368,3 +368,4 @@ FodyWeavers.xsd
 # RodskaEngine builds
 */plugins/*
 /RodskaEngine/vendor/ultralight
+/RodskaEditor/RodskaEditor/assets/shaders/DirectX/compiled

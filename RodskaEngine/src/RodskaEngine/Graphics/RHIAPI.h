@@ -12,8 +12,7 @@ namespace RodskaEngine {
 			OpenGL = 1,
 			D3D11 = 2,
 			D3D12 = 3,
-			Metal = 4,
-			Vulkan = 5
+			Vulkan = 4
 		};
 	public:
 		RODSKA_EAPI virtual void Clear(const glm::vec4& color) = 0;
@@ -24,6 +23,7 @@ namespace RodskaEngine {
 		RODSKA_EAPI virtual void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height) = 0;
 		RODSKA_EAPI virtual void PerformMatrixOperation(std::function<void()> matrixOpFunc) {}
 		RODSKA_EAPI virtual void TranslateMatrix(float x, float y, float z) {}
+		RODSKA_EAPI virtual void ToggleWireframe() = 0;
 
 	private:
 		static RHI s_RHI;

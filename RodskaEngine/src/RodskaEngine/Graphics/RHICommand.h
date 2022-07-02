@@ -13,6 +13,7 @@ namespace RodskaEngine {
 		RODSKA_EAPI static void SetViewport(uint32_t x, uint32_t y, uint32_t width, uint32_t height);
 		RODSKA_EAPI static void PerformMatrixOperation(std::function<void()> matrixOpFunc);
 		RODSKA_EAPI static void TranslateMatrix(float x, float y, float z);
+		RODSKA_EAPI static void ToggleWireframe();
 	private:
 		static RHIAPI* s_RHIAPI;
 	};

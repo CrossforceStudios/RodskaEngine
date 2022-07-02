@@ -33,6 +33,13 @@ namespace RodskaEngine {
 						RodskaApp::Get().Close();
 					ImGui::EndMenu();
 				}
+				if (ImGui::BeginMenu("Graphics"))
+				{
+					if (ImGui::MenuItem("Toggle Wireframes"))
+						RodskaRenderer::ToggleWireframe();
+					ImGui::EndMenu();
+				}
+
 				if (ImGui::BeginMenu("Tools"))
 				{
 					if (ImGui::MenuItem("Plugins")) {
