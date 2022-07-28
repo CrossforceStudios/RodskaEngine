@@ -22,6 +22,7 @@ IncludeDir["yamlcpp"] = "RodskaEngine/vendor/yaml-cpp/include"
 IncludeDir["cmdparser"] = "RodskaEngine/vendor/cmdparser"
 IncludeDir["pythonw"] = "C:/Program Files/Python38/Include"
 IncludeDir["DirectXTK"] = "RodskaEngine/vendor/DirectXTK/Inc"
+IncludeDir["ImGuizmo"] = "RodskaEngine/vendor/ImGuizmo"
 
 group "Dependencies"
 	include "RodskaEngine/vendor/GLFW"
@@ -57,7 +58,7 @@ project "RodskaEngine"
 	pchheader "rdskpch.h"
 	pchsource "RodskaEngine/src/rdskpch.cpp"
 
-	
+
 
 
 	files 
@@ -70,6 +71,8 @@ project "RodskaEngine"
 		"%{prj.name}/vendor/stb_image/**.cpp",
 		"%{prj.name}/vendor/glm/glm/**.hpp",
 		"%{prj.name}/vendor/glm/glm/**.inl",
+		"%{prj.name}/vendor/ImGuizmo/**.h",
+		"%{prj.name}/vendor/ImGuizmo/**.cpp",
 
 	}
 
@@ -85,7 +88,9 @@ project "RodskaEngine"
 		"%{IncludeDir.tinyobjloader}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yamlcpp}",
-		"%{IncludeDir.DirectXTK}"
+		"%{IncludeDir.DirectXTK}",
+		"%{IncludeDir.ImGuizmo}"
+
 	}
 
 	defines 
@@ -134,6 +139,9 @@ project "RodskaEngine"
 		defines "RDSK_DIST"
 		runtime "Release"
 		optimize "on"
+
+	filter("files:RodskaEngine/vendor/ImGuizmo/**.cpp")
+		flags { "NoPCH" }
 	
 
 
@@ -167,7 +175,8 @@ project "RodskaEditor"
 		"%{IncludeDir.imgui}",
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yamlcpp}",
-		"%{IncludeDir.GLFW}"
+		"%{IncludeDir.GLFW}",
+		"%{IncludeDir.ImGuizmo}",
 
 	}
 

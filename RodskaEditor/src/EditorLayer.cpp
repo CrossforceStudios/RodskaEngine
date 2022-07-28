@@ -1,6 +1,7 @@
 #include "EditorLayer.h"
 #include <RodskaEngine/Core/RodskaApp.cpp>
-
+#include <RodskaEngine/Input/InputCodes.h>
+#include <RodskaEngine/Input/InputComponent.h>
 
 
 RodskaEngine::RodskaObject dynamite;
@@ -44,7 +45,8 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 }
 
 void EditorLayer::OnEvent(RodskaEngine::RodskaEvent& e) {
-
+	RodskaEngine::RodskaEventDispatcher dispatcher(e);
+	dispatcher.Dispatch<RodskaEngine::KeyReleasedEvent>(RDSK_BIND_EVENT_CB(EditorLayer, OnKeyReleased));
 
 }
 
@@ -73,7 +75,7 @@ void EditorLayer::OnGUIRender() {
 	m_SceneViewport->Create("Scene", &showEditor, ImGuiWindowFlags_MenuBar);
 	m_SHP->Create("Scene Hierarchy", NULL, 0);
 	m_IOPanel->Create("Console", NULL, ImGuiWindowFlags_MenuBar);
-
+	
 }
 
 void EditorLayer::OnAttachGameUI()
@@ -106,7 +108,20 @@ void EditorLayer::OnAttach()  {
 		RodskaEngine::SceneSerializer serializer(m_ActiveScene);
 		serializer.DeserializeEditor(file);
 	};
-	m_SceneViewport.reset(new RodskaEngine::SceneViewport(m_Framebuffer, m_ActiveScene));
+	m_SceneViewport.reset(new RodskaEngine::SceneViewport(m_Framebuffer, m_ActiveScene, [&]() {
+		RodskaEngine::RodskaObject portion = m_SHP->GetSelectedEntity();
+		std::vector<RDSK_BCOMP(Camera)> sceneCameras = m_ActiveScene->GetComponentsOfType<RDSK_BCOMP(Camera)>();
+		for (auto& camera : sceneCameras) {
+			auto& sceneCamera = camera.Camera;
+			if (!camera.FixedAspectRatio && sceneCamera) {
+				if (portion) {
+					m_EditorUI->RenderTransformGizmo(portion, m_ActiveScene, sceneCamera, m_SceneViewport->GetWidth(), m_SceneViewport->GetHeight());
+				}
+				break;
+			}
+		}
+			
+		}));
 	 {
 		/*
 		cube = m_ActiveScene->CreateObject("Cube");
@@ -176,4 +191,23 @@ void EditorLayer::OnAttach()  {
 		m_ActiveScene->AddObjectToSubsystem("Mesh", dynamite);
 	}
 	 m_SHP->SetContext(m_ActiveScene);
+}
+
+bool EditorLayer::OnKeyReleased(RodskaEngine::KeyReleasedEvent& e)
+{
+	RodskaEngine::InputCode::KeyCode code = (RodskaEngine::InputCode::KeyCode)e.GetKeyCode();
+	if (RodskaEngine::InputComponent::IsKeyPressed(RodskaEngine::InputCode::LeftControl) && !m_EditorUI->IsUsingGizmo()) {
+		switch (code) {
+		case RodskaEngine::InputCode::One:
+			m_EditorUI->SetTransformType(RodskaEngine::TransformType::Position);
+			return true;
+		case RodskaEngine::InputCode::Two:
+			m_EditorUI->SetTransformType(RodskaEngine::TransformType::Rotation);
+			return true;
+		case RodskaEngine::InputCode::Three:
+			m_EditorUI->SetTransformType(RodskaEngine::TransformType::Scale);
+			return true;
+		}
+	}
+	return true;
 }

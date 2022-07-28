@@ -7,6 +7,12 @@ namespace RodskaEngine {
 		return s_Instance->IsKeyPressedImpl
 		(keycode);
 	};
+
+	bool InputComponent::IsKeyPressed(InputCode::KeyCode keycode) {
+		return s_Instance->IsKeyPressedImpl
+		(keycode);
+	};
+
 	bool InputComponent::IsMouseButtonPressed(int button) {
 		return s_Instance->IsMouseButtonPressedImpl
 		(button);

@@ -43,8 +43,7 @@ namespace RodskaEngine {
 		RODSKA_EAPI bool HasComponent(RodskaObject* object) {
 			return m_Registry.any_of<T>(object->GetId());
 		}
-
-	    
+		RODSKA_EAPI RodskaObject GetPrimaryCameraObject();
 		
 	public:
 		 SceneCamera* mainCamera;

@@ -39,6 +39,7 @@ namespace RodskaEngine {
 		CameraType m_CameraType = CameraType::Perspective;
 		float m_Rotation = 0.0f;
 		float m_FOV = 45.0f;
-
+		float m_NearClip = 0.1f;
+		float m_FarClip = 1000.0f;
 	};
 };

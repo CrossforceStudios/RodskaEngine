@@ -25,9 +25,11 @@ namespace RodskaEngine {
 		}
 		uint32_t fBufferId = m_FramebufferScene->GetColorAttachmentRenderID();
 		ImGui::Image((void*)fBufferId, ImVec2{ (float)m_Spec.Width, (float)m_Spec.Height }, ImVec2(0.0f, 1.0f), ImVec2(1.0f, 0.0f));
+		m_AddedContent();
 		ImGui::PopStyleVar();
 		if (m_FirstRun) {
 			m_FirstRun = false;
 		}
 	}
+	
 };

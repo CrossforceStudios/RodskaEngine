@@ -8,6 +8,7 @@
 #include "UILayer.h"
 #include <RodskaEngine/Core/RodskaApp.h>
 #include <RodskaEngine/EventSystem/MouseInputEvent.h>
+#include "ImGuizmo.h"
 
 namespace RodskaEngine {
 
@@ -73,6 +74,7 @@ namespace RodskaEngine {
 	void UILayer::Begin() {
 		m_Backend->NewFrame();
 		ImGui::NewFrame();
+		ImGuizmo::BeginFrame();
 	}
 	
 	void UILayer::End() {

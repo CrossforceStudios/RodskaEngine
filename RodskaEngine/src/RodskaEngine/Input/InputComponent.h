@@ -1,11 +1,14 @@
 #pragma once
 #include "RodskaEngine/Core/EngineCore.h"
 #include <utility>
+#include <RodskaEngine/Input/InputCodes.h>
 namespace RodskaEngine {
 	typedef RODSKA_EAPI std::pair<float, float> MousePosition;
 	class  InputComponent {
 	public:
 		RODSKA_EAPI static bool IsKeyPressed(int keycode);
+		RODSKA_EAPI static bool IsKeyPressed(InputCode::KeyCode keycode);
+
 		RODSKA_EAPI inline static bool IsMouseButtonPressed(int button);
 		RODSKA_EAPI inline static float GetMouseX();
 		RODSKA_EAPI inline static float GetMouseY();

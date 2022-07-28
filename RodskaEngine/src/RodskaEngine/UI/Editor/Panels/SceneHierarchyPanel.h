@@ -13,6 +13,7 @@ namespace RodskaEngine {
 		RODSKA_EAPI virtual void OnCreateProperties();
 		RODSKA_EAPI virtual void Create(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) override;
 		RODSKA_EAPI void SetContext(const Ref<Scene>& scene);
+		RODSKA_EAPI RodskaObject GetSelectedEntity() const;
 	private:
 		void DrawComponents();
 	private:

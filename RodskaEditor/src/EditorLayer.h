@@ -16,6 +16,8 @@ public:
 	virtual void OnRenderGameUI() override;
 	virtual void OnAttach() override;
 private:
+	bool OnKeyReleased(RodskaEngine::KeyReleasedEvent& e);
+private:
 	RodskaEngine::ShaderLibrary m_Library;
 	RodskaEngine::Ref<RodskaEngine::VertexArray> m_VertexArray;
 	RodskaEngine::Ref<RodskaEngine::Material> m_Material;

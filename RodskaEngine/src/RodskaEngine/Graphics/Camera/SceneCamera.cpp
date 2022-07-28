@@ -31,7 +31,7 @@ namespace RodskaEngine {
 			m_projection = glm::ortho(orthoLeft, orthoRight, orthoBottom, orthoTop, OrthographicNear, OrthographicFar);
 		}
 		else {
-			m_projection = glm::perspective(glm::radians(m_FOV), m_AspectRatio, -10.0f, 10.0f);
+			m_projection = glm::perspective(glm::radians(m_FOV), m_AspectRatio, m_NearClip, m_FarClip);
 		}
 		m_view = glm::inverse(m_Transform);
 		m_viewProjection = m_projection * m_view;

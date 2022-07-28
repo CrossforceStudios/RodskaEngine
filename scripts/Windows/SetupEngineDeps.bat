@@ -16,7 +16,9 @@ pushd ..\..\
     git clone git://github.com/gabime/spdlog.git RodskaEngine/vendor/spdlog
     echo "7) DirectXTK"
     git clone https://github.com/Microsoft/DirectXTK RodskaEngine/vendor/DirectXTK
-    echo "8) Zipped Dependencies"
+    echo "8) ImGuizmo"
+    echo git clone https://github.com/CedricGuillemet/ImGuizmo RodskaEngine/vendor/ImGuizmo
+    echo "9) Zipped Dependencies"
     SetupZippedDeps.bat
     echo "Done."
 popd

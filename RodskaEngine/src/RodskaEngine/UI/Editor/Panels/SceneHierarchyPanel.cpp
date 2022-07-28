@@ -12,6 +12,11 @@ namespace RodskaEngine {
 		m_SelectedContext = {};
 	}
 
+	RodskaObject SceneHierarchyPanel::GetSelectedEntity() const
+	{
+		return m_SelectedContext;
+	}
+
 	void SceneHierarchyPanel::DrawComponents()
 	{
 		PropRegister.RenderPropertyFunctions(m_SelectedContext, m_Context, true);

@@ -55,6 +55,18 @@ namespace RodskaEngine {
 
 	}
 
+	RodskaObject Scene::GetPrimaryCameraObject()
+	{
+		auto view = m_Registry.view<RDSKComponent_Camera>();
+		for (auto entity : view) {
+			const auto& camera = view.get<RDSKComponent_Camera>(entity);
+			if (camera.Primary)
+				return RodskaObject(entity, this);
+			
+		}
+		return {};
+	}
+
 	bool Scene::HasObjectInSubsystem(std::string name, RodskaObject& object)
 	{
 			return m_Subsystems[name]->HasObject(object);
