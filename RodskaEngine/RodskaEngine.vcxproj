@@ -77,10 +77,10 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;vendor\mono\msvc\include;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
-      <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -88,7 +88,7 @@
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Debug\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -97,13 +97,13 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;vendor\mono\msvc\include;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -112,7 +112,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Release\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -121,13 +121,13 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;vendor\mono\msvc\include;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <MinimalRebuild>false</MinimalRebuild>
       <StringPooling>true</StringPooling>
-      <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
     </ClCompile>
     <Link>
@@ -136,10 +136,11 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Dist\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\CSharp\CSharpBackend.h" />
     <ClInclude Include="src\Platform\DirectX\Direct3D11Buffer.h" />
     <ClInclude Include="src\Platform\DirectX\Direct3D11Context.h" />
     <ClInclude Include="src\Platform\DirectX\Direct3D11RHIAPI.h" />
@@ -653,6 +654,7 @@
     <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\CSharp\CSharpBackend.cpp" />
     <ClCompile Include="src\Platform\DirectX\Direct3D11Buffer.cpp" />
     <ClCompile Include="src\Platform\DirectX\Direct3D11Context.cpp" />
     <ClCompile Include="src\Platform\DirectX\Direct3D11RHIAPI.cpp" />
@@ -723,10 +725,10 @@
     <ClCompile Include="src\RodskaEngine\UI\UICore\ImGuiExtras.cpp" />
     <ClCompile Include="src\RodskaEngine\UI\UICore\Theme.cpp" />
     <ClCompile Include="src\RodskaEngine\UI\UILayer.cpp" />
+    <ClCompile Include="src\RodskaEngine\Utils\MathUtils.cpp" />
     <ClCompile Include="src\rdskpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\Utils\MathUtils.cpp" />
     <ClCompile Include="vendor\ImGuizmo\GraphEditor.cpp">
       <PrecompiledHeader>NotUsing</PrecompiledHeader>
     </ClCompile>

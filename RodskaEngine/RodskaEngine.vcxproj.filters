@@ -7,6 +7,9 @@
     <Filter Include="src\Platform">
       <UniqueIdentifier>{21CA02E5-0D2D-9289-B6B2-CA3FA2F45D0C}</UniqueIdentifier>
     </Filter>
+    <Filter Include="src\Platform\CSharp">
+      <UniqueIdentifier>{91698B19-FDCA-6827-8638-AFD9F2989FE6}</UniqueIdentifier>
+    </Filter>
     <Filter Include="src\Platform\DirectX">
       <UniqueIdentifier>{E33DFBCB-CFCC-8495-78EB-98906459953B}</UniqueIdentifier>
     </Filter>
@@ -85,12 +88,6 @@
     <Filter Include="vendor\ImGuizmo">
       <UniqueIdentifier>{73BF7F4C-DF4A-ED10-E85B-700554664911}</UniqueIdentifier>
     </Filter>
-    <Filter Include="vendor\ImGuizmo\example">
-      <UniqueIdentifier>{4E948965-BACB-D1FC-C3D5-35202F8CF8F5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="vendor\ImGuizmo\vcpkg-example">
-      <UniqueIdentifier>{F633CAB3-624C-B1DD-2BF9-407797D04577}</UniqueIdentifier>
-    </Filter>
     <Filter Include="vendor\glm">
       <UniqueIdentifier>{829FC5A8-6E57-07F6-D75E-E051C335A2E6}</UniqueIdentifier>
     </Filter>
@@ -114,6 +111,9 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Platform\CSharp\CSharpBackend.h">
+      <Filter>src\Platform\CSharp</Filter>
+    </ClInclude>
     <ClInclude Include="src\Platform\DirectX\Direct3D11Buffer.h">
       <Filter>src\Platform\DirectX</Filter>
     </ClInclude>
@@ -365,6 +365,9 @@
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\UI\UILayer.h">
       <Filter>src\RodskaEngine\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\RodskaEngine\Utils\MathUtils.h">
+      <Filter>src\RodskaEngine\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\RodskaEngine\Utils\Operators.h">
       <Filter>src\RodskaEngine\Utils</Filter>
@@ -1644,9 +1647,11 @@
     <ClInclude Include="vendor\stb_image\stb_image.h">
       <Filter>vendor\stb_image</Filter>
     </ClInclude>
-    <ClInclude Include="src\RodskaEngine\Utils\MathUtils.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="src\Platform\CSharp\CSharpBackend.cpp">
+      <Filter>src\Platform\CSharp</Filter>
+    </ClCompile>
     <ClCompile Include="src\Platform\DirectX\Direct3D11Buffer.cpp">
       <Filter>src\Platform\DirectX</Filter>
     </ClCompile>
@@ -1857,6 +1862,9 @@
     <ClCompile Include="src\RodskaEngine\UI\UILayer.cpp">
       <Filter>src\RodskaEngine\UI</Filter>
     </ClCompile>
+    <ClCompile Include="src\RodskaEngine\Utils\MathUtils.cpp">
+      <Filter>src\RodskaEngine\Utils</Filter>
+    </ClCompile>
     <ClCompile Include="src\rdskpch.cpp">
       <Filter>src</Filter>
     </ClCompile>
@@ -1878,6 +1886,5 @@
     <ClCompile Include="vendor\stb_image\stb_image.cpp">
       <Filter>vendor\stb_image</Filter>
     </ClCompile>
-    <ClCompile Include="src\RodskaEngine\Utils\MathUtils.cpp" />
   </ItemGroup>
 </Project>

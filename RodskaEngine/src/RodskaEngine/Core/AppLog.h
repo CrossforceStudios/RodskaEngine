@@ -1,11 +1,17 @@
 #pragma once
 #include "EngineCore.h"
+
+#pragma warning(push, 0)
 #include "spdlog/spdlog.h"
 #include "spdlog/fmt/ostr.h"
 #include "spdlog/sinks/base_sink.h"
 #include "spdlog/sinks/stdout_color_sinks.h"
 #include "spdlog/details/null_mutex.h"
 #include <mutex>
+#pragma warning(pop)
+
+#define GLM_ENABLE_EXPERIMENTAL
+#include "glm/gtx/string_cast.hpp"
 
 namespace RodskaEngine{
 
@@ -44,6 +50,24 @@ namespace RodskaEngine{
     };
      
 }
+template<typename OStream, glm::length_t L, typename T, glm::qualifier Q>
+inline OStream& operator<<(OStream& os, const glm::vec<L, T, Q>& vector)
+{
+    return os << glm::to_string(vector);
+}
+
+template<typename OStream, glm::length_t C, glm::length_t R, typename T, glm::qualifier Q>
+inline OStream& operator<<(OStream& os, const glm::mat<C, R, T, Q>& matrix)
+{
+    return os << glm::to_string(matrix);
+}
+
+template<typename OStream, typename T, glm::qualifier Q>
+inline OStream& operator<<(OStream& os, glm::qua<T, Q> quaternion)
+{
+    return os << glm::to_string(quaternion);
+}
+
 #define RDSK_CORE_TRACE(...) ::RodskaEngine::AppLog::GetCoreLogger()->trace(__VA_ARGS__)
 #define RDSK_CORE_WARN(...) ::RodskaEngine::AppLog::GetCoreLogger()->warn(__VA_ARGS__)
 #define RDSK_CORE_INFO(...) ::RodskaEngine::AppLog::GetCoreLogger()->info(__VA_ARGS__)

@@ -21,7 +21,7 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectXTK_Desktop_2022_Win1
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{65CB7E83-D18B-FAB9-9AC6-433706463F96}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ScriptCore", "ScriptCore\ScriptCore.vcxproj", "{43DDC966-2F95-0BB4-989C-E40F8473A6A4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptCore", "Rodska-ScriptCore\ScriptCore.csproj", "{43DDC966-2F95-0BB4-989C-E40F8473A6A4}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RodskaEditor", "RodskaEditor\RodskaEditor.vcxproj", "{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}"
 EndProject

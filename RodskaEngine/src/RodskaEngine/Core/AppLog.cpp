@@ -18,6 +18,7 @@ namespace RodskaEngine {
 	 }
 	 std::shared_ptr<spdlog::logger> AppLog::GetCoreLogger() { return s_CoreLog; }
 	 std::shared_ptr<spdlog::logger> AppLog::GetClientLogger() { return s_ClientLog; }
+
 	 void AddMsg(std::string msg) {
 		 Msgs.push_back(msg);
 	 }

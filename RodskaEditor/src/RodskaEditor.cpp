@@ -19,6 +19,8 @@ class RodskaEditor : public RodskaEngine::RodskaApp {
 public:
 	RodskaEditor(int argc, char** argv) : RodskaEngine::RodskaApp(argc, argv) {
 		RodskaEngine::RegisterAllBuiltinComponents();
+		SetCSBasePath("D:/RodskaEngine/RodskaEditor/modules/");
+		InitLangBackend();
 		EditorLayer* eLayer = new EditorLayer();
 		PushLayer(eLayer);
 		

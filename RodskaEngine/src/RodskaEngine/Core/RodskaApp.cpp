@@ -6,6 +6,8 @@
 #include "ModuleHandler.h"
 #include <GLFW/glfw3.h>
 #include <RodskaEngine/Scripting/AmethystBackend.h>
+#include <Platform/CSharp/CSharpBackend.h>
+
 #ifdef _WIN32 
 	#include <Platform/Windows/WindowsECore.h>
 #endif
@@ -28,10 +30,17 @@ namespace RodskaEngine {
 		SceneRegistry = new SceneAdapter();
 		{
 			m_Parser.enable_help();
-			m_Parser.set_optional<std::string>("lang", "slanguage", "python", "The scripting language to be used for making games in Rodska Engine.");
+			m_Parser.set_optional<std::string>("lang", "slanguage", "csharp", "The scripting language to be used for making games in Rodska Engine.");
 		}
 		m_Parser.run();
 		AmethystBackend::CurrentOutputMode = AmethystMode::StdLog;
+		{
+			if (m_Parser.get<std::string>("lang") == "csharp") {
+				m_LangBackendType = AmethystMode::CSharp;
+				m_LangBackend.reset(new CSharpBackend);
+
+			}
+		}
 		m_Viewport = std::unique_ptr<Viewport>(Viewport::Create());
 		m_Viewport->SetEventCallback(RDSK_BIND_EVENT_CB(RodskaApp, OnEvent));
 		RodskaRenderer::Init();
@@ -42,6 +51,8 @@ namespace RodskaEngine {
 
 		
 	}
+
+
 
 	
 	RodskaApp::~RodskaApp() {
@@ -99,6 +110,14 @@ namespace RodskaEngine {
 		return (m_assetDir / newPath).string();
 	}
 
+	void RodskaApp::SetCSBasePath(const std::string& basePath)
+	{
+		if (m_LangBackendType == AmethystMode::CSharp) {
+			auto backend = std::dynamic_pointer_cast<CSharpBackend>(m_LangBackend);
+			backend->SetBase(basePath);
+		}
+	}
+
 	bool RodskaApp::OnWindowClose(WindowClosedEvent& e) {
 		m_IsRunning = false;
 		return true;
@@ -119,8 +138,11 @@ namespace RodskaEngine {
 		return false;
 	}
 
-	void RodskaApp::InitGameUI(const std::string& resPath) {
-	
+	void RodskaApp::InitLangBackend() {
+		if (m_Parser.get<std::string>("lang") == "csharp") {
+			m_LangBackend->Init();
+
+		}
 	}
 
 	void RodskaApp::Run() {

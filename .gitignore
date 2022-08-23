@@ -16,6 +16,9 @@
 # Mono auto generated files
 mono_crash.*
 
+# Mono runtime
+RodskaEditor/mono 
+
 # Build results
 [Dd]ebug/
 [Dd]ebugPublic/
@@ -99,6 +102,10 @@ StyleCopReport.xml
 *.pidb
 *.svclog
 *.scc
+*.vcxproj
+*.vcxproj.filters
+*.vcxproj.user
+*.csproj
 
 # Chutzpah Test files
 _Chutzpah*
@@ -367,5 +374,5 @@ FodyWeavers.xsd
 
 # RodskaEngine builds
 */plugins/*
-/RodskaEngine/vendor/ultralight
+/RodskaEngine/vendor/mono
 /RodskaEditor/RodskaEditor/assets/shaders/DirectX/compiled

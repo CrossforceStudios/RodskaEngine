@@ -17,9 +17,9 @@ pushd ..\..\
     echo "7) DirectXTK"
     git clone https://github.com/Microsoft/DirectXTK RodskaEngine/vendor/DirectXTK
     echo "8) ImGuizmo"
-    echo git clone https://github.com/CedricGuillemet/ImGuizmo RodskaEngine/vendor/ImGuizmo
-    echo "9) Zipped Dependencies"
-    SetupZippedDeps.bat
+    git clone https://github.com/CedricGuillemet/ImGuizmo RodskaEngine/vendor/ImGuizmo
+    echo "9) Mono"
+    git clone https://github.com/mono/mono RodskaEngine/vendor/mono
     echo "Done."
 popd
 pause

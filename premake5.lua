@@ -9,6 +9,11 @@ workspace "RodskaEngine"
 	}	
 
 outputdir =  "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
+LibDir = {}
+
+monoArch = "x64"
+
+LibDir["mono"] = "%{wks.location}/RodskaEngine/vendor/mono/msvc/build/sgen/%{monoArch}/lib/%{cfg.buildcfg}"
 
 IncludeDir = {}
 IncludeDir["GLFW"] = "RodskaEngine/vendor/GLFW/include"
@@ -23,6 +28,7 @@ IncludeDir["cmdparser"] = "RodskaEngine/vendor/cmdparser"
 IncludeDir["pythonw"] = "C:/Program Files/Python38/Include"
 IncludeDir["DirectXTK"] = "RodskaEngine/vendor/DirectXTK/Inc"
 IncludeDir["ImGuizmo"] = "RodskaEngine/vendor/ImGuizmo"
+IncludeDir["mono"] = "RodskaEngine/vendor/mono/msvc/include"
 
 group "Dependencies"
 	include "RodskaEngine/vendor/GLFW"
@@ -48,7 +54,7 @@ project "RodskaEngine"
 	location "RodskaEngine"
 	kind "StaticLib"
 	language "C++"
-	staticruntime "on"
+	staticruntime "off"
 	cppdialect "C++17"
 
 	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
@@ -89,7 +95,9 @@ project "RodskaEngine"
 		"%{IncludeDir.entt}",
 		"%{IncludeDir.yamlcpp}",
 		"%{IncludeDir.DirectXTK}",
-		"%{IncludeDir.ImGuizmo}"
+		"%{IncludeDir.ImGuizmo}",
+		"%{IncludeDir.mono}"
+
 
 	}
 
@@ -107,7 +115,8 @@ project "RodskaEngine"
 		"yaml-cpp",
 		"C:/Program Files/Python38/libs/python38_d.lib",
 		"opengl32.lib",
-		"runtimeobject.lib"
+		"runtimeobject.lib",
+		"%{LibDir.mono}/libmono-static-sgen.lib",
 
 	}
 
@@ -120,6 +129,13 @@ project "RodskaEngine"
 			"RDSK_BUILD_DLL",
 			"GLFW_INCLUDE_NONE",
 			"RDSK_DYNAMIC_LINK"
+		}
+
+		links {
+			"Ws2_32.lib",
+			"Winmm.lib",
+			"Version.lib",
+			"Bcrypt.lib"
 		}
 
 		includedirs {
@@ -177,12 +193,13 @@ project "RodskaEditor"
 		"%{IncludeDir.yamlcpp}",
 		"%{IncludeDir.GLFW}",
 		"%{IncludeDir.ImGuizmo}",
+		"%{IncludeDir.mono}"
 
 	}
 
 	links 
 	{
-		"RodskaEngine"
+		"RodskaEngine",
 	}
 
 	defines {
@@ -201,6 +218,7 @@ project "RodskaEditor"
 		runtime "Debug"
 		symbols "on"
 	
+
 	filter "configurations:Release"
 		defines "RDSK_RELEASE"
 		runtime "Release"
@@ -243,58 +261,30 @@ project "RodskaEditor"
 
 group "Modules"
 	project "ScriptCore"
-		location "ScriptCore"
+		location "Rodska-ScriptCore"
 		kind "SharedLib"
-		language "C++"
-		staticruntime "off"
-		cppdialect "C++17"
+		language "C#"
+		dotnetframework "4.7.2"
+		namespace "Rodska"
 	
-		targetdir ("RodskaEditor/plugins")
-		objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
+		targetdir ("%{wks.location}/RodskaEditor/modules/Scripts")
+		objdir ("%{wks.location}/RodskaEditor/modules/Scripts/Intermediates")
 	
 		files 
 		{
-			"%{prj.name}/src/**.h",
-			"%{prj.name}/src/**.cpp",
-			"%{prj.name}/src/**.hpp"
-		}
-	
-		includedirs
-		{
-			"RodskaEngine/src",
-			"RodskaEngine/vendor/spdlog/include",
-			"%{IncludeDir.glm}",
-			"%{IncludeDir.GLAD}",
-			"%{IncludeDir.imgui}",
-			"%{IncludeDir.entt}",
-			"%{IncludeDir.yamlcpp}"
-		}
-	
-		links 
-		{
-			"RodskaEngineShared"
-		}
-			
-		filter "system:windows"
-			systemversion "latest"
+			"%{wks.location}/%{cfg.location}/Source/**.cs",
+			"%{wks.location}/%{cfg.location}/Properties/**.cs",
 
-			defines
-			{
-				"RDSK_PLATFORM_WINDOWS",
-			}
+		}
 	
 		filter "configurations:Debug"
-			defines "RDSK_DEBUG"
-			runtime "Debug"
-			symbols "on"
-			
+			optimize "Off"
+			symbols "Default"
+
 		filter "configurations:Release"
-			defines "RDSK_RELEASE"
-			runtime "Release"
-			optimize "on"
-	
+			optimize "On"
+			symbols "Default"
+
 		filter "configurations:Dist"
-			defines "RDSK_DIST"
-			runtime "Release"
-			optimize "on"
-	
+			optimize "Full"
+			symbols "Off"
