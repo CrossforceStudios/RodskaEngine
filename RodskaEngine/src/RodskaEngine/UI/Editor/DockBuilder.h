@@ -3,16 +3,15 @@
 
 #include "RodskaEngine/UI/UICore/GUIBuilder.h"
 #include <string>
-
 namespace RodskaEngine {
 
     struct DockConfig {
-        ImGuiDockNodeFlags DockFlags = ImGuiDockNodeFlags_None;
+        int DockFlags = 0;
         bool Fullscreen = true;
         bool Padding = false;
-        ImGuiWindowFlags ExtraFlags = 0;
+        int ExtraFlags = 0;
         std::string dockId;
-        DockConfig(std::string dockID, ImGuiDockNodeFlags dFlags, bool fullscreen, bool padding, ImGuiWindowFlags eFlags = 0) :
+        DockConfig(std::string dockID, int dFlags, bool fullscreen, bool padding, int eFlags = 0) :
         dockId(dockID), DockFlags(dFlags), Fullscreen(fullscreen), Padding(padding), ExtraFlags(eFlags) {
 
         }
@@ -21,7 +20,7 @@ namespace RodskaEngine {
         
     public:
         RODSKA_EAPI DockBuilder(DockConfig& config);
-        RODSKA_EAPI virtual void Create(const std::string& title, bool* openPtr = nullptr, ImGuiWindowFlags flags = 0);
+        RODSKA_EAPI virtual void Create(const std::string& title, bool* openPtr = nullptr, int flags = 0);
         RODSKA_EAPI virtual void OnCreateMenu() {}
 
     private:

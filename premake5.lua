@@ -1,3 +1,5 @@
+LibDir = {}
+
 workspace "RodskaEngine"
 	architecture "x64"
 
@@ -8,30 +10,29 @@ workspace "RodskaEngine"
 		"Dist"
 	}	
 
+	startproject "RodskaEditor"
+
 outputdir =  "%{cfg.buildcfg}-%{cfg.system}-%{cfg.architecture}"
-LibDir = {}
 
 monoArch = "x64"
-
 LibDir["mono"] = "%{wks.location}/RodskaEngine/vendor/mono/msvc/build/sgen/%{monoArch}/lib/%{cfg.buildcfg}"
 
+
 IncludeDir = {}
-IncludeDir["GLFW"] = "RodskaEngine/vendor/GLFW/include"
-IncludeDir["GLAD"] = "RodskaEngine/vendor/GLAD/include"
-IncludeDir["imgui"] = "RodskaEngine/vendor/imgui"
-IncludeDir["glm"] = "RodskaEngine/vendor/glm"
-IncludeDir["stb_image"] = "RodskaEngine/vendor/stb_image"
-IncludeDir["tinyobjloader"] = "RodskaEngine/vendor/tinyobjloader"
-IncludeDir["entt"] = "RodskaEngine/vendor/entt/include"
-IncludeDir["yamlcpp"] = "RodskaEngine/vendor/yaml-cpp/include"
-IncludeDir["cmdparser"] = "RodskaEngine/vendor/cmdparser"
-IncludeDir["pythonw"] = "C:/Program Files/Python38/Include"
-IncludeDir["DirectXTK"] = "RodskaEngine/vendor/DirectXTK/Inc"
-IncludeDir["ImGuizmo"] = "RodskaEngine/vendor/ImGuizmo"
-IncludeDir["mono"] = "RodskaEngine/vendor/mono/msvc/include"
+IncludeDir["GLFW"] = "%{wks.location}/RodskaEngine/vendor/glfw/include"
+IncludeDir["GLAD"] = "%{wks.location}/RodskaEngine/vendor/GLAD/include"
+IncludeDir["imgui"] = "%{wks.location}/RodskaEngine/vendor/imgui"
+IncludeDir["glm"] = "%{wks.location}/RodskaEngine/vendor/glm"
+IncludeDir["stb_image"] = "%{wks.location}/RodskaEngine/vendor/stb_image"
+IncludeDir["tinyobjloader"] = "%{wks.location}/RodskaEngine/vendor/tinyobjloader"
+IncludeDir["entt"] = "%{wks.location}/RodskaEngine/vendor/entt/include"
+IncludeDir["yamlcpp"] = "%{wks.location}/RodskaEngine/vendor/yaml-cpp/include"
+IncludeDir["cmdparser"] = "%{wks.location}/RodskaEngine/vendor/cmdparser"
+IncludeDir["DirectXTK"] = "%{wks.location}/RodskaEngine/vendor/DirectXTK/Inc"
+IncludeDir["mono"] = "%{wks.location}/RodskaEngine/vendor/mono/msvc/include"
 
 group "Dependencies"
-	include "RodskaEngine/vendor/GLFW"
+	include "RodskaEngine/vendor/glfw"
 	include "RodskaEngine/vendor/GLAD"
 	include "RodskaEngine/vendor/imgui"
 	include "RodskaEngine/vendor/tinyobjloader"
@@ -50,214 +51,9 @@ group "Dependencies"
 			
 group ""
 
-project "RodskaEngine"
-	location "RodskaEngine"
-	kind "StaticLib"
-	language "C++"
-	staticruntime "off"
-	cppdialect "C++17"
-
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-
-
-	pchheader "rdskpch.h"
-	pchsource "RodskaEngine/src/rdskpch.cpp"
-
-
-
-
-	files 
-	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/src/**.hpp",
-
-		"%{prj.name}/vendor/stb_image/**.h",
-		"%{prj.name}/vendor/stb_image/**.cpp",
-		"%{prj.name}/vendor/glm/glm/**.hpp",
-		"%{prj.name}/vendor/glm/glm/**.inl",
-		"%{prj.name}/vendor/ImGuizmo/**.h",
-		"%{prj.name}/vendor/ImGuizmo/**.cpp",
-
-	}
-
-	includedirs
-	{
-		"%{prj.name}/src",
-		"%{prj.name}/vendor/spdlog/include",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.imgui}",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.stb_image}",
-		"%{IncludeDir.tinyobjloader}",
-		"%{IncludeDir.entt}",
-		"%{IncludeDir.yamlcpp}",
-		"%{IncludeDir.DirectXTK}",
-		"%{IncludeDir.ImGuizmo}",
-		"%{IncludeDir.mono}"
-
-
-	}
-
-	defines 
-	{
-		"_CRT_SECURE_NO_WARNINGS"
-	}
-
-	links 
-	{
-		"GLFW",
-		"GLAD",
-		"imgui",
-		"tinyobjloader",
-		"yaml-cpp",
-		"C:/Program Files/Python38/libs/python38_d.lib",
-		"opengl32.lib",
-		"runtimeobject.lib",
-		"%{LibDir.mono}/libmono-static-sgen.lib",
-
-	}
-
-	filter "system:windows"
-		systemversion "latest"
-
-		defines
-		{
-			"RDSK_PLATFORM_WINDOWS",
-			"RDSK_BUILD_DLL",
-			"GLFW_INCLUDE_NONE",
-			"RDSK_DYNAMIC_LINK"
-		}
-
-		links {
-			"Ws2_32.lib",
-			"Winmm.lib",
-			"Version.lib",
-			"Bcrypt.lib"
-		}
-
-		includedirs {
-			"%{IncludeDir.pythonw}"
-		}
-
-	filter "configurations:Debug"
-		defines "RDSK_DEBUG"
-		runtime "Debug"
-		symbols "on"
-	filter "configurations:Release"
-		defines "RDSK_RELEASE"
-		runtime "Release"
-		optimize "on"
-		
-	filter "configurations:Dist"
-		defines "RDSK_DIST"
-		runtime "Release"
-		optimize "on"
-
-	filter("files:RodskaEngine/vendor/ImGuizmo/**.cpp")
-		flags { "NoPCH" }
-	
-
-
-project "RodskaEditor"
-	location "RodskaEditor"
-	kind "ConsoleApp"
-	language "C++"
-	targetdir ("bin/" .. outputdir .. "/%{prj.name}")
-	objdir ("bin-int/" .. outputdir .. "/%{prj.name}")
-	staticruntime "off"
-	cppdialect "C++17"
-	
-	
-
-		
-	files 
-	{
-		"%{prj.name}/src/**.h",
-		"%{prj.name}/src/**.cpp",
-		"%{prj.name}/assets/shaders/DirectX/**.hlsl"
-	}
-
-
-
-	includedirs
-	{
-		"RodskaEngine/vendor/spdlog/include",
-		"RodskaEngine/src",
-		"%{IncludeDir.glm}",
-		"%{IncludeDir.GLAD}",
-		"%{IncludeDir.imgui}",
-		"%{IncludeDir.entt}",
-		"%{IncludeDir.yamlcpp}",
-		"%{IncludeDir.GLFW}",
-		"%{IncludeDir.ImGuizmo}",
-		"%{IncludeDir.mono}"
-
-	}
-
-	links 
-	{
-		"RodskaEngine",
-	}
-
-	defines {
-	}
-	
-	filter "system:windows"
-		systemversion "latest"
-
-		defines
-		{
-			"RDSK_PLATFORM_WINDOWS",
-		}
-
-	filter "configurations:Debug"
-		defines "RDSK_DEBUG"
-		runtime "Debug"
-		symbols "on"
-	
-
-	filter "configurations:Release"
-		defines "RDSK_RELEASE"
-		runtime "Release"
-		optimize "on"
-
-	filter "configurations:Dist"
-		defines "RDSK_DIST"
-		runtime "Release"
-		optimize "on"
-
-		filter("files:**Shader11.hlsl")
-			local shader_dir = "%{prj.name}/assets/shaders/DirectX"
-			shadermodel("5.0")
-			shaderassembler("AssemblyCode")
-			shaderobjectfileoutput(shader_dir.."/compiled/%{file.basename}"..".11.cso")
-			shaderassembleroutput(shader_dir.."/compiled/%{file.basename}"..".11.asm")
-			filter("files:**PixelShader11.hlsl")		
-				removeflags("ExcludeFromBuild")
-				shadertype("Pixel")
-
-			filter("files:**VertexShader11.hlsl")
-				removeflags("ExcludeFromBuild")
-				shadertype("Vertex")
-			
-			shaderoptions({"/WX"})
-	
-	filter("files:**Shader12.hlsl")
-			local shader_dir = "%{prj.name}/assets/shaders/DirectX"
-			shadermodel("5.1")
-			shaderassembler("AssemblyCode")
-			shaderobjectfileoutput(shader_dir.."/compiled/%{file.basename}"..".12.cso")
-			shaderassembleroutput(shader_dir.."/compiled/%{file.basename}"..".12.asm")
-			filter("files:**PixelShader12.hlsl")		
-				shadertype("Pixel")
-
-			filter("files:**VertexShader12.hlsl")
-				shadertype("Vertex")
-			
-			shaderoptions({"/WX"})
+group "Projects"
+	include "RodskaEditor"
+	include "RodskaEngine"
 
 group "Modules"
 	project "ScriptCore"

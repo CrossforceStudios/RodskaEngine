@@ -2,19 +2,9 @@ newmtl Slide1Mtl
 Material Color
 Ka 0.103634 0.108711 0.14198
 Kd 0.103634 0.108711 0.14198
-Ks 0.0410472 0.0430581 0.0562353 
+Ks 0.0621805 0.0652267 0.0851882 
 
 d 1
 
 Ns 0
-
-newmtl Union1Mtl
-Material Color
-Ka 1 0 0
-Kd 1 0 0
-Ks 0.309804 0 0 
-
-d 1
-
-Ns 255
 

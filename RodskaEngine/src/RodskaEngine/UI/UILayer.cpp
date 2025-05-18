@@ -35,9 +35,9 @@ namespace RodskaEngine {
 		io.ConfigFlags |= ImGuiConfigFlags_ViewportsEnable;         // Enable Multi-Viewport / Platform Windows
 		//io.ConfigViewportsNoAutoMerge = true;
 		//io.ConfigViewportsNoTaskBarIcon = true;
-		Fonts->SetFont("AtkinsonHDefault", "D:/RodskaEngine/RodskaEditor/assets/fonts/AtkinsonHyperlegible-Regular.ttf", 18.0f);
+		Fonts->SetFont("AtkinsonHDefault", "E:/RW/RodskaEngine/RodskaEditor/assets/fonts/AtkinsonHyperlegible-Regular.ttf", 18.0f);
 		io.FontDefault = Fonts->GetFont("AtkinsonHDefault");
-		Fonts->SetFont("AtkinsonHBold","D:/RodskaEngine/RodskaEditor/assets/fonts/AtkinsonHyperlegible-Bold.ttf", 18.0f);
+		Fonts->SetFont("AtkinsonHBold","E:/RW/RodskaEngine/RodskaEditor/assets/fonts/AtkinsonHyperlegible-Bold.ttf", 18.0f);
 		SetupTheme();
 		// Setup Dear ImGui style
 		m_DarkTheme->Apply();
@@ -99,30 +99,30 @@ namespace RodskaEngine {
 
 	void UILayer::SetupTheme()
 	{
-		m_DarkTheme->AddStyleColor(ImGuiCol_WindowBg, ImVec4{ 0.11f, 0.115f, 0.12f, 1.0f});
+		m_DarkTheme->AddStyleColor(ImGuiCol_WindowBg, TempVec4{ 0.11f, 0.115f, 0.12f, 1.0f});
 
 
-		m_DarkTheme->AddStyleColor(ImGuiCol_Header, ImVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_HeaderHovered, ImVec4{ 0.31f, 0.315f, 0.32f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_HeaderActive, ImVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_Header, TempVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_HeaderHovered, TempVec4{ 0.31f, 0.315f, 0.32f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_HeaderActive, TempVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
 
-		m_DarkTheme->AddStyleColor(ImGuiCol_Button, ImVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_ButtonHovered, ImVec4{ 0.31f, 0.315f, 0.32f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_ButtonActive, ImVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_Button, TempVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_ButtonHovered, TempVec4{ 0.31f, 0.315f, 0.32f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_ButtonActive, TempVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
 
-		m_DarkTheme->AddStyleColor(ImGuiCol_FrameBg, ImVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_FrameBgHovered, ImVec4{ 0.31f, 0.315f, 0.32f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_FrameBgActive, ImVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_FrameBg, TempVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_FrameBgHovered, TempVec4{ 0.31f, 0.315f, 0.32f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_FrameBgActive, TempVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
 
-		m_DarkTheme->AddStyleColor(ImGuiCol_Tab, ImVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_TabHovered, ImVec4{ 0.38f, 0.385f, 0.39f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_TabActive, ImVec4{ 0.28f, 0.285f, 0.29f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_TabUnfocused, ImVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_TabUnfocusedActive, ImVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_Tab, TempVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_TabHovered, TempVec4{ 0.38f, 0.385f, 0.39f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_TabActive, TempVec4{ 0.28f, 0.285f, 0.29f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_TabUnfocused, TempVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_TabUnfocusedActive, TempVec4{ 0.21f, 0.215f, 0.22f, 1.0f });
 
-		m_DarkTheme->AddStyleColor(ImGuiCol_TitleBg, ImVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_TitleBgActive, ImVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
-		m_DarkTheme->AddStyleColor(ImGuiCol_TitleBgCollapsed, ImVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_TitleBg, TempVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_TitleBgActive, TempVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
+		m_DarkTheme->AddStyleColor(ImGuiCol_TitleBgCollapsed, TempVec4{ 0.16f, 0.165f, 0.17f, 1.0f });
 	}
 
 	void UILayer::OnGUIRender() {

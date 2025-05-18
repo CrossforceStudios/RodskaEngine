@@ -1,5 +1,6 @@
 #include "rdskpch.h"
 #include "PropertyRegistry.h"
+#include <imgui.h>
 #include <imgui_internal.h>
 
 namespace RodskaEngine {

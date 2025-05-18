@@ -1,4 +1,5 @@
 #include "rdskpch.h"
+#include "imgui.h"
 
 #include "Theme.h"
 namespace RodskaEngine {
@@ -24,7 +25,7 @@ namespace RodskaEngine {
 		case ThemeScope::Global:
 			auto& colors = ImGui::GetStyle().Colors;
 			for (auto it = m_Colors.begin(); it != m_Colors.end(); ++it) {
-				colors[it->first] = it->second;
+				colors[it->first] = ImVec4(it->second.x,it->second.y,it->second.z,it->second.w);
 			}
 		}
 		
@@ -34,28 +35,28 @@ namespace RodskaEngine {
 		ImGui::PopStyleVar(m_StyleVars);
 		ImGui::PopStyleColor(m_ColorVars);
 	}
-	void Theme::AddStyleColor(ImGuiCol colorKey, ImVec4 color)
+	void Theme::AddStyleColor(int colorKey, TempVec4 color)
 	{
 		m_Colors[colorKey] = color;
 	}
-	void Theme::AddStyleVector(ImGuiStyleVar key, ImVec2 style)
+	void Theme::AddStyleVector(int key, TempVec2 style)
 	{
 		m_StyleVectors[key] = style;
 	}
-	void Theme::AddStyleFloat(ImGuiStyleVar key, float style)
+	void Theme::AddStyleFloat(int key, float style)
 	{
 		m_StyleFloats[key] = style;
 	}
-	void Theme::ApplyColor(ImGuiCol colorKey)
+	void Theme::ApplyColor(int colorKey)
 	{
-		ImGui::PushStyleColor(colorKey, m_Colors[colorKey]);
+		ImGui::PushStyleColor(colorKey, ImVec4(m_Colors[colorKey].x,m_Colors[colorKey].y, m_Colors[colorKey].z, m_Colors[colorKey].w));
 	}
-	void Theme::ApplyStyleFloat(ImGuiStyleVar styleKey)
+	void Theme::ApplyStyleFloat(int styleKey)
 	{
 		ImGui::PushStyleVar(styleKey, m_StyleFloats[styleKey]);
 	}
-	void Theme::ApplyStyleVector(ImGuiStyleVar styleKey)
+	void Theme::ApplyStyleVector(int styleKey)
 	{
-		ImGui::PushStyleVar(styleKey, m_StyleVectors[styleKey]);
+		ImGui::PushStyleVar(styleKey, ImVec2(m_StyleVectors[styleKey].x, m_StyleVectors[styleKey].y));
 	}
 };

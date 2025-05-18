@@ -11,9 +11,9 @@ RodskaEngine::RodskaObject cube2;
 EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 {
 	m_ActiveScene.reset(new RodskaEngine::Scene());
-	m_Library.Load("FlatColor", ("D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/FlatColor.glsl"));
-	m_Library.Load("Material", ("D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Material.glsl"));
-	m_Library.Load("Particle", ("D:/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Particles.glsl"));
+	m_Library.Load("FlatColor", ("E:/RW/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/FlatColor.glsl"));
+	m_Library.Load("Material", ("E:/RW/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Material.glsl"));
+	m_Library.Load("Particle", ("E:/RW/RodskaEngine/RodskaEditor/assets/shaders/OpenGL/Particles.glsl"));
 
 	m_SHP.reset(new RodskaEngine::SceneHierarchyPanel(m_ActiveScene));
 
@@ -36,8 +36,7 @@ EditorLayer::EditorLayer() : Layer("Rodska Editor Layer")
 	m_Material->Set("material.ambient", { 0.2f, 0.3f, 0.8f, 1.0f });
 	m_Material->Set("material.metallic", 0.5f);
 
-	m_MatEditor.reset(new RodskaEngine::MaterialEditor(m_Material));
-	m_EditorUI.reset(new RodskaEngine::EditorDock(RodskaEngine::DockConfig("RodskaEditor", ImGuiDockNodeFlags_None, true, false, 0)));
+	m_EditorUI.reset(new RodskaEngine::EditorDock(RodskaEngine::DockConfig("RodskaEditor", 0, true, false, 0)));
 	m_IOPanel.reset(new RodskaEngine::IOPanel());
 
 
@@ -70,11 +69,10 @@ void EditorLayer::OnUpdate(RodskaEngine::TimeStep ts)
 }
 
 void EditorLayer::OnGUIRender() {
-	m_EditorUI->CreateUI("Rodska Editor", NULL, ImGuiWindowFlags_MenuBar);
-	m_MatEditor->Create("Material Editor", &showEditor, ImGuiWindowFlags_MenuBar);
-	m_SceneViewport->Create("Scene", &showEditor, ImGuiWindowFlags_MenuBar);
+	m_EditorUI->CreateUI("Rodska Editor", NULL, 1 << 10);
+	m_SceneViewport->Create("Scene", &showEditor, 1 << 10);
 	m_SHP->Create("Scene Hierarchy", NULL, 0);
-	m_IOPanel->Create("Console", NULL, ImGuiWindowFlags_MenuBar);
+	m_IOPanel->Create("Console", NULL, 1 << 10);
 	
 }
 
@@ -176,7 +174,7 @@ void EditorLayer::OnAttach()  {
 		glm::vec3 pos1 = glm::vec3{ -0.0f, 0.0f, 0.0f };
 		transformComponent2.Translation = pos1;
 
-		meshComponent2.MeshFile = "D:/RodskaEngine/RodskaEditor/assets/models/Handgun_obj.obj";
+		meshComponent2.MeshFile = "E:/RW/RodskaEngine/RodskaEditor/assets/models/Dynamite.obj";
 		meshComponent2.Shader = "Material";
 		meshComponent2.Color = { 1.0f, 0.0f, 0.0f, 1.0f };
 

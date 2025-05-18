@@ -1,6 +1,7 @@
 #pragma once
-#include "imgui.h"
 #include "RodskaEngine/Graphics/RodskaRenderer.h"
+
+struct ImDrawData;
 
 namespace RodskaEngine {
 	class  ImGuiBackend {

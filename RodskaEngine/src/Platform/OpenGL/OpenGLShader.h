@@ -1,6 +1,7 @@
 #pragma once
 #include "RodskaEngine/Graphics/GraphicsCore.h"
 #include "RodskaEngine/Graphics/Shader.h"
+#include <glad/glad.h>
 
 namespace RodskaEngine {
 	class  OpenGLShader : public Shader {

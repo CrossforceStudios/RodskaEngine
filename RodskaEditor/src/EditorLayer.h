@@ -5,7 +5,6 @@
 #include <RodskaEngine.h>
 #include "CameraController.h"
 #include <Platform/OpenGL/OpenGLShader.h>
-#include <RodskaEngine/UI/Editor/MaterialEditor.h>
 class EditorLayer : public RodskaEngine::Layer {
 public:
 	EditorLayer();
@@ -22,7 +21,6 @@ private:
 	RodskaEngine::Ref<RodskaEngine::VertexArray> m_VertexArray;
 	RodskaEngine::Ref<RodskaEngine::Material> m_Material;
 	static inline bool showEditor = false;
-	RodskaEngine::Ref<RodskaEngine::MaterialEditor> m_MatEditor;
 	RodskaEngine::Ref<RodskaEngine::EditorDock> m_EditorUI;
 	RodskaEngine::Ref <RodskaEngine::IOPanel> m_IOPanel;
 

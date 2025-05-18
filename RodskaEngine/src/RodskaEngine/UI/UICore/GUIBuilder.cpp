@@ -3,6 +3,8 @@
 #include "GUIBuilder.h"
 #include <glm/fwd.hpp>
 #include <RodskaEngine/Scene/RodskaObject.h>
+#include "imgui.h"
+#include <imgui_internal.h>
 #include "ImGuizmo.h"
 #include <glm/gtc/type_ptr.hpp>
 #include <RodskaEngine/Utils/MathUtils.h>
@@ -26,6 +28,19 @@ namespace RodskaEngine {
 		ImGui::SliderFloat(label.c_str(), &flOut, min, max);
 	}
 
+	ImGuizmo::OPERATION getGizmoOperation(TransformType transformMode)
+	{
+		switch (transformMode) {
+		case TransformType::Position:
+			return ImGuizmo::OPERATION::TRANSLATE;
+		case TransformType::Rotation:
+			return ImGuizmo::OPERATION::ROTATE;
+		case TransformType::Scale:
+			return ImGuizmo::OPERATION::SCALE;
+		}
+	}
+
+
 	void GUIBuilder::RenderTransformGizmo(RodskaObject portion, Ref<Scene> scene, SceneCamera* editorCamera, uint32_t width, uint32_t height)
 	{
 		ImGuizmo::SetOrthographic(false);
@@ -44,7 +59,7 @@ namespace RodskaEngine {
 		glm::mat4 tMatrix = selectedTransform.GetTransform();
 
 		bool snap = InputComponent::IsKeyPressed(InputCode::LeftControl);
-		auto operationType = GetGizmoOperation();
+		auto operationType = getGizmoOperation(m_TransformMode);
 		float snapVal = 0.5f;
 		if (operationType == ImGuizmo::OPERATION::ROTATE)
 			snapVal = 45.0f;
@@ -62,13 +77,29 @@ namespace RodskaEngine {
 		}
 	}
 
-	void GUIBuilder::Create(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) {
+	bool GUIBuilder::Splitter(bool split_vertically, float thickness, float* size1, float* size2, float min_size1, float min_size2, float splitter_long_axis_size)
+	{
+			using namespace ImGui;
+			ImGuiContext& g = *GImGui;
+			ImGuiWindow* window = g.CurrentWindow;
+			ImGuiID id = window->GetID("##Splitter");
+			ImRect bb;
+			float x1 = window->DC.CursorPos.x + (split_vertically ? *size1 : 0.0f);
+			float y1 = window->DC.CursorPos.y + (split_vertically ? 0.0f : *size1);
+			float x2 = bb.Min.x + CalcItemSize(split_vertically ? ImVec2(thickness, splitter_long_axis_size) : ImVec2(splitter_long_axis_size, thickness), 0.0f, 0.0f).x;
+			float y2 = bb.Min.y + CalcItemSize(split_vertically ? ImVec2(thickness, splitter_long_axis_size) : ImVec2(splitter_long_axis_size, thickness), 0.0f, 0.0f).y;
+			bb.Min = ImVec2(x1, y1);
+			bb.Max = ImVec2(x2, y2);
+			return SplitterBehavior(bb, id, split_vertically ? ImGuiAxis_X : ImGuiAxis_Y, size1, size2, min_size1, min_size2, 0.0f);
+	}
+
+	void GUIBuilder::Create(const std::string& title, bool* openPtr, int flags) {
 		ImGui::Begin(title.c_str(), openPtr, flags);
 		OnCreate();
 		ImGui::End();
 	}
 
-	void GUIBuilder::RenderColorEdit4(const std::string& label, float* color, ImGuiColorEditFlags flags) {
+	void GUIBuilder::RenderColorEdit4(const std::string& label, float* color, int flags) {
 		ImGui::ColorEdit4(label.c_str(), color, flags);
 	}
 
@@ -77,18 +108,7 @@ namespace RodskaEngine {
 		m_TransformMode = transformType;
 	}
 
-	ImGuizmo::OPERATION GUIBuilder::GetGizmoOperation() const
-	{
-		switch (m_TransformMode) {
-			case TransformType::Position:
-				return ImGuizmo::OPERATION::TRANSLATE;
-			case TransformType::Rotation:
-				return ImGuizmo::OPERATION::ROTATE;
-			case TransformType::Scale:
-				return ImGuizmo::OPERATION::SCALE;
-		}
-	}
-
+	
 	TransformType GUIBuilder::GetTranformType() const
 	{
 		return m_TransformMode;
@@ -103,9 +123,9 @@ namespace RodskaEngine {
 		return ImGuizmo::IsUsing();
 	}
 
-	ImGuizmo::MODE GUIBuilder::GetSpaceMode() const
+	ImGuizmo::MODE GetSpaceMode(UIMatrixSpace space) 
 	{
-		switch (m_Space) {
+		switch (space) {
 			case UIMatrixSpace::Object:
 				return ImGuizmo::LOCAL;
 			case UIMatrixSpace::Scene:

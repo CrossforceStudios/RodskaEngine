@@ -1,11 +1,17 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
+# Visual Studio Version 17
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Projects", "Projects", "{B63FEAB7-A20D-DEBD-8BA1-4EE4770EBA22}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RodskaEditor", "RodskaEditor\RodskaEditor.vcxproj", "{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RodskaEngine", "RodskaEngine\RodskaEngine.vcxproj", "{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}"
+EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Dependencies", "Dependencies", "{53E47842-3FC8-3998-A828-34EB942B241A}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLAD", "RodskaEngine\vendor\GLAD\GLAD.vcxproj", "{5D4A857C-4981-860D-F26D-6C10DE83020F}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "RodskaEngine\vendor\GLFW\GLFW.vcxproj", "{154B857C-0182-860D-AA6E-6C109684020F}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "GLFW", "RodskaEngine\vendor\glfw\GLFW.vcxproj", "{154B857C-0182-860D-AA6E-6C109684020F}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "imgui", "RodskaEngine\vendor\imgui\imgui.vcxproj", "{0098A80F-6CAC-D0C0-352E-7420A101CDF1}"
 EndProject
@@ -23,10 +29,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Modules", "Modules", "{65CB
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ScriptCore", "Rodska-ScriptCore\ScriptCore.csproj", "{43DDC966-2F95-0BB4-989C-E40F8473A6A4}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RodskaEditor", "RodskaEditor\RodskaEditor.vcxproj", "{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}"
-EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "RodskaEngine", "RodskaEngine\RodskaEngine.vcxproj", "{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,6 +36,18 @@ Global
 		Release|x64 = Release|x64
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Debug|x64.ActiveCfg = Debug|x64
+		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Debug|x64.Build.0 = Debug|x64
+		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Dist|x64.ActiveCfg = Dist|x64
+		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Dist|x64.Build.0 = Dist|x64
+		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Release|x64.ActiveCfg = Release|x64
+		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Release|x64.Build.0 = Release|x64
+		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Debug|x64.ActiveCfg = Debug|x64
+		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Debug|x64.Build.0 = Debug|x64
+		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Dist|x64.ActiveCfg = Dist|x64
+		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Dist|x64.Build.0 = Dist|x64
+		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Release|x64.ActiveCfg = Release|x64
+		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Release|x64.Build.0 = Release|x64
 		{5D4A857C-4981-860D-F26D-6C10DE83020F}.Debug|x64.ActiveCfg = Debug|x64
 		{5D4A857C-4981-860D-F26D-6C10DE83020F}.Debug|x64.Build.0 = Debug|x64
 		{5D4A857C-4981-860D-F26D-6C10DE83020F}.Dist|x64.ActiveCfg = Dist|x64
@@ -82,23 +96,13 @@ Global
 		{43DDC966-2F95-0BB4-989C-E40F8473A6A4}.Dist|x64.Build.0 = Dist|x64
 		{43DDC966-2F95-0BB4-989C-E40F8473A6A4}.Release|x64.ActiveCfg = Release|x64
 		{43DDC966-2F95-0BB4-989C-E40F8473A6A4}.Release|x64.Build.0 = Release|x64
-		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Debug|x64.ActiveCfg = Debug|x64
-		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Debug|x64.Build.0 = Debug|x64
-		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Dist|x64.ActiveCfg = Dist|x64
-		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Dist|x64.Build.0 = Dist|x64
-		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Release|x64.ActiveCfg = Release|x64
-		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B}.Release|x64.Build.0 = Release|x64
-		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Debug|x64.ActiveCfg = Debug|x64
-		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Debug|x64.Build.0 = Debug|x64
-		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Dist|x64.ActiveCfg = Dist|x64
-		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Dist|x64.Build.0 = Dist|x64
-		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Release|x64.ActiveCfg = Release|x64
-		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C}.Release|x64.Build.0 = Release|x64
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
+		{10CE6654-FC30-F6F8-A5B6-2EAF91F8C17B} = {B63FEAB7-A20D-DEBD-8BA1-4EE4770EBA22}
+		{5F7B1A55-4BDE-A9F9-F463-E2AFE0A5757C} = {B63FEAB7-A20D-DEBD-8BA1-4EE4770EBA22}
 		{5D4A857C-4981-860D-F26D-6C10DE83020F} = {53E47842-3FC8-3998-A828-34EB942B241A}
 		{154B857C-0182-860D-AA6E-6C109684020F} = {53E47842-3FC8-3998-A828-34EB942B241A}
 		{0098A80F-6CAC-D0C0-352E-7420A101CDF1} = {53E47842-3FC8-3998-A828-34EB942B241A}

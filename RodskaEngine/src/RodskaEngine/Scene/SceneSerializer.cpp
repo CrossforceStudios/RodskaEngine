@@ -24,14 +24,14 @@ namespace RodskaEngine {
 		out << YAML::BeginMap;
 		out << YAML::Key << "Scene" << YAML::Value << "Untitled";
 		out << YAML::Key << "Objects" << YAML::BeginSeq;
-		m_SceneContext->m_Registry.each([&out,this](auto entityID) {
+		for (auto entityID : m_SceneContext->m_Registry.view<entt::entity>()) {
 			RodskaObject entity = { entityID, m_SceneContext.get() };
 			if (!entity)
-				return;
+				continue;
 
 			SerializeObject(out, entity);
 
-		});
+		};
 
 		out << YAML::EndSeq;
 		out << YAML::EndMap;

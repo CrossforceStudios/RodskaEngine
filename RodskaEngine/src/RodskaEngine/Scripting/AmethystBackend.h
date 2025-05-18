@@ -13,6 +13,7 @@ namespace RodskaEngine {
 		virtual char* LoadScript(const std::string& filepath, uint32_t* outSize) = 0;
 		virtual void Init() = 0;
 		virtual void Shutdown() = 0;
+		virtual void OnRuntimeStart() = 0;
 	public:
 		static AmethystMode CurrentOutputMode;
 	};

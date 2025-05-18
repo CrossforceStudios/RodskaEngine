@@ -2,6 +2,7 @@
 #include "SceneViewport.h"
 #include "RodskaEngine/Graphics/Camera/SceneCamera.h"
 #include "RodskaEngine/Scene/BuiltinComponents.h"
+#include "imgui.h"
 
 namespace RodskaEngine {
 

@@ -4,31 +4,25 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Rodska.Math;
 
 namespace Rodska
 {
-    public struct Vector3
-    {
-        public float X, Y, Z;
-
-        public Vector3(float x, float y, float z)
-        {
-            X = x; Y = y; Z = z; 
-        }
-    }
+  
 
     public class RodskaLogger
     {
         public static void Main()
         {
             LogMessage("Hello World!");
+            LogMessage(new Vector3(2, 2, 2));
         }
         public static void LogMessage(string message)
         {
             LogToRodska(message);
         }
 
-        public static  void LogVector3Message(Vector3 vector)
+        public static void LogMessage(Vector3 vector)
         {
             LogVec3ToRodska(vector);
         }

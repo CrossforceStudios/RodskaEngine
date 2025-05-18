@@ -39,7 +39,7 @@
 #include "RodskaEngine/Graphics/Objects/Particle.h"
 // -- Graphics (UI) ---------------------------------------
 
-
+#include "RodskaEngine/UI/UICore/ImGuiBackend.h"
 // ----------------------------------------------
 
 // -- Scene & Entities --------------------------

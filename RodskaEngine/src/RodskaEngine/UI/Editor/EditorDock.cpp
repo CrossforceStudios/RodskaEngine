@@ -1,9 +1,10 @@
 #include "rdskpch.h"
 
 #include "EditorDock.h"
+#include "imgui.h"
 
 namespace RodskaEngine {
-	void EditorDock::CreateUI(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) {
+	void EditorDock::CreateUI(const std::string& title, bool* openPtr, int flags) {
 		Create(title, openPtr, flags);
 	}
 

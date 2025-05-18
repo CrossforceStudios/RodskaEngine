@@ -1,9 +1,8 @@
 
-
+#pragma once
 #include <RodskaEngine.h>
 #include <utility>
 #include <glm/gtc/matrix_transform.hpp>
-#include <RodskaEngine/UI/Editor/MaterialEditor.h>
 #include <RodskaEngine/UI/Editor/PropertyRegistry.h>
 #include "RodskaEngine/Core/Entry.h"
 #include "RodskaEngine/Scene/BuiltinComponents.h"
@@ -19,7 +18,7 @@ class RodskaEditor : public RodskaEngine::RodskaApp {
 public:
 	RodskaEditor(int argc, char** argv) : RodskaEngine::RodskaApp(argc, argv) {
 		RodskaEngine::RegisterAllBuiltinComponents();
-		SetCSBasePath("D:/RodskaEngine/RodskaEditor/modules/");
+		SetCSBasePath("E:/RW/RodskaEngine/RodskaEditor/modules/");
 		InitLangBackend();
 		EditorLayer* eLayer = new EditorLayer();
 		PushLayer(eLayer);

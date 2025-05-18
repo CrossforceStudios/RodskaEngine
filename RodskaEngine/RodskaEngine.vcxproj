@@ -54,20 +54,20 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>..\bin\Debug-windows-x86_64\RodskaEngine\</OutDir>
-    <IntDir>..\bin-int\Debug-windows-x86_64\RodskaEngine\</IntDir>
+    <OutDir>bin\Debug-windows-x86_64\RodskaEngine\</OutDir>
+    <IntDir>bin-int\Debug-windows-x86_64\RodskaEngine\</IntDir>
     <TargetName>RodskaEngine</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>..\bin\Release-windows-x86_64\RodskaEngine\</OutDir>
-    <IntDir>..\bin-int\Release-windows-x86_64\RodskaEngine\</IntDir>
+    <OutDir>bin\Release-windows-x86_64\RodskaEngine\</OutDir>
+    <IntDir>bin-int\Release-windows-x86_64\RodskaEngine\</IntDir>
     <TargetName>RodskaEngine</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
-    <OutDir>..\bin\Dist-windows-x86_64\RodskaEngine\</OutDir>
-    <IntDir>..\bin-int\Dist-windows-x86_64\RodskaEngine\</IntDir>
+    <OutDir>bin\Dist-windows-x86_64\RodskaEngine\</OutDir>
+    <IntDir>bin-int\Dist-windows-x86_64\RodskaEngine\</IntDir>
     <TargetName>RodskaEngine</TargetName>
     <TargetExt>.lib</TargetExt>
   </PropertyGroup>
@@ -77,18 +77,20 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_DEBUG;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;vendor\mono\msvc\include;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\mono\msvc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <Optimization>Disabled</Optimization>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
+      <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
     </Link>
     <Lib>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Debug\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Debug\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -97,7 +99,7 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_RELEASE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;vendor\mono\msvc\include;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\mono\msvc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -105,6 +107,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -112,7 +115,7 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Release\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Release\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Dist|x64'">
@@ -121,7 +124,7 @@
       <PrecompiledHeaderFile>rdskpch.h</PrecompiledHeaderFile>
       <WarningLevel>Level3</WarningLevel>
       <PreprocessorDefinitions>_CRT_SECURE_NO_WARNINGS;RDSK_PLATFORM_WINDOWS;RDSK_BUILD_DLL;GLFW_INCLUDE_NONE;RDSK_DYNAMIC_LINK;RDSK_DIST;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\GLFW\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\ImGuizmo;vendor\mono\msvc\include;C:\Program Files\Python38\Include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>src;vendor\spdlog\include;vendor\glfw\include;vendor\GLAD\include;vendor\imgui;vendor\glm;vendor\stb_image;vendor\tinyobjloader;vendor\entt\include;vendor\yaml-cpp\include;vendor\DirectXTK\Inc;vendor\mono\msvc\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <Optimization>Full</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
@@ -129,6 +132,7 @@
       <StringPooling>true</StringPooling>
       <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <ExternalWarningLevel>Level3</ExternalWarningLevel>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
@@ -136,11 +140,13 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
     <Lib>
-      <AdditionalDependencies>C:\Program Files\Python38\libs\python38_d.lib;opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Dist\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalDependencies>opengl32.lib;runtimeobject.lib;vendor\mono\msvc\build\sgen\x64\lib\Dist\libmono-static-sgen.lib;Ws2_32.lib;Winmm.lib;Version.lib;Bcrypt.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Lib>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="src\Platform\CSharp\CSharpBackend.h" />
+    <ClInclude Include="src\Platform\CSharp\Members\All.h" />
+    <ClInclude Include="src\Platform\CSharp\Members\Logging.hpp" />
     <ClInclude Include="src\Platform\DirectX\Direct3D11Buffer.h" />
     <ClInclude Include="src\Platform\DirectX\Direct3D11Context.h" />
     <ClInclude Include="src\Platform\DirectX\Direct3D11RHIAPI.h" />
@@ -157,7 +163,6 @@
     <ClInclude Include="src\Platform\OpenGL\OpenGLShader.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLTexture.h" />
     <ClInclude Include="src\Platform\OpenGL\OpenGLVertexArray.h" />
-    <ClInclude Include="src\Platform\Python\PythonBackend.h" />
     <ClInclude Include="src\Platform\Windows\WindowsECore.h" />
     <ClInclude Include="src\Platform\Windows\WindowsInputComponent.h" />
     <ClInclude Include="src\Platform\Windows\WindowsViewport.h" />
@@ -214,7 +219,6 @@
     <ClInclude Include="src\RodskaEngine\Scripting\AmethystBackend.h" />
     <ClInclude Include="src\RodskaEngine\UI\Editor\DockBuilder.h" />
     <ClInclude Include="src\RodskaEngine\UI\Editor\EditorDock.h" />
-    <ClInclude Include="src\RodskaEngine\UI\Editor\MaterialEditor.h" />
     <ClInclude Include="src\RodskaEngine\UI\Editor\Panels\IOPanel.h" />
     <ClInclude Include="src\RodskaEngine\UI\Editor\Panels\SceneHierarchyPanel.h" />
     <ClInclude Include="src\RodskaEngine\UI\Editor\PropertyRegistry.h" />
@@ -229,13 +233,12 @@
     <ClInclude Include="src\RodskaEngine\Utils\Operators.h" />
     <ClInclude Include="src\RodskaEngine\Utils\PlatformUtils.h" />
     <ClInclude Include="src\include\cmdparser.hpp" />
+    <ClInclude Include="src\include\coreclr_delegates.h" />
+    <ClInclude Include="src\include\entt.hpp" />
+    <ClInclude Include="src\include\hostfxr.h" />
+    <ClInclude Include="src\include\nethost.h" />
+    <ClInclude Include="src\include\stb_image.h" />
     <ClInclude Include="src\rdskpch.h" />
-    <ClInclude Include="vendor\ImGuizmo\GraphEditor.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImCurveEdit.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImGradient.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImGuizmo.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImSequencer.h" />
-    <ClInclude Include="vendor\ImGuizmo\ImZoomSlider.h" />
     <ClInclude Include="vendor\glm\glm\common.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_features.hpp" />
     <ClInclude Include="vendor\glm\glm\detail\_fixes.hpp" />
@@ -651,7 +654,6 @@
     <ClInclude Include="vendor\glm\glm\vec3.hpp" />
     <ClInclude Include="vendor\glm\glm\vec4.hpp" />
     <ClInclude Include="vendor\glm\glm\vector_relational.hpp" />
-    <ClInclude Include="vendor\stb_image\stb_image.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Platform\CSharp\CSharpBackend.cpp" />
@@ -671,7 +673,6 @@
     <ClCompile Include="src\Platform\OpenGL\OpenGLShader.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLTexture.cpp" />
     <ClCompile Include="src\Platform\OpenGL\OpenGLVertexArray.cpp" />
-    <ClCompile Include="src\Platform\Python\PythonBackend.cpp" />
     <ClCompile Include="src\Platform\Windows\Win32PlatformUtils.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsECore.cpp" />
     <ClCompile Include="src\Platform\Windows\WindowsInputComponent.cpp" />
@@ -714,7 +715,6 @@
     <ClCompile Include="src\RodskaEngine\Scripting\AmethystBackend.cpp" />
     <ClCompile Include="src\RodskaEngine\UI\Editor\DockBuilder.cpp" />
     <ClCompile Include="src\RodskaEngine\UI\Editor\EditorDock.cpp" />
-    <ClCompile Include="src\RodskaEngine\UI\Editor\MaterialEditor.cpp" />
     <ClCompile Include="src\RodskaEngine\UI\Editor\Panels\IOPanel.cpp" />
     <ClCompile Include="src\RodskaEngine\UI\Editor\Panels\SceneHierarchyPanel.cpp" />
     <ClCompile Include="src\RodskaEngine\UI\Editor\PropertyRegistry.cpp" />
@@ -729,25 +729,9 @@
     <ClCompile Include="src\rdskpch.cpp">
       <PrecompiledHeader>Create</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\GraphEditor.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImCurveEdit.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImGradient.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImGuizmo.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="vendor\ImGuizmo\ImSequencer.cpp">
-      <PrecompiledHeader>NotUsing</PrecompiledHeader>
-    </ClCompile>
-    <ClCompile Include="vendor\stb_image\stb_image.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="vendor\GLFW\GLFW.vcxproj">
+    <ProjectReference Include="vendor\glfw\GLFW.vcxproj">
       <Project>{154B857C-0182-860D-AA6E-6C109684020F}</Project>
     </ProjectReference>
     <ProjectReference Include="vendor\GLAD\GLAD.vcxproj">

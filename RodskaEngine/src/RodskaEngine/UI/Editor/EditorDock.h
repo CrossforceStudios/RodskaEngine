@@ -3,12 +3,11 @@
 #include "DockBuilder.h"
 #include "RodskaEngine/Core/RodskaApp.h"
 #include "RodskaEngine/Utils/PlatformUtils.h"
-#include "imgui.h"
 
 namespace RodskaEngine {
 	class  EditorDock : public DockBuilder {
 	public:
-		RODSKA_EAPI void CreateUI(const std::string& title, bool* openPtr = nullptr, ImGuiWindowFlags flags = 0);
+		RODSKA_EAPI void CreateUI(const std::string& title, bool* openPtr = nullptr, int flags = 0);
 		RODSKA_EAPI EditorDock(DockConfig& config) : DockBuilder(config) {  }
 		RODSKA_EAPI virtual void OnCreate() override {
 		}

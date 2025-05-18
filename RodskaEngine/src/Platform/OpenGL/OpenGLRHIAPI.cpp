@@ -1,8 +1,8 @@
 #include "rdskpch.h"
 
 #include "OpenGLRHIAPI.h"
-
 #include <glad/glad.h>
+#include <gl/GL.h>
 namespace RodskaEngine {
 	OpenGLRHIAPI::OpenGLRHIAPI() {
 

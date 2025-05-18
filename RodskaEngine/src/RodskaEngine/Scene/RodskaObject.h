@@ -3,7 +3,7 @@
 
 
 #include "SceneAdapter.hpp"
-#include "entt.hpp"
+#include "include/entt.hpp"
 
 namespace RodskaEngine {
 	class Scene;

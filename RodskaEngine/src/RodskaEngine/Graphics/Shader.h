@@ -2,7 +2,6 @@
 
 #include <string>
 #include <functional>
-#include <glad/glad.h>
 #include <glm/glm.hpp>
 #include "GraphicsCore.h"
 

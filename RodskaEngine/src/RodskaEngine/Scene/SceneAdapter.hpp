@@ -4,7 +4,7 @@
 #include "Scene.h"
 #include "BuiltinComponents.h"
 #include "Subsystem.h"
-#include "entt.hpp"
+#include "include/entt.hpp"
 
 namespace RodskaEngine {
 	class Scene;

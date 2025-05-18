@@ -1,5 +1,5 @@
 #include "rdskpch.h"
-#include "entt.hpp"
+#include "include/entt.hpp"
 #include "RodskaObject.h"
 
 namespace RodskaEngine {

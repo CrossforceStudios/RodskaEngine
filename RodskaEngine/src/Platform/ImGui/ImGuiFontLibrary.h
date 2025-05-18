@@ -1,7 +1,8 @@
 #pragma once
 
 #include "RodskaEngine/UI/UICore/FontLibrary.h"
-#include "imgui.h"
+
+struct ImFont;
 
 namespace RodskaEngine {
 	class  ImGuiFontLibrary : public FontLibrary<ImFont*> {
@@ -15,7 +16,6 @@ namespace RodskaEngine {
 
 	private:
 		std::map<std::string, ImFont*> m_FontMap;
-		ImGuiIO io;
 		std::string m_Tag;
 	};
 };

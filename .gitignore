@@ -374,5 +374,5 @@ FodyWeavers.xsd
 
 # RodskaEngine builds
 */plugins/*
-/RodskaEngine/vendor/mono
+/RodskaEngine/vendor/**
 /RodskaEditor/RodskaEditor/assets/shaders/DirectX/compiled

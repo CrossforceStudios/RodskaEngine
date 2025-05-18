@@ -4,7 +4,7 @@
 #include "Mesh.h"
 #define TINYOBJLOADER_IMPLEMENTATION
 #include "tiny_obj_loader.h"
-#include "stb_image.h"
+#include "include/stb_image.h"
 
 namespace RodskaEngine {
 	Mesh::Mesh(std::vector<glm::vec3> vertices, std::vector<unsigned int> indices) {

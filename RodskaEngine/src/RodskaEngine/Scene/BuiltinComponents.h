@@ -10,9 +10,8 @@
 #include "RodskaEngine/Core/TimeStep.h"
 #include <RodskaEngine/Graphics/Camera/Camera.h>
 #include "RodskaEngine/UI/Editor/PropertyRegistry.h"
-#include "imgui.h"
 #include "RodskaEngine/Graphics/Texture.h"
-#include "entt.hpp"
+#include "include/entt.hpp"
 
 namespace RodskaEngine {
 	class ScriptableRodskaObject;
@@ -124,6 +123,11 @@ namespace RodskaEngine {
 
 		}
 	};
+
+	 RDSK_DEFCOMP(CSScript) {
+		 std::string Name;
+
+	 };
 
 	 RDSK_DEFCOMP(ParticleEmitter) {
 		glm::vec3 Speed;

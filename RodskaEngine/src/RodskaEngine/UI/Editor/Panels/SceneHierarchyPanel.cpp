@@ -1,5 +1,6 @@
 #include "rdskpch.h"
 #include "SceneHierarchyPanel.h"
+#include "imgui.h"
 
 namespace RodskaEngine {
 	SceneHierarchyPanel::SceneHierarchyPanel(const Ref<Scene>& scene) : m_Context(scene) {
@@ -23,7 +24,7 @@ namespace RodskaEngine {
 		PropRegister.RenderPropertyFunctions(m_SelectedContext, m_Context);
 	}
 
-	void SceneHierarchyPanel::Create(const std::string& title, bool* openPtr, ImGuiWindowFlags flags) {
+	void SceneHierarchyPanel::Create(const std::string& title, bool* openPtr, int flags) {
 		
 		ImGui::Begin(title.c_str(), openPtr, flags);
 		OnCreate();

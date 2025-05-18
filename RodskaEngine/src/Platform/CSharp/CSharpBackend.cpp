@@ -3,18 +3,39 @@
 #include "RodskaEngine/Core/AppLog.h"
 #include <mono/jit/jit.h>
 #include <glm/ext/vector_float3.hpp>
+#include "Members/All.h"
 namespace RodskaEngine {
     struct CSharpBackendData
     {
+        char path_buffer[MAX_PATH];
+        size_t buffer_size;
         MonoDomain* RootDomain = nullptr;
         MonoDomain* AppDomain = nullptr;
 
         MonoAssembly* CoreAssembly = nullptr;
         MonoImage* CoreAssemblyImage = nullptr;
-
+        
+        
+        std::unordered_map<std::string, Ref<ScriptClass>> EntityClasses = {};
     };
 
     static CSharpBackendData* s_BackendData = nullptr;
+
+    ScriptClass::ScriptClass(const std::string& classNamespace, const std::string& className) : m_ClassNamespace(classNamespace), m_ClassName(className) {
+        m_MonoClass = mono_class_from_name(s_BackendData->CoreAssemblyImage, classNamespace.c_str(), className.c_str());
+    }
+
+    MonoMethod* ScriptClass::GetMethod(const std::string& name, int params) {
+        MonoMethod* method = mono_class_get_method_from_name(m_MonoClass, name.c_str(), params);
+        return method;
+    }
+
+    MonoObject* ScriptClass::Invoke(MonoObject* instance, MonoMethod* method, void** params)
+    {
+        return mono_runtime_invoke(method, instance, params, NULL);
+    }
+
+
 
     CSharpBackend::~CSharpBackend()
     {
@@ -25,13 +46,23 @@ namespace RodskaEngine {
     {
         s_BackendData = new CSharpBackendData();
         {
+            s_BackendData->buffer_size = sizeof(s_BackendData->path_buffer) / sizeof(char);
+
             mono_set_assemblies_path("mono/lib");
             MonoDomain* domain = mono_jit_init("RodskaJITRuntime");
             RDSK_CORE_ASSERT(domain);
             s_BackendData->RootDomain = domain;
-        }
-        LoadAssembly("Scripts/ScriptCore.dll");
 
+        }
+        LoadAPI();
+        Load("Scripts/ScriptCore.dll");
+        {
+            ScriptClass rodskaLogger = ScriptClass("Rodska", "RodskaLogger");
+            MonoObject* obj_rodskaLogger = rodskaLogger.Instantiate();
+            MonoMethod* mainMethod = rodskaLogger.GetMethod("Main", 0);
+            void* args[1];
+            rodskaLogger.Invoke(obj_rodskaLogger, mainMethod, args);
+        }
 	}
 
 	void CSharpBackend::Shutdown()
@@ -69,6 +100,10 @@ namespace RodskaEngine {
         return buffer;
 	}
 
+    void CSharpBackend::OnRuntimeStart()
+    {
+    }
+
     bool CSharpBackend::Run()
     {
         return true;
@@ -95,6 +130,7 @@ namespace RodskaEngine {
         mono_image_close(image);
 
         delete[] fileData;
+        
         RDSK_INFO("Assembly Loaded.");
 
         return assembly;
@@ -108,6 +144,38 @@ namespace RodskaEngine {
 
         s_BackendData->CoreAssembly = LoadAssembly(filePath);
         s_BackendData->CoreAssemblyImage = mono_assembly_get_image(s_BackendData->CoreAssembly);
+        RDSK_INFO("Loading Classes...");
+        {
+            MonoImage* image = s_BackendData->CoreAssemblyImage;
+            const MonoTableInfo* typeDefTable = mono_image_get_table_info(image, MONO_TABLE_TYPEDEF);
+            int32_t numTypes = mono_table_info_get_rows(typeDefTable);
+            RDSK_INFO("Loading {0} types...", numTypes);
+            for (int32_t i = 0; i < numTypes; i++) {
+                uint32_t cols[MONO_TYPEDEF_SIZE];
+                mono_metadata_decode_row(typeDefTable, i, cols, MONO_TYPEDEF_SIZE);
+                const char* nameSpace = mono_metadata_string_heap(image, cols[MONO_TYPEDEF_NAMESPACE]);
+                const char* name = mono_metadata_string_heap(image, cols[MONO_TYPEDEF_NAME]);
+                std::string fullName;
+                if (strlen(nameSpace) != 0) {
+                    fullName = fmt::format("{}.{}", nameSpace, name);
+                }
+                else {
+                    fullName = name;
+                }
+
+                MonoClass* monoClass = mono_class_from_name(image, nameSpace, name);
+                MonoClass* entityClass = mono_class_from_name(image, "Rodska.ECS", "Entity");
+
+                bool isEntity = mono_class_is_subclass_of(monoClass, entityClass, false);
+                if (isEntity) {
+                    s_BackendData->EntityClasses[fullName] = CreateRef<ScriptClass>(nameSpace, name);
+                }
+
+                RDSK_CORE_TRACE("Loaded {}.{}", nameSpace, name);
+
+            }
+
+        }
     }
 
     void CSharpBackend::SetBase(const std::string& basePath)
@@ -115,26 +183,40 @@ namespace RodskaEngine {
         m_BasePath = basePath;
     }
 
-    // Begin Mono Functions
 
-    static void LogToRodska(MonoString* string) {
-        char* cStr = mono_string_to_utf8(string);
-        std::string str(cStr);
-        mono_free(cStr);
-        RDSK_TRACE("{0}", str);
+    std::unordered_map<std::string, Ref<ScriptClass>> CSharpBackend::GetEntityClasses()
+    {
+        return s_BackendData->EntityClasses;
     }
-
-
-    static void LogVec3ToRodska(glm::vec3* vector) {
-        RDSK_CORE_TRACE("Vector: {0}", glm::to_string(*vector));
-    }
-
-    // End Mono Functions
 
     void CSharpBackend::LoadAPI()
     {
-        RDSK_CS_ADD_INTERNAL_CALL(LogToRodska);
-        RDSK_CS_ADD_INTERNAL_CALL(LogVec3ToRodska);
+        RDSK_CS_ADD_INTERNAL_CALL(Rodska.RodskaLogger::LogToRodska, LogToRodska);
+        RDSK_CS_ADD_INTERNAL_CALL(Rodska.RodskaLogger::LogVec3ToRodska, LogVec3ToRodska);
 
     }
+
+    MonoObject* ScriptClass::Instantiate() {
+        MonoObject* instance = mono_object_new(s_BackendData->AppDomain, m_MonoClass);
+        mono_runtime_object_init(instance);
+        return instance;
+    }
+    ScriptInstance::ScriptInstance(Ref<ScriptClass> scriptClass) : m_ScriptClass(scriptClass)
+    {
+        m_OnCreateMethod = m_ScriptClass->GetMethod("OnCreate", 0);
+        m_OnUpdateMethod = m_ScriptClass->GetMethod("OnUpdate", 1);
+    }
+
+    void ScriptInstance::InvokeOnUpdate(float ts)
+    {
+        void* param = &ts;
+        m_ScriptClass->Invoke(m_Instance, m_OnUpdateMethod, &param);
+    }
+
+    void ScriptInstance::InvokeOnCreate()
+    {
+        m_ScriptClass->Invoke(m_Instance, m_OnCreateMethod, nullptr);
+    }
+
+
 }

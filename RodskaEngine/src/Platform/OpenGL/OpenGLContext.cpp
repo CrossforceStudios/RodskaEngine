@@ -27,9 +27,15 @@ namespace RodskaEngine {
 	}
 
 	void OpenGLContext::GetVersioning() {
-		 RDSK_CORE_INFO("OpenGL Renderer: {0}", glGetString(GL_RENDERER));
-		 RDSK_CORE_INFO("OpenGL Vendor: {0}", glGetString(GL_VENDOR));
-		 RDSK_CORE_INFO("OpenGL Version: {0}", glGetString(GL_VERSION));
+		const char* renderer = reinterpret_cast<const char*>(glGetString(GL_RENDERER));
+		std::string renderer_str = renderer ? renderer : "Unknown Renderer";
+		 RDSK_CORE_INFO("OpenGL Renderer: {0}", renderer_str);
+		 const char* vendor = reinterpret_cast<const char*>(glGetString(GL_VENDOR));
+		 std::string vendor_str = vendor ? vendor : "Unknown Vendor";
+		 RDSK_CORE_INFO("OpenGL Vendor: {0}", vendor_str);
+		 const char* version = reinterpret_cast<const char*>(glGetString(GL_VERSION));
+		 std::string version_str = version ? version : "Unknown Version";
+		 RDSK_CORE_INFO("OpenGL Version: {0}", version_str);
 
 	}
 

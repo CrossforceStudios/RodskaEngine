@@ -1,5 +1,6 @@
 #include "rdskpch.h"
 #include "DockBuilder.h"
+#include "imgui.h"
 
 namespace RodskaEngine {
     DockBuilder::DockBuilder(DockConfig& config)
@@ -12,7 +13,7 @@ namespace RodskaEngine {
             m_Config.ExtraFlags |= ImGuiWindowFlags_NoBackground;
     }
 
-    void DockBuilder::Create(const std::string& name, bool* openPtr, ImGuiWindowFlags flags) {
+    void DockBuilder::Create(const std::string& name, bool* openPtr, int flags) {
         SetupFullscreen();
         SetupPassthru();
         if (!m_Config.Padding)

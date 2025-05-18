@@ -3,7 +3,10 @@
 #include "RodskaEngine/UI/Editor/PropertyRegistry.h"
 #include "RodskaEngine/UI/UICore/ImGuiExtras.h"
 #include <glm/gtc/type_ptr.hpp>
+#include "imgui.h"
+
 #include "RodskaEngine/Utils/Operators.h"
+#include "Platform/CSharp/CSharpBackend.h"
 
 namespace RodskaEngine {
 	static std::string newTag;
@@ -342,6 +345,63 @@ namespace RodskaEngine {
 			RegisterSer(uiSerFunc);
 			RegisterDeSer(uiDSFunc);
 			RegisterActions("UI", {});
+
+			RodskaEngine::ObjectDisplayFunc csScriptFunc = [](RodskaEngine::RodskaObject& object) {
+				if (object.HasComponent<RDSK_COMP(CSScript)>()) {
+					auto& csscript = object.GetComponent<RDSK_COMP(CSScript)>();
+					{
+						bool csScriptExists = false;
+						const auto& entityClasses = CSharpBackend::GetEntityClasses();
+						if (entityClasses.find(csscript.Name) != entityClasses.end()) {
+							csScriptExists = true;
+						}
+						static char buffer[64];
+						strcpy(buffer, csscript.Name.c_str());
+
+						if (!csScriptExists)
+							ImGui::PushStyleColor(ImGuiCol_Text, ImVec4(0.9f, 0.2f, 0.3f, 1.0f));
+
+
+						if (ImGui::InputText("C# Class", buffer, sizeof(buffer))) {
+							csscript.Name = buffer;
+							
+						}
+						if (!csScriptExists)
+							ImGui::PopStyleColor();
+					}
+				}
+			};
+			RodskaEngine::ObjectCompAddFunc csScriptAddFunc = [](RodskaEngine::RodskaObject& object) {
+				if (!object.HasComponent<RDSK_COMP(CSScript)>())
+					object.AddComponent<RDSK_COMP(CSScript)>();
+				};
+
+			RodskaEngine::ObjectDisplayCondFunc csScriptCheckFunc = [](RodskaEngine::RodskaObject& object) {
+				return object.HasComponent<RDSK_COMP(CSScript)>();
+				};
+
+			RodskaEngine::ObjectSerializeFunc csScriptSerFunc = [](YAML::Emitter& emit, RodskaEngine::RodskaObject object) {
+				if (object.HasComponent<RDSK_COMP(CSScript)>()) {
+					auto csscript = object.GetComponent<RDSK_COMP(CSScript)>();
+					emit << YAML::Key << "ClassName" << YAML::Value << csscript.Name;
+				}
+			};
+
+			RodskaEngine::ObjectDeserializeFunc csScriptDSFunc = [](RodskaEngine::RodskaObject& object, RodskaEngine::Ref<RodskaEngine::Scene>& scene, YAML::detail::iterator_value data) {
+				auto comp = data["RDSK_COMP_CSScript"];
+				if (comp.IsDefined()) {
+					std::string scriptName = data["RDSK_COMP_CSScript"]["ClassName"].as<std::string>();
+
+					auto& csscript = object.AddComponent<RDSK_COMP(CSScript)>();
+					csscript.Name = scriptName;
+				}
+				};
+
+			RegisterComp("CSScript", "C# Script", csScriptFunc, csScriptAddFunc, csScriptCheckFunc);
+			RegisterSer(csScriptSerFunc);
+			RegisterDeSer(csScriptDSFunc);
+			RegisterActions("CSScript", {});
+
 
 			RodskaEngine::ObjectDisplayFunc matFunc = [](RodskaEngine::RodskaObject& object) {
 				if (object.HasComponent<RDSK_COMP(Material)>()) {

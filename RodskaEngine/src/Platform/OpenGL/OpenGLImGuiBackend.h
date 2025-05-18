@@ -2,6 +2,9 @@
 
 #include "RodskaEngine/UI/UICore/ImGuiBackend.h"
 #include <GLFW/glfw3.h>
+#include <glad/glad.h>
+#include "imgui.h"
+
 #include <RodskaEngine/Core/Viewport.h>
 
 // Specific OpenGL ES versions
